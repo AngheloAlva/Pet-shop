@@ -14,7 +14,7 @@ function PetsSection (): React.ReactElement {
     <section className='px-5 sm:px-10 md:px-20 lg:px-40'>
       <h2 className='text-3xl font-bold mb-2'>Pets</h2>
 
-      <div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
+      <div className='grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-3'>
         {
           pets.map((pet, index) => (
             <PetCard

@@ -4,13 +4,14 @@ import type { Brand } from './brand.types'
 
 interface Product {
   id: number
+  slug: string
   categoryId: number
   petType: string[]
   name: string
   miniDesc: string
   description: string
   images: string[]
-  options?: Option[]
+  options: Option[]
   brand?: Brand
   lifeStage: 'PUPPY' | 'ADULT' | 'SENIOR' | 'KITTEN' | 'ALL_LIFE_STAGES'
   brandId: number
