@@ -8,8 +8,6 @@ interface Cart {
 }
 
 interface AddProductToCart {
-  userId: number
-  cartId: number
   productId: number
   quantity: number
   optionSelectedIndex: number

@@ -30,6 +30,8 @@ const config = {
         'bg-100': '#FDFBF6',
         'bg-200': '#F4F4F4',
         'bg-300': '#E5E5E5',
+        blue: '#1D1D35',
+        cream: '#DEB887',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

@@ -1,3 +1,4 @@
+import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 import { useState } from 'react'
 import Link from 'next/link'
 
@@ -14,10 +15,6 @@ import type { Product } from '@/types/shop/products.types'
 
 function ProductCard ({ product }: { product: Product }): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
-
-  const calculateDiscount = (price: number, discount: number): number => {
-    return price - (price * (discount / 100))
-  }
 
   return (
     <Card className='h-full w-full'>
