@@ -1,9 +1,16 @@
 import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card'
+import Link from 'next/link'
+
+import { Button } from '../../ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '../../ui/card'
 
 import type { Product } from '@/types/shop/products.types'
-import { Button } from './button'
-import Link from 'next/link'
 
 function ProductCard ({ product }: { product: Product }): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
