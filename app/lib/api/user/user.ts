@@ -4,16 +4,12 @@ import type { GetAllOfModel } from '@/types/shared/getAllOfModel'
 import type { User, CreateUser, UpdateUser } from '@/types/user/user.types'
 
 const createUser = async ({
-  email, lastName, name, password, phone, rut
+  email, authId
 }: CreateUser): Promise<{ message: string }> => {
   const { data } = await axiosInstance.post<{ message: string }>(
     '/user', {
-      rut,
-      name,
       email,
-      phone,
-      lastName,
-      password
+      authId
     }
   )
 

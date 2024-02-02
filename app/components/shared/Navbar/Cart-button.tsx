@@ -1,6 +1,7 @@
 import { FaBasketShopping } from 'react-icons/fa6'
 import {
   Popover,
+  PopoverClose,
   PopoverContent,
   PopoverTrigger
 } from '@/app/components/ui/popover'
@@ -14,9 +15,9 @@ function CartButton (): React.ReactElement {
       <PopoverContent>
         <div className='flex flex-col gap-2 p-4'>
           <p>Your cart is empty</p>
-          <button className='bg-primary-100 text-text-100 p-2 rounded-lg hover:bg-primary-200 transition-colors'>
+          <PopoverClose className='bg-primary-100 text-bg-100 p-2 rounded-lg hover:bg-primary-200 transition-colors'>
             Go to shop
-          </button>
+          </PopoverClose>
         </div>
       </PopoverContent>
     </Popover>

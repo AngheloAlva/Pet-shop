@@ -35,7 +35,7 @@ function PrimaryInfoSection (
 
   return (
     <section className='flex flex-col gap-2 text-text-100 lg:pt-10'>
-      <h1 className='text-4xl font-bold text-blue text-pretty'>
+      <h1 className='text-4xl tracking-wide font-bold text-blue text-pretty'>
         {product.name}
       </h1>
       <Link href={`/brands/${product.brand?.slug}`}>

@@ -33,7 +33,7 @@ function AddProductButton ({
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <Button className='h-11 w-full' onClick={handleAddToCart}>
+    <Button className='h-11 w-full bg-accent-200 hover:bg-accent-300' onClick={handleAddToCart}>
       Add to cart
     </Button>
   )
