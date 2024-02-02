@@ -11,8 +11,7 @@ import { Separator } from '../../ui/separator'
 import Link from 'next/link'
 
 function AccountButton (): React.ReactElement {
-  const { user, isSignedIn } = useUser()
-  console.log(user)
+  const { isSignedIn } = useUser()
 
   return (
     <Popover>

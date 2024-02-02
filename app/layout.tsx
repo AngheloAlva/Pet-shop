@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import Navbar from './components/shared/Navbar/Navbar'
+import { Toaster } from './components/ui/toaster'
 import { ClerkProvider } from '@clerk/nextjs'
 
 import './globals.css'
@@ -24,6 +25,7 @@ export default function RootLayout ({
         <body className={inter.className}>
           <Navbar />
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

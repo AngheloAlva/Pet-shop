@@ -5,9 +5,9 @@ import ProductsSection from '../components/home/page/Products-section'
 export default function Home (): React.ReactElement {
   return (
     <main className='flex flex-col gap-10 pt-10 pb-20'>
-      <ProductsSection />
+      {/* <ProductsSection /> */}
       <PetsSection />
-      <BrandsSection />
+      {/* <BrandsSection /> */}
     </main>
   )
 }

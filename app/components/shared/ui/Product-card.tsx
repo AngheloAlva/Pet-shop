@@ -70,6 +70,7 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
                 size={'sm'}
                 key={option.id}
                 variant={'secondary'}
+                disabled={option.stock === 0}
                 onClick={() => { setOptionSelected(index) }}
                 className={optionSelected === index
                   ? 'bg-primary-100 hover:bg-bg-primary-100 text-bg-100'
