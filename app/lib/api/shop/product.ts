@@ -1,7 +1,7 @@
 import axiosInstance from '../../axios/axios-instance'
 
 import type { CreateProduct, Product, UpdateProduct } from '@/types/shop/products.types'
-import type { GetAllOfModel } from '@/types/shared/getAllOfModel'
+import type { GetProductsWithFilters } from '@/types/shared/getProductsWithFilters'
 
 const createProduct = async ({
   brandId, categoryId, description, images, lifeStage, miniDesc, name, options, petType, slug
@@ -25,11 +25,37 @@ const createProduct = async ({
 }
 
 const getProducts = async ({
-  isAvailable, limit, page
-}: GetAllOfModel): Promise<Product[]> => {
-  const { data } = await axiosInstance.get<Product[]>(
-    `/product?isAvailable=${isAvailable}&limit=${limit}&page=${page}`
+  page,
+  limit,
+  order,
+  sortBy,
+  search,
+  petType,
+  brandId,
+  maxPrice,
+  minPrice,
+  lifeStage,
+  categorySlug,
+  isAvailable,
+  isDiscounted
+}: GetProductsWithFilters): Promise<{ products: Product[], total: number }> => {
+  const { data } = await axiosInstance.get<{ products: Product[], total: number }>(
+    '/product' +
+      `?page=${page}` +
+      `&limit=${limit}` +
+      `&isAvailable=${isAvailable}` +
+      ((order != null) ? `&order=${order}` : '') +
+      ((sortBy != null) ? `&sortBy=${sortBy}` : '') +
+      ((search != null) ? `&search=${search}` : '') +
+      ((petType != null) ? `&petType=${petType}` : '') +
+      ((brandId != null) ? `&brandId=${brandId}` : '') +
+      ((maxPrice != null) ? `&maxPrice=${maxPrice}` : '') +
+      ((minPrice != null) ? `&minPrice=${minPrice}` : '') +
+      ((lifeStage != null) ? `&lifeStage=${lifeStage}` : '') +
+      ((categorySlug != null) ? `&categorySlug=${categorySlug}` : '') +
+      ((isDiscounted ?? false) ? `&isDiscounted=${isDiscounted}` : '')
   )
+  console.log(data)
 
   return data
 }

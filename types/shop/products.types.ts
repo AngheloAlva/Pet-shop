@@ -1,11 +1,13 @@
-import type { CreateOption, Option } from './option.types'
 import type { ProductCart } from '../user/product-cart.types'
+import type { CreateOption, Option } from './option.types'
+import type { Category } from './category.types'
 import type { Brand } from './brand.types'
 
 interface Product {
   id: number
   slug: string
   categoryId: number
+  category?: Category
   petType: string[]
   name: string
   miniDesc: string
