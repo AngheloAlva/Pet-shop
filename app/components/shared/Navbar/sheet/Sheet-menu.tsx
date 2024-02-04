@@ -1,12 +1,12 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger
 } from '@/app/components/ui/sheet'
 import { FaBars } from 'react-icons/fa6'
+import CategoryList from './Category-list'
 
 function SheetMenu (): React.ReactElement {
   return (
@@ -16,12 +16,11 @@ function SheetMenu (): React.ReactElement {
       </SheetTrigger>
       <SheetContent side={'left'}>
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
-          </SheetDescription>
+          <SheetTitle>
+            Categories
+          </SheetTitle>
         </SheetHeader>
+        <CategoryList />
       </SheetContent>
       </Sheet>
   )

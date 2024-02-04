@@ -4,6 +4,7 @@ interface Category {
   id: number
   name: string
   slug: string
+  petType: 'DOG' | 'CAT' | 'BIRD' | 'FISH' | 'REPTILE' | 'SMALL_ANIMAL'
   description: string
   image: string
   createdAt: Date
@@ -15,6 +16,7 @@ interface CreateCategory {
   name: string
   slug: string
   description: string
+  petType: 'DOG' | 'CAT' | 'BIRD' | 'FISH' | 'REPTILE' | 'SMALL_ANIMAL'
   image: string
 }
 
