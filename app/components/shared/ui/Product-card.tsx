@@ -12,6 +12,7 @@ import {
 } from '../../ui/card'
 
 import type { Product } from '@/types/shop/products.types'
+import AddProductButton from './Add-product-button'
 
 function ProductCard ({ product }: { product: Product }): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
@@ -33,7 +34,7 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
             />
         </CardHeader>
       </Link>
-      <CardContent className='flex flex-col gap-2'>
+      <CardContent className='flex flex-col'>
         <Link href={`/products/${product.slug}`}>
           <CardTitle>
             {product.name}
@@ -63,7 +64,7 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
           }
         </span>
 
-        <div className='flex flex-wrap gap-2 text-xs mt-4'>
+        <div className='flex flex-wrap gap-2 text-xs my-4'>
           {
             product.options?.map((option, index) => (
               <Button
@@ -83,6 +84,13 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
             ))
           }
         </div>
+
+        <AddProductButton
+          optionSelectedIndex={optionSelected}
+          productId={product.id}
+          className=''
+          quantity={1}
+        />
       </CardContent>
     </Card>
   )

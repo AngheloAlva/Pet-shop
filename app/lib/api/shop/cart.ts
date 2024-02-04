@@ -11,13 +11,14 @@ const createCart = async (userId: number): Promise<{ message: string }> => {
 }
 
 const addProductToCart = async ({
-  optionSelectedIndex, productId, quantity
+  optionSelectedIndex, productId, quantity, authId
 }: AddProductToCart): Promise<{ message: string }> => {
   const { data } = await axiosInstance.post<{ message: string }>(
     '/cart/add-product', {
       optionSelectedIndex,
       productId,
-      quantity
+      quantity,
+      authId
     }
   )
 

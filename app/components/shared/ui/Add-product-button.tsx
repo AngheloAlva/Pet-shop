@@ -2,21 +2,24 @@
 'use client'
 
 import { addProductToCart } from '@/app/lib/api/shop/cart'
-import { Button } from '../../ui/button'
-import { useToast } from '../../ui/use-toast'
 import { SignInButton, useUser } from '@clerk/nextjs'
+
+import { useToast } from '../../ui/use-toast'
 import { ToastAction } from '../../ui/toast'
+import { Button } from '../../ui/button'
+import { cn } from '@/app/lib/utils'
 
 interface AddProductButtonProps {
   quantity: number
   productId: number
+  className?: string
   optionSelectedIndex: number
 }
 
 function AddProductButton ({
-  optionSelectedIndex, productId, quantity
+  optionSelectedIndex, productId, quantity, className
 }: AddProductButtonProps): React.ReactElement {
-  const { isSignedIn } = useUser()
+  const { user, isSignedIn } = useUser()
   const { toast } = useToast()
 
   const handleAddToCart = async (): Promise<void> => {
@@ -39,6 +42,7 @@ function AddProductButton ({
     try {
       await addProductToCart({
         optionSelectedIndex,
+        authId: user?.id ?? '',
         productId,
         quantity
       })
@@ -53,7 +57,7 @@ function AddProductButton ({
 
   return (
     <Button
-      className='h-11 w-full bg-accent-200 hover:bg-accent-300'
+      className={cn(className, 'h-11 w-full bg-accent-200 hover:bg-accent-300')}
       onClick={async () => {
         await handleAddToCart()
       }}

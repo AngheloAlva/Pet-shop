@@ -8,6 +8,7 @@ interface Cart {
 }
 
 interface AddProductToCart {
+  authId: string
   productId: number
   quantity: number
   optionSelectedIndex: number

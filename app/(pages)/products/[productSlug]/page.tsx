@@ -1,9 +1,10 @@
 'use client'
 
-import DescriptionSection from '@/app/components/products/product/page/Description-section'
-import ImageSection from '@/app/components/products/product/page/Image-section'
-import PrimaryInfoSection from '@/app/components/products/product/page/Primary-info-section'
 import useProductBySlug from '@/app/hooks/useProductBySlug'
+
+import DescriptionSection from '@/app/components/products/product/page/Description-section'
+import PrimaryInfoSection from '@/app/components/products/product/page/Primary-info-section'
+import ImageSection from '@/app/components/products/product/page/Image-section'
 
 function ProductPage (
   { params }: { params: { productSlug: string } }
