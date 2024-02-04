@@ -23,7 +23,7 @@ function ImagesCarousel ({
       <CarouselContent className='max-w-md'>
         {
           images.map((image, index) => (
-            <CarouselItem key={image} className='flex basis-1/4'>
+            <CarouselItem key={image} className='basis-auto'>
               <Image
                 src={image}
                 alt={name}
