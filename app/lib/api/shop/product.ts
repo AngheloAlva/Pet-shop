@@ -24,38 +24,37 @@ const createProduct = async ({
   return data
 }
 
+interface GetProducts extends GetProductsWithFilters {
+  isAvailable: boolean
+  page: number
+  limit: number
+}
+
 const getProducts = async ({
   page,
   limit,
-  order,
-  sortBy,
   search,
   petType,
-  brandId,
   maxPrice,
   minPrice,
   lifeStage,
-  categorySlug,
+  brandSlug,
   isAvailable,
-  isDiscounted
-}: GetProductsWithFilters): Promise<{ products: Product[], total: number }> => {
+  categorySlug
+}: GetProducts): Promise<{ products: Product[], total: number }> => {
   const { data } = await axiosInstance.get<{ products: Product[], total: number }>(
     '/product' +
       `?page=${page}` +
       `&limit=${limit}` +
       `&isAvailable=${isAvailable}` +
-      ((order != null) ? `&order=${order}` : '') +
-      ((sortBy != null) ? `&sortBy=${sortBy}` : '') +
       ((search != null) ? `&search=${search}` : '') +
       ((petType != null) ? `&petType=${petType}` : '') +
-      ((brandId != null) ? `&brandId=${brandId}` : '') +
+      ((brandSlug != null) ? `&brandSlug=${brandSlug}` : '') +
       ((maxPrice != null) ? `&maxPrice=${maxPrice}` : '') +
       ((minPrice != null) ? `&minPrice=${minPrice}` : '') +
       ((lifeStage != null) ? `&lifeStage=${lifeStage}` : '') +
-      ((categorySlug != null) ? `&categorySlug=${categorySlug}` : '') +
-      ((isDiscounted ?? false) ? `&isDiscounted=${isDiscounted}` : '')
+      ((categorySlug != null) ? `&categorySlug=${categorySlug}` : '')
   )
-  console.log(data)
 
   return data
 }

@@ -10,7 +10,7 @@ function CategoryBySlugPage (
 ): React.ReactElement {
   const limit = 10
   const { products, isLoading, page, setPage, total } = useProducts({
-    categorySlug: params.categorySlug,
+    InitialFilters: { categorySlug: params.categorySlug },
     isAvailable: true,
     limit
   })

@@ -1,17 +1,11 @@
 interface GetProductsWithFilters {
-  page?: number
-  limit: number
-  order?: string
-  search?: string
-  sortBy?: string
-  petType?: string
-  brandId?: string
-  minPrice?: string
-  maxPrice?: string
-  lifeStage?: string
-  categorySlug?: string
-  isAvailable: boolean
-  isDiscounted?: boolean
+  search?: string | undefined
+  petType?: string | undefined
+  brandSlug?: string | undefined
+  minPrice?: string | undefined
+  maxPrice?: string | undefined
+  lifeStage?: string | undefined
+  categorySlug?: string | undefined
 }
 
 export {

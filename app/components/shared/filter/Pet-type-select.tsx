@@ -1,0 +1,64 @@
+import { Button } from '../../ui/button'
+import { Label } from '../../ui/label'
+import {
+  Select,
+  SelectItem,
+  SelectValue,
+  SelectTrigger,
+  SelectContent
+} from '@/app/components/ui/select'
+
+import type { FilterProps } from '@/types/shared/FiltersProps'
+
+function PetTypeSelect (
+  { setFilters, filters }: FilterProps
+): React.ReactElement {
+  const petTypes = [
+    { value: 'DOG', label: 'Dogs' },
+    { value: 'CAT', label: 'Cats' },
+    { value: 'BIRD', label: 'Birds' },
+    { value: 'FISH', label: 'Fish' },
+    { value: 'REPTILE', label: 'Reptiles' },
+    { value: 'SMALL_ANIMAL', label: 'Small Animals' }
+  ]
+
+  const handlePetTypeChange = (value: string): void => {
+    setFilters({
+      ...filters,
+      petType: value
+    })
+  }
+
+  const clearPetType = (): void => {
+    setFilters({
+      ...filters,
+      petType: undefined
+    })
+  }
+
+  return (
+    <div>
+      <Label>Pet Type</Label>
+      <div className='flex items-center justify-between gap-2'>
+        <Select onValueChange={handlePetTypeChange} defaultValue={filters.petType}>
+          <SelectTrigger className="w-[280px]">
+            <SelectValue placeholder='Select a Pet Type' />
+          </SelectTrigger>
+          <SelectContent>
+            {petTypes.map((petType) => (
+              <SelectItem key={petType.value} value={petType.value}>
+                {petType.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Button onClick={clearPetType} variant="secondary" className='w-1/4'>
+          Clear
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export default PetTypeSelect
