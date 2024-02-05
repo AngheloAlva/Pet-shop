@@ -1,3 +1,5 @@
+import { cn } from '@/app/lib/utils'
+
 import { Button } from '../../ui/button'
 import { Label } from '../../ui/label'
 import {
@@ -11,7 +13,7 @@ import {
 import type { FilterProps } from '@/types/shared/FiltersProps'
 
 function LifeStageSelect (
-  { setFilters, filters }: FilterProps
+  { setFilters, filters, className }: FilterProps
 ): React.ReactElement {
   const lifeStages = [
     { value: 'PUPPY', label: 'Puppy' },
@@ -38,9 +40,9 @@ function LifeStageSelect (
   return (
     <div>
       <Label>Life Stage</Label>
-      <div className='flex items-center justify-between gap-2'>
+      <div className={cn('flex items-center justify-between gap-2', className)}>
         <Select onValueChange={handleLifeStageChange} defaultValue={filters.lifeStage}>
-          <SelectTrigger className="w-[280px]">
+          <SelectTrigger>
             <SelectValue placeholder='Select a Life Stage' />
           </SelectTrigger>
           <SelectContent>
@@ -52,7 +54,7 @@ function LifeStageSelect (
           </SelectContent>
         </Select>
 
-        <Button onClick={clearLifeStage} variant="secondary" className='w-1/4'>
+        <Button onClick={clearLifeStage} variant="secondary" className='w-1/4 lg:w-1/2'>
           Clear
         </Button>
       </div>

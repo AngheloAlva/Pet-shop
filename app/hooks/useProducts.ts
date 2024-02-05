@@ -51,7 +51,7 @@ const useProducts = ({
     }
 
     void fetchProducts()
-  }, [isAvailable, limit, router, filters])
+  }, [isAvailable, limit, router, filters, page])
 
   return {
     page,

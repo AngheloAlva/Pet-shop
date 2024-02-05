@@ -1,4 +1,5 @@
 import useCategories from '@/app/hooks/useCategories'
+import { cn } from '@/app/lib/utils'
 
 import { Button } from '../../ui/button'
 import { Label } from '../../ui/label'
@@ -13,7 +14,7 @@ import {
 import type { FilterProps } from '@/types/shared/FiltersProps'
 
 function CategorySelect (
-  { setFilters, filters }: FilterProps
+  { setFilters, filters, className }: FilterProps
 ): React.ReactElement {
   const { categories } = useCategories({
     isAvailable: true,
@@ -38,9 +39,9 @@ function CategorySelect (
   return (
     <div>
       <Label>Category</Label>
-      <div className='flex items-center justify-between gap-2'>
+      <div className={cn('flex items-center justify-between gap-2', className)}>
         <Select onValueChange={handleCategoryChange} defaultValue={filters.categorySlug}>
-          <SelectTrigger className="w-[280px]">
+          <SelectTrigger>
             <SelectValue placeholder='Select a category' />
           </SelectTrigger>
           <SelectContent>
@@ -52,7 +53,7 @@ function CategorySelect (
           </SelectContent>
         </Select>
 
-        <Button onClick={clearCategory} variant="secondary" className='w-1/4'>
+        <Button onClick={clearCategory} variant="secondary" className='w-1/4 lg:w-1/2'>
           Clear
         </Button>
       </div>

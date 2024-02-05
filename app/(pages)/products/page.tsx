@@ -1,12 +1,11 @@
 'use client'
 
-import FilterButtons from '@/app/components/shared/filter/Filter-button'
-import PaginationButtons from '@/app/components/shared/ui/Pagination-buttons'
-import ProductCard from '@/app/components/shared/ui/Product-card'
+import ProductsPageSkeleton from '@/app/components/products/page/Products-page-skeleton'
+import ProductsSection from '@/app/components/products/page/Products-section'
 import useProducts from '@/app/hooks/useProducts'
 
 function ProductPage (): React.ReactElement {
-  const limit = 10
+  const limit = 12
   const { products, isLoading, total, page, setPage, setFilters, filters } = useProducts({
     InitialFilters: {},
     isAvailable: true,
@@ -16,36 +15,21 @@ function ProductPage (): React.ReactElement {
   return (
     <>
       {
-        !isLoading && (
-          <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
-            <section className='flex flex-col'>
-              <div className='max-w-xl'>
-                <h1 className='text-xl font-bold text-nowrap'>All Products</h1>
-                <p className='text-muted-foreground'>{total} products</p>
-              </div>
-              <div className='w-full flex items-center justify-end lg:hidden'>
-                <FilterButtons setFilters={setFilters} filters={filters} />
-              </div>
-            </section>
-
-            <div>
-              <section className='grid grid-cols-1 xs:grid-cols-2 gap-x-2 gap-y-4 md:grid-cols-3 lg:grid-cols-4'>
-                {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </section>
-            </div>
-
-            <div className='w-full flex items-center justify-center gap-2'>
-              <PaginationButtons
-                setPage={setPage}
-                limit={limit}
-                total={total}
+        isLoading
+          ? (
+            <ProductsPageSkeleton />
+            )
+          : (
+              <ProductsSection
                 page={page}
+                total={total}
+                limit={limit}
+                filters={filters}
+                setPage={setPage}
+                products={products}
+                setFilters={setFilters}
               />
-            </div>
-          </main>
-        )
+            )
       }
     </>
   )

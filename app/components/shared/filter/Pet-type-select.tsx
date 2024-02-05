@@ -1,3 +1,5 @@
+import { cn } from '@/app/lib/utils'
+
 import { Button } from '../../ui/button'
 import { Label } from '../../ui/label'
 import {
@@ -11,7 +13,7 @@ import {
 import type { FilterProps } from '@/types/shared/FiltersProps'
 
 function PetTypeSelect (
-  { setFilters, filters }: FilterProps
+  { setFilters, filters, className }: FilterProps
 ): React.ReactElement {
   const petTypes = [
     { value: 'DOG', label: 'Dogs' },
@@ -39,9 +41,9 @@ function PetTypeSelect (
   return (
     <div>
       <Label>Pet Type</Label>
-      <div className='flex items-center justify-between gap-2'>
+      <div className={cn('flex items-center justify-between gap-2', className)}>
         <Select onValueChange={handlePetTypeChange} defaultValue={filters.petType}>
-          <SelectTrigger className="w-[280px]">
+          <SelectTrigger>
             <SelectValue placeholder='Select a Pet Type' />
           </SelectTrigger>
           <SelectContent>
@@ -53,7 +55,7 @@ function PetTypeSelect (
           </SelectContent>
         </Select>
 
-        <Button onClick={clearPetType} variant="secondary" className='w-1/4'>
+        <Button onClick={clearPetType} variant="secondary" className='w-1/4 lg:w-1/2'>
           Clear
         </Button>
       </div>

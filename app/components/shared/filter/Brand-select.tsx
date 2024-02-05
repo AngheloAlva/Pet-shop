@@ -1,4 +1,5 @@
 import useBrands from '@/app/hooks/useBrands'
+import { cn } from '@/app/lib/utils'
 
 import { Button } from '../../ui/button'
 import { Label } from '../../ui/label'
@@ -13,7 +14,7 @@ import {
 import type { FilterProps } from '@/types/shared/FiltersProps'
 
 function BrandSelect (
-  { setFilters, filters }: FilterProps
+  { setFilters, filters, className }: FilterProps
 ): React.ReactElement {
   const { brands } = useBrands({
     isAvailable: true,
@@ -38,9 +39,9 @@ function BrandSelect (
   return (
     <div>
       <Label>Brand</Label>
-      <div className='flex items-center justify-between gap-2'>
+      <div className={cn('flex items-center justify-between gap-2', className)}>
         <Select onValueChange={handleBrandChange} defaultValue={filters.brandSlug}>
-          <SelectTrigger className="w-[280px]">
+          <SelectTrigger>
             <SelectValue placeholder='Select a brand' />
           </SelectTrigger>
           <SelectContent>
@@ -52,7 +53,7 @@ function BrandSelect (
           </SelectContent>
         </Select>
 
-        <Button onClick={clearBrand} variant="secondary" className='w-1/4'>
+        <Button onClick={clearBrand} variant="secondary" className='w-1/4 lg:w-1/2'>
           Clear
         </Button>
       </div>
