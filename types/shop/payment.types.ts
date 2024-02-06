@@ -13,13 +13,18 @@ interface Payment {
 }
 
 interface CreatePayment {
-  userId: number
+  authId: string
   productsCart: ProductCart[]
-  orderId: number
-  shippingMethod: 'CHILEXPRESS' | 'STARKEN' | 'CORREOS_CHILE' | 'SHOP_PICKUP'
+  shippingMethod: ShippingMethod['method']
+}
+
+interface ShippingMethod {
+  method: 'CHILEXPRESS' | 'STARKEN' | 'CORREOS_CHILE' | 'SHOP_PICKUP'
+  price: number
 }
 
 export {
   type Payment,
-  type CreatePayment
+  type CreatePayment,
+  type ShippingMethod
 }

@@ -7,7 +7,7 @@ interface CalculateCartTotalsResponse {
   totalPriceAfterDiscount: number
 }
 
-export const calculateCartTotals = (productsCart: ProductCart[]): CalculateCartTotalsResponse => {
+export const calculateCartTotals = (productsCart: ProductCart[], shippingCost: number): CalculateCartTotalsResponse => {
   let totalDiscount = 0
   let totalPriceBeforeDiscount = 0
   let totalPriceAfterDiscount = 0
@@ -23,6 +23,8 @@ export const calculateCartTotals = (productsCart: ProductCart[]): CalculateCartT
     totalPriceBeforeDiscount += productTotalBeforeDiscount
     totalPriceAfterDiscount += productTotalAfterDiscount
   })
+
+  totalPriceAfterDiscount += shippingCost
 
   return {
     totalDiscount,

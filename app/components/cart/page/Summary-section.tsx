@@ -1,16 +1,22 @@
-import Link from 'next/link'
+import type { ProductCart } from '@/types/user/product-cart.types'
 import { Card } from '../../ui/card'
-import { Button } from '../../ui/button'
+import { calculateCartTotals } from '@/app/helpers/calculateCartTotals'
 
 interface SummarySectionProps {
-  totalDiscount: number
-  totalPriceAfterDiscount: number
-  totalPriceBeforeDiscount: number
+  products: ProductCart[]
+  children: React.ReactElement
+  shippingCost: number
 }
 
 function SummarySection ({
-  totalDiscount, totalPriceAfterDiscount, totalPriceBeforeDiscount
+  products, children, shippingCost
 }: SummarySectionProps): React.ReactElement {
+  const {
+    totalDiscount,
+    totalPriceAfterDiscount,
+    totalPriceBeforeDiscount
+  } = calculateCartTotals(products, shippingCost)
+
   return (
     <section className='flex flex-col gap-2 w-full lg:w-1/3'>
       <h2 className='text-2xl font-bold'>Summary</h2>
@@ -24,16 +30,16 @@ function SummarySection ({
           <p>${totalDiscount.toLocaleString()}</p>
         </div>
         <div className='flex justify-between font-medium'>
+          <p><strong>Shipping</strong></p>
+          <p>${shippingCost.toLocaleString()}</p>
+        </div>
+        <div className='flex justify-between font-medium'>
           <p><strong>Total</strong></p>
           <p>${totalPriceAfterDiscount.toLocaleString()}</p>
         </div>
       </Card>
 
-      <Link href='/cart/checkout' className='w-full mt-5'>
-        <Button size={'lg'} className='w-full bg-primary-200 hover:bg-primary-100'>
-          Checkout
-        </Button>
-      </Link>
+      {children}
     </section>
   )
 }
