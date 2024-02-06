@@ -4,7 +4,7 @@ interface ProductCart {
   id: number
   cartId: number
   quantity: number
-  product?: Product
+  product: Product
   productId: number
   optionSelectedIndex: number
 }
@@ -16,7 +16,17 @@ interface CreateProductCart {
   optionSelectedIndex: number
 }
 
+interface ProductCartResponse {
+  id: number
+  cartId: number
+  quantity: number
+  product: Product
+  productId: number
+  optionSelectedIndex: number
+}
+
 export {
   type ProductCart,
-  type CreateProductCart
+  type CreateProductCart,
+  type ProductCartResponse
 }
