@@ -7,11 +7,16 @@ import { Button } from '@/app/components/ui/button'
 import { FaTrashCan } from 'react-icons/fa6'
 
 import type { ProductCart } from '@/types/user/product-cart.types'
+import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 
 function ProductCartItem (
   { productCart, authId }: { productCart: ProductCart, authId: string }
 ): React.ReactElement {
   const price = productCart.product.options[productCart.optionSelectedIndex].price
+  const priceWithDiscount = calculateDiscount(
+    price,
+    productCart.product.options[productCart.optionSelectedIndex].discount
+  )
 
   const handleDelete = async (): Promise<void> => {
     useCartStore.getState().removeProduct(
@@ -46,7 +51,18 @@ function ProductCartItem (
             Quantity: {productCart.quantity}
           </p>
           <p className='text-nowrap mt-1'>
-            $ {(price * productCart.quantity).toLocaleString()}
+            {
+              productCart.product.options[productCart.optionSelectedIndex].discount > 0
+                ? (<>
+                  <span className='line-through text-sm text-muted-foreground'>
+                    ${productCart.product.options[productCart.optionSelectedIndex].price.toLocaleString()}
+                  </span>
+                  <span className='ml-2'>
+                    ${priceWithDiscount.toLocaleString()}
+                  </span>
+                </>)
+                : '$' + (price * productCart.quantity).toLocaleString()
+            }
           </p>
         </div>
 
