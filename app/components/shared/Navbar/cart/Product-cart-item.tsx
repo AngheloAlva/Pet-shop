@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-import { removeProductFromCart } from '@/app/lib/api/shop/cart'
+import { removeProductFromCart, updateProductQuantity } from '@/app/lib/api/shop/cart'
+import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 import { useCartStore } from '@/app/store/cart-store'
+import Link from 'next/link'
 
 import { Button } from '@/app/components/ui/button'
-import { FaTrashCan } from 'react-icons/fa6'
+import { FaMinus, FaPlus, FaTrashCan } from 'react-icons/fa6'
 
 import type { ProductCart } from '@/types/user/product-cart.types'
-import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 
 function ProductCartItem (
-  { productCart, authId }: { productCart: ProductCart, authId: string }
+  { productCart, authId, children }: { productCart: ProductCart, authId: string, children?: React.ReactElement }
 ): React.ReactElement {
   const price = productCart.product.options[productCart.optionSelectedIndex].price
   const priceWithDiscount = calculateDiscount(
@@ -31,19 +32,62 @@ function ProductCartItem (
     )
   }
 
+  const handleAdd = async (): Promise<void> => {
+    const productStock = productCart.product.options[productCart.optionSelectedIndex].stock
+    if (productStock <= productCart.quantity) {
+      return
+    }
+
+    useCartStore.getState().increaseQuantity(
+      productCart.product.id,
+      productCart.optionSelectedIndex
+    )
+
+    try {
+      await updateProductQuantity(
+        authId,
+        productCart.product.id,
+        productCart.quantity + 1,
+        productCart.optionSelectedIndex
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubtract = async (): Promise<void> => {
+    useCartStore.getState().decreaseQuantity(
+      productCart.product.id,
+      productCart.optionSelectedIndex
+    )
+
+    if (productCart.quantity > 1) {
+      try {
+        await updateProductQuantity(
+          authId,
+          productCart.product.id,
+          productCart.quantity - 1,
+          productCart.optionSelectedIndex
+        )
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   return (
     <div className='flex gap-2'>
-      <div className='w-20 h-20'>
+      <Link href={`/products/${productCart.product.slug}`} className='w-20 h-20'>
         <img
           src={productCart.product.images[0]}
           alt={productCart.product.name}
-          className='w-full h-full object-cover'
+          className='w-full h-full object-cover rounded-lg'
         />
-      </div>
+      </Link>
 
       <div className='flex items-start w-full text-text-200'>
         <div className='flex flex-col w-full'>
-          <p className='font-medium'>{productCart.product.name}</p>
+          <Link href={`/products/${productCart.product.slug}`} className='font-medium'>{productCart.product.name} </Link>
           <p className='text-sm text-muted-foreground text-nowrap'>
             Option: {productCart.product.options[productCart.optionSelectedIndex].name}
           </p>
@@ -66,15 +110,28 @@ function ProductCartItem (
           </p>
         </div>
 
-        <Button
-          variant='destructive'
-          className='w-fit ml-2'
-          size='sm'
-          onClick={handleDelete}
-        >
+        <div className='w-full flex flex-col justify-between items-end h-full'>
+          <Button
+            variant='destructive'
+            className='w-fit'
+            size='sm'
+            onClick={handleDelete}
+          >
+            <FaTrashCan />
+          </Button>
 
-          <FaTrashCan />
-        </Button>
+          <div className='flex gap-1 text-text-200'>
+            <Button size={'sm'} variant={'outline'} onClick={handleSubtract}>
+              <FaMinus />
+            </Button>
+            <Button size={'sm'} variant={'outline'} className='text-text-200 hover:bg-white cursor-default'>
+              {productCart.quantity}
+            </Button>
+            <Button size={'sm'} variant={'outline'} onClick={handleAdd}>
+              <FaPlus />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )

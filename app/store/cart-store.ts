@@ -7,6 +7,9 @@ interface CartState {
   products: ProductCart[]
   addProduct: (product: ProductCart) => void
   removeProduct: (productId: number, optionSelectedIndex: number) => void
+  updateCartState: (products: ProductCart[]) => void
+  increaseQuantity: (productId: number, optionSelectedIndex: number) => void
+  decreaseQuantity: (productId: number, optionSelectedIndex: number) => void
   clearCart: () => void
 }
 
@@ -37,6 +40,40 @@ export const useCartStore = create<CartState>((set) => ({
       products: state.products.filter((product) =>
         !(product.productId === productId && product.optionSelectedIndex === optionSelectedIndex))
     }))
+  },
+
+  updateCartState: (products) => {
+    set({ products })
+  },
+
+  increaseQuantity: (productId, optionSelectedIndex) => {
+    set((state) => {
+      const updatedProducts = state.products.map((product) => {
+        if (product.productId === productId && product.optionSelectedIndex === optionSelectedIndex) {
+          return { ...product, quantity: product.quantity + 1 }
+        }
+        return product
+      })
+
+      return { products: updatedProducts }
+    })
+  },
+
+  decreaseQuantity: (productId, optionSelectedIndex) => {
+    set((state) => {
+      const updatedProducts = state.products.map((product) => {
+        if (product.productId === productId && product.optionSelectedIndex === optionSelectedIndex) {
+          const newQuantity = product.quantity - 1
+          if (newQuantity < 1) {
+            return product
+          }
+          return { ...product, quantity: newQuantity }
+        }
+        return product
+      })
+
+      return { products: updatedProducts }
+    })
   },
 
   clearCart: () => {

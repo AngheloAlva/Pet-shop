@@ -1,0 +1,32 @@
+import type { ProductCart } from '@/types/user/product-cart.types'
+import { calculateDiscount } from './calculateDiscount'
+
+interface CalculateCartTotalsResponse {
+  totalDiscount: number
+  totalPriceBeforeDiscount: number
+  totalPriceAfterDiscount: number
+}
+
+export const calculateCartTotals = (productsCart: ProductCart[]): CalculateCartTotalsResponse => {
+  let totalDiscount = 0
+  let totalPriceBeforeDiscount = 0
+  let totalPriceAfterDiscount = 0
+
+  productsCart.forEach(productCart => {
+    const { price, discount } = productCart.product.options[productCart.optionSelectedIndex]
+    const priceWithDiscount = calculateDiscount(price, discount)
+    const discountAmount = (price - priceWithDiscount) * productCart.quantity
+    const productTotalBeforeDiscount = price * productCart.quantity
+    const productTotalAfterDiscount = priceWithDiscount * productCart.quantity
+
+    totalDiscount += discountAmount
+    totalPriceBeforeDiscount += productTotalBeforeDiscount
+    totalPriceAfterDiscount += productTotalAfterDiscount
+  })
+
+  return {
+    totalDiscount,
+    totalPriceBeforeDiscount,
+    totalPriceAfterDiscount
+  }
+}

@@ -43,10 +43,12 @@ const getCartInCheckout = async (authId: string): Promise<CartInCheckoutResponse
 const updateProductQuantity = async (
   authId: string,
   productId: number,
-  quantity: number
+  quantity: number,
+  optionSelectedIndex: number
 ): Promise<{ message: string }> => {
   const { data } = await axiosInstance.put<{ message: string }>(
     '/cart/update-product-quantity', {
+      optionSelectedIndex,
       productId,
       quantity,
       authId
