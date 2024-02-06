@@ -59,6 +59,12 @@ function AddProductButton ({
         quantity
       })
 
+      toast({
+        title: 'Product added to cart',
+        description: 'The product was added to your cart',
+        duration: 3000
+      })
+
       useCartStore.getState().addProduct(newProductCart)
     } catch (error) {
       toast({
