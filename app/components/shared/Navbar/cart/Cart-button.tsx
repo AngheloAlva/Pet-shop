@@ -50,9 +50,9 @@ function CartButton (): React.ReactElement {
             </div>
           )}
 
-          <Link href='/cart'>
+          <Link href='/checkout'>
             <Button variant={'outline'} className='mt-5 w-full'>
-              Go to cart
+              Go to Checkout
             </Button>
           </Link>
         </div>

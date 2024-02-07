@@ -4,18 +4,17 @@ import { calculateCartTotals } from '@/app/helpers/calculateCartTotals'
 
 interface SummarySectionProps {
   products: ProductCart[]
-  children: React.ReactElement
-  shippingCost: number
+  shippingCost?: number
 }
 
 function SummarySection ({
-  products, children, shippingCost
+  products, shippingCost = 0
 }: SummarySectionProps): React.ReactElement {
   const {
     totalDiscount,
     totalPriceAfterDiscount,
     totalPriceBeforeDiscount
-  } = calculateCartTotals(products, shippingCost)
+  } = calculateCartTotals(products, shippingCost ?? 0)
 
   return (
     <section className='flex flex-col gap-2 w-full lg:w-1/3'>
@@ -31,15 +30,16 @@ function SummarySection ({
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Shipping</strong></p>
-          <p>${shippingCost.toLocaleString()}</p>
+          {shippingCost === 0
+            ? <p>Calculated at next step</p>
+            : <p>${shippingCost.toLocaleString()}</p>
+          }
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Total</strong></p>
           <p>${totalPriceAfterDiscount.toLocaleString()}</p>
         </div>
       </Card>
-
-      {children}
     </section>
   )
 }

@@ -1,22 +1,19 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+
 'use client'
 
 import { createCheckoutSession } from '@/app/lib/api/shop/payment'
-import useCheckoutCart from '@/app/hooks/useCheckoutCart'
-import { useCartStore } from '@/app/store/cart-store'
-import { shippingMethods } from '@/app/lib/consts'
 import { useUser } from '@clerk/nextjs'
 import { useState } from 'react'
 
-import ShippingMethodSelect from '@/app/components/cart/ui/Shipping-method-select'
-import SummarySection from '@/app/components/cart/page/Summary-section'
-import ResumeSection from '@/app/components/cart/page/Resume-section'
 import { Button } from '@/app/components/ui/button'
-
 import type { ShippingMethod } from '@/types/shop/payment.types'
+import ShippingMethodSelect from '@/app/components/cart/ui/Shipping-method-select'
+import { shippingMethods } from '@/app/lib/consts'
+import { useCartStore } from '@/app/store/cart-store'
 
-function CartPage (): React.ReactElement {
+function PaymentPage (): React.ReactElement {
   const { user } = useUser()
-  const { isLoading } = useCheckoutCart(user?.id)
   const { products } = useCartStore()
   const [shippingMethod, setShippingMethod] = useState<ShippingMethod>({
     method: 'SHOP_PICKUP',
@@ -48,28 +45,17 @@ function CartPage (): React.ReactElement {
 
   return (
     <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10 lg:flex-row'>
-      <ResumeSection
-        products={products}
-        isLoading={isLoading}
-        userId={user?.id ?? ''}
-      />
+      <ShippingMethodSelect onChange={handleShippingMethod} shippingMethod={shippingMethod.method} />
 
-      <SummarySection products={products} shippingCost={shippingMethod.price}>
-        <>
-          <ShippingMethodSelect onChange={handleShippingMethod} shippingMethod={shippingMethod.method} />
-
-          <Button
-            size={'lg'}
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onClick={handlePay}
-            className='w-full bg-primary-200 hover:bg-primary-100 mt-5'
-          >
-            Pay
-          </Button>
-        </>
-      </SummarySection>
+      <Button
+        size={'lg'}
+        onClick={handlePay}
+        className='w-full bg-primary-200 hover:bg-primary-100 mt-5'
+      >
+        Pay
+      </Button>
     </main>
   )
 }
 
-export default CartPage
+export default PaymentPage

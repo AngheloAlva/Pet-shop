@@ -4,7 +4,7 @@ import axiosInstance from '../../axios/axios-instance'
 const createCheckoutSession = async ({
   productsCart, shippingMethod, authId
 }: CreatePayment): Promise<string> => {
-  const { data } = await axiosInstance.post<{ message: string }>(
+  const { data } = await axiosInstance.post<{ url: string }>(
     '/payment/checkout-session', {
       productsCart,
       shippingMethod,
@@ -12,7 +12,7 @@ const createCheckoutSession = async ({
     }
   )
 
-  return data.message
+  return data.url
 }
 
 export {

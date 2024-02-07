@@ -3,13 +3,18 @@ import { useEffect, useState } from 'react'
 import { getCartInCheckout } from '../lib/api/shop/cart'
 import { useToast } from '../components/ui/use-toast'
 import { useCartStore } from '../store/cart-store'
+import { getUserById } from '../lib/api/user/user'
+
+import type { User } from '@/types/user/user.types'
 
 interface CheckoutCartResponse {
   isLoading: boolean
+  user: User | null
 }
 
 const useCheckoutCart = (authId: string | undefined): CheckoutCartResponse => {
   const updateCartState = useCartStore((state) => state.updateCartState)
+  const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { toast } = useToast()
 
@@ -19,6 +24,7 @@ const useCheckoutCart = (authId: string | undefined): CheckoutCartResponse => {
 
       try {
         const cart = await getCartInCheckout(authId)
+        const user = await getUserById(authId)
 
         if (cart.optionChanged) {
           toast({
@@ -38,6 +44,7 @@ const useCheckoutCart = (authId: string | undefined): CheckoutCartResponse => {
           })
         }
 
+        setUser(user)
         updateCartState(cart.cart.products)
       } catch (error) {
         toast({
@@ -56,7 +63,8 @@ const useCheckoutCart = (authId: string | undefined): CheckoutCartResponse => {
   }, [authId])
 
   return {
-    isLoading
+    isLoading,
+    user
   }
 }
 
