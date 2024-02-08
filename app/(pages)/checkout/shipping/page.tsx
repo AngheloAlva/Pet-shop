@@ -3,11 +3,13 @@
 'use client'
 
 import { createCheckoutSession } from '@/app/lib/api/shop/payment'
+import useShippingButton from '@/app/hooks/useShippingButton'
 import useAddressData from '@/app/hooks/useAddressData'
 import { useCartStore } from '@/app/store/cart-store'
 import { shippingMethods } from '@/app/lib/consts'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@clerk/nextjs'
+import { useState } from 'react'
 
 import ShippingMethodSelect from '@/app/components/cart/ui/Shipping-method-select'
 import AddressSection from '@/app/components/cart/shipping/Address-section'
@@ -15,15 +17,13 @@ import SummarySection from '@/app/components/cart/page/Summary-section'
 import { Button } from '@/app/components/ui/button'
 
 import type { ShippingMethod } from '@/types/shop/payment.types'
-import { useState } from 'react'
-import useShippingButton from '@/app/hooks/useShippingButton'
 
 function PaymentPage (): React.ReactElement {
   const { user } = useUser()
   const router = useRouter()
   const { products } = useCartStore()
   const { user: userDb, refetchUser } = useAddressData(user?.id ?? '')
-  const { isButtonEnabled, setIsButtonEnabled } = useShippingButton(userDb)
+  const { isButtonEnabled, setIsButtonEnabled } = useShippingButton(userDb, products)
 
   const [shippingMethod, setShippingMethod] = useState<ShippingMethod>({
     method: 'SHOP_PICKUP',

@@ -13,10 +13,9 @@ import { Button } from '@/app/components/ui/button'
 
 function CartPage (): React.ReactElement {
   const { user } = useUser()
-  const { isLoading, user: userDb } = useCheckoutCart(user?.id)
-  const { isButtonEnabled, setIsButtonEnabled } = useCartButtonValidation(userDb)
-
   const { products } = useCartStore()
+  const { isLoading, user: userDb } = useCheckoutCart(user?.id)
+  const { isButtonEnabled, setIsButtonEnabled } = useCartButtonValidation(userDb, products)
 
   return (
     <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10'>

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-
-import type { User } from '@/types/user/user.types'
 import { useRouter } from 'next/navigation'
 
-const useShippingButton = (userDb: User | null): {
+import type { User } from '@/types/user/user.types'
+import type { ProductCart } from '@/types/user/product-cart.types'
+
+const useShippingButton = (userDb: User | null, products: ProductCart[]): {
   isButtonEnabled: boolean
   setIsButtonEnabled: (value: boolean) => void
 } => {
@@ -15,6 +16,11 @@ const useShippingButton = (userDb: User | null): {
 
     if (userDb?.name === null || userDb?.lastName === null || userDb?.rut === null || userDb?.phone === null) {
       router.push('/checkout')
+    }
+
+    if (products.length === 0) {
+      setIsButtonEnabled(false)
+      return
     }
 
     if (userDb.address !== undefined && userDb?.address?.length >= 1) {
