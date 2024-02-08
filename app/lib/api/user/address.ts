@@ -2,7 +2,7 @@ import type { Address, CreateAddress, UpdateAddress } from '@/types/user/address
 import axiosInstance from '../../axios/axios-instance'
 
 const createAddress = async ({
-  apartmentNumber, commune, isApartment, name, number, region, street, userId, zipCode
+  apartmentNumber, commune, isApartment, name, number, region, street, authId, zipCode
 }: CreateAddress): Promise<string> => {
   const { data } = await axiosInstance.post<{ message: string }>(
     '/address', {
@@ -10,7 +10,7 @@ const createAddress = async ({
       number,
       region,
       street,
-      userId,
+      authId,
       zipCode,
       commune,
       isApartment,

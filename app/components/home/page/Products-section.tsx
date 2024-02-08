@@ -11,9 +11,9 @@ import {
 
 function ProductsSection (): React.ReactElement {
   const { products, isLoading } = useProducts({
+    InitialFilters: {},
     isAvailable: true,
-    limit: 10,
-    page: 1
+    limit: 10
   })
 
   return (

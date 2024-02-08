@@ -101,8 +101,8 @@ function PrimaryInfoSection (
 
         <AddProductButton
           optionSelectedIndex={optionSelected}
-          productId={product.id}
           quantity={quantity}
+          product={product}
         />
       </div>
     </section>

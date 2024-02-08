@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import SearchButton from './Search-button'
-import CartButton from './Cart-button'
+import CartButton from './cart/Cart-button'
 import SheetMenu from './sheet/Sheet-menu'
 import AccountButton from './Account-button'
 import NavMenu from './nav-menu/Nav-menu'

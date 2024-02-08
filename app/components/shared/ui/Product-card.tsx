@@ -2,6 +2,7 @@ import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 import { useState } from 'react'
 import Link from 'next/link'
 
+import AddProductButton from './Add-product-button'
 import { Button } from '../../ui/button'
 import {
   Card,
@@ -12,7 +13,6 @@ import {
 } from '../../ui/card'
 
 import type { Product } from '@/types/shop/products.types'
-import AddProductButton from './Add-product-button'
 
 function ProductCard ({ product }: { product: Product }): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
@@ -87,7 +87,7 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
 
         <AddProductButton
           optionSelectedIndex={optionSelected}
-          productId={product.id}
+          product={product}
           className=''
           quantity={1}
         />

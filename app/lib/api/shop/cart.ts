@@ -1,19 +1,12 @@
 import axiosInstance from '../../axios/axios-instance'
 
+import type { ProductCartResponse } from '@/types/user/product-cart.types'
 import type { AddProductToCart, Cart } from '@/types/user/cart.types'
-
-const createCart = async (userId: number): Promise<{ message: string }> => {
-  const { data } = await axiosInstance.post<{ message: string }>(
-    '/cart', { userId }
-  )
-
-  return data
-}
 
 const addProductToCart = async ({
   optionSelectedIndex, productId, quantity, authId
-}: AddProductToCart): Promise<{ message: string }> => {
-  const { data } = await axiosInstance.post<{ message: string }>(
+}: AddProductToCart): Promise<ProductCartResponse> => {
+  const { data } = await axiosInstance.post<ProductCartResponse>(
     '/cart/add-product', {
       optionSelectedIndex,
       productId,
@@ -25,9 +18,9 @@ const addProductToCart = async ({
   return data
 }
 
-const getCart = async (userId: number): Promise<Cart> => {
+const getCart = async (authId: string): Promise<Cart> => {
   const { data } = await axiosInstance.get<Cart>(
-    `/cart/${userId}`
+    `/cart/${authId}`
   )
 
   return data
@@ -39,24 +32,26 @@ interface CartInCheckoutResponse {
   optionChanged: boolean
 }
 
-const getCartInCheckout = async (userId: number): Promise<CartInCheckoutResponse> => {
+const getCartInCheckout = async (authId: string): Promise<CartInCheckoutResponse> => {
   const { data } = await axiosInstance.get<CartInCheckoutResponse>(
-    `/cart/checkout/${userId}`
+    `/cart/checkout/${authId}`
   )
 
   return data
 }
 
 const updateProductQuantity = async (
-  userId: number,
+  authId: string,
   productId: number,
-  quantity: number
+  quantity: number,
+  optionSelectedIndex: number
 ): Promise<{ message: string }> => {
   const { data } = await axiosInstance.put<{ message: string }>(
     '/cart/update-product-quantity', {
+      optionSelectedIndex,
       productId,
       quantity,
-      userId
+      authId
     }
   )
 
@@ -64,14 +59,16 @@ const updateProductQuantity = async (
 }
 
 const removeProductFromCart = async (
-  userId: number,
-  productId: number
+  authId: string,
+  productId: number,
+  optionSelectedIndex: number
 ): Promise<{ message: string }> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
     '/cart/remove-product', {
       data: {
+        authId,
         productId,
-        userId
+        optionSelectedIndex
       }
     }
   )
@@ -79,11 +76,11 @@ const removeProductFromCart = async (
   return data
 }
 
-const deleteCart = async (userId: number): Promise<{ message: string }> => {
+const deleteCart = async (authId: string): Promise<{ message: string }> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
     '/cart/', {
       data: {
-        userId
+        authId
       }
     }
   )
@@ -93,7 +90,6 @@ const deleteCart = async (userId: number): Promise<{ message: string }> => {
 
 export {
   getCart,
-  createCart,
   deleteCart,
   addProductToCart,
   getCartInCheckout,
