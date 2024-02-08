@@ -30,10 +30,7 @@ function SummarySection ({
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Shipping</strong></p>
-          {shippingCost === 0
-            ? <p>Calculated at next step</p>
-            : <p>${shippingCost.toLocaleString()}</p>
-          }
+          <p>${shippingCost.toLocaleString()}</p>
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Total</strong></p>

@@ -1,4 +1,4 @@
-import { userFormSchema } from '../lib/schemas/user-form-shchema'
+import { userFormSchema } from '../lib/schemas/user-form-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'

@@ -23,9 +23,9 @@ interface CreateAddress {
   zipCode: string
   commune: string
   region: string
-  userId: number
+  authId: string
   isApartment: boolean
-  apartmentNumber: string
+  apartmentNumber?: string
 }
 
 interface UpdateAddress {

@@ -26,9 +26,9 @@ const getUsers = async ({
   return data
 }
 
-const getUserById = async (id: string): Promise<User> => {
+const getUserById = async (authId: string): Promise<User> => {
   const { data } = await axiosInstance.get<User>(
-    `/user/${id}`
+    `/user/${authId}`
   )
 
   return data

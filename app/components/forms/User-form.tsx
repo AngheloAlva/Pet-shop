@@ -7,7 +7,7 @@ import { Button } from '@/app/components/ui/button'
 import { useToast } from '../ui/use-toast'
 import { Input } from '../ui/input'
 import { Card } from '../ui/card'
-import RutField from './RutField'
+import RutField from './Rut-field'
 import {
   Form,
   FormControl,
@@ -17,7 +17,7 @@ import {
   FormMessage
 } from '@/app/components/ui/form'
 
-import type { userFormSchema } from '@/app/lib/schemas/user-form-shchema'
+import type { userFormSchema } from '@/app/lib/schemas/user-form-schema'
 import type { User } from '@/types/user/user.types'
 import type { z } from 'zod'
 

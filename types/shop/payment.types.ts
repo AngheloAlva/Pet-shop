@@ -1,4 +1,3 @@
-import type { ProductCart } from '../user/product-cart.types'
 import type { Order } from '../user/order.types'
 
 interface Payment {
@@ -14,7 +13,6 @@ interface Payment {
 
 interface CreatePayment {
   authId: string
-  productsCart: ProductCart[]
   shippingMethod: ShippingMethod['method']
 }
 
