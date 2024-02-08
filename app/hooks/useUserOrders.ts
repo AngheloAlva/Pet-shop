@@ -17,7 +17,7 @@ const useUserOrders = (userId: string | undefined): {
     }
 
     void fetchOrders()
-  }, [])
+  }, [userId])
 
   return {
     orders

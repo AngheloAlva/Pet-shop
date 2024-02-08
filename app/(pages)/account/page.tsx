@@ -16,11 +16,11 @@ function AccountPage (): React.ReactElement {
     <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
       <h1 className='text-3xl font-bold'>Account</h1>
 
-        <Button size={'lg'}>
-          <Link href='/account/orders'>
-            Go to Orders
-          </Link>
-        </Button>
+      <Button size={'lg'}>
+        <Link href='/account/orders' className='w-full'>
+          Go to Orders
+        </Link>
+      </Button>
 
       {
         user?.id !== undefined && (

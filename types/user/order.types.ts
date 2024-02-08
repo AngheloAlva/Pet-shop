@@ -1,5 +1,6 @@
 import type { Payment } from '../shop/payment.types'
 import type { OrderItem } from './order-item.types'
+import type { Address } from './address.types'
 
 interface Order {
   id: number
@@ -7,6 +8,7 @@ interface Order {
   orderDate: Date
   shippingMethod: 'CHILEXPRESS' | 'STARKEN' | 'CORREOS_CHILE' | 'SHOP_PICKUP'
   addressId: number
+  address: Address
   paid: boolean
   checkoutSessionId?: string | null
   items: OrderItem[]
