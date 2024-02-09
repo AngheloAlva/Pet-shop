@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-import { persist } from 'zustand/middleware'
 import { create } from 'zustand'
 
 import type { ProductCart } from '@/types/user/product-cart.types'
@@ -14,7 +13,7 @@ interface CartState {
   clearCart: () => void
 }
 
-export const useCartStore = create(persist<CartState>((set) => ({
+export const useCartStore = create<CartState>((set) => ({
   products: [],
 
   addProduct: (newProduct) => {
@@ -80,6 +79,4 @@ export const useCartStore = create(persist<CartState>((set) => ({
   clearCart: () => {
     set({ products: [] })
   }
-}), {
-  name: 'cart-store'
 }))
