@@ -22,7 +22,7 @@ function PaymentPage (): React.ReactElement {
   const { user } = useUser()
   const router = useRouter()
   const { products } = useCartStore()
-  const { user: userDb, refetchUser } = useAddressData(user?.id ?? '')
+  const { user: userDb, refetchUser, isLoading } = useAddressData(user?.id ?? '')
   const { isButtonEnabled, setIsButtonEnabled } = useShippingButton(userDb, products)
   const [isButtonLoading, setIsButtonLoading] = useState(false)
 
@@ -63,6 +63,7 @@ function PaymentPage (): React.ReactElement {
   return (
     <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10 md:flex-row'>
       <AddressSection
+        isLoading={isLoading}
         userId={user?.id ?? ''}
         address={userDb?.address?.[0] ?? null}
         refetchUser={refetchUser}

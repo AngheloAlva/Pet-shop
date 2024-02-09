@@ -31,6 +31,7 @@ function CartPage (): React.ReactElement {
 
       <UserDataSection
         user={userDb}
+        isLoading={isLoading}
         authId={user?.id ?? ''}
         setIsButtonEnabled={setIsButtonEnabled}
       />
@@ -39,9 +40,9 @@ function CartPage (): React.ReactElement {
         <Button
           size={'lg'}
           disabled={!isButtonEnabled}
-          className='w-full bg-green-600 hover:bg-green-500 mt-5'
+          className='w-full bg-green-600 hover:bg-green-500 mt-5 p-0'
         >
-          <Link href='/checkout/shipping' className='w-full'>
+          <Link href='/checkout/shipping' className='w-full h-full flex items-center justify-center'>
             Go to shipping
           </Link>
         </Button>
