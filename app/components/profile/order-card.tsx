@@ -22,11 +22,13 @@ function OrderCard (
           <p><strong>Total: </strong>${order?.payment.amount.toLocaleString()}</p>
         )}
 
-        <div>
+        <div className='space-y-2'>
           <strong>Products:</strong>
-          {order.items.map((item) => (
-            <ProductOrderItem orderItem={item} key={item.id} />
-          ))}
+          <div className='space-y-4'>
+            {order.items.map((item) => (
+              <ProductOrderItem orderItem={item} key={item.id} />
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

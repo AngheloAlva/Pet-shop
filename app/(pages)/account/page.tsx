@@ -24,7 +24,7 @@ async function AccountPage (): Promise<React.ReactElement> {
     <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
       <h1 className='text-3xl font-bold'>Account</h1>
 
-      <Button size={'lg'}>
+      <Button size={'lg'} className='bg-cream-600 hover:bg-cream-500'>
         <Link href='/account/orders' className='w-full'>
           Go to Orders
         </Link>
@@ -48,7 +48,7 @@ async function AccountPage (): Promise<React.ReactElement> {
                 address={user.address?.[0] ?? null}
                 isUpdate={true}
               >
-                <Button type='submit'>
+                <Button type='submit' className='bg-blue-400 hover:bg-blue-300'>
                   Update
                 </Button>
               </AddressForm>

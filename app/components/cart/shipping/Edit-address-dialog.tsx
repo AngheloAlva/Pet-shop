@@ -14,7 +14,7 @@ function EditAddressDialog (
 ): React.ReactElement {
   return (
     <Dialog>
-      <DialogTrigger className='border border-input rounded-lg px-4 py-1 text-sm hover:bg-bg-200'>
+      <DialogTrigger className='border border-input rounded-lg px-4 py-1 text-sm hover:bg-bg-200 text-text-200'>
         Edit
       </DialogTrigger>
       <DialogContent>
@@ -27,7 +27,7 @@ function EditAddressDialog (
           isUpdate={true}
         >
           <DialogClose>
-            <Button type='submit' className='w-full' size={'lg'}>
+            <Button type='submit' className='w-full bg-blue-400 hover:bg-blue-300' size={'lg'}>
               Save
             </Button>
           </DialogClose>

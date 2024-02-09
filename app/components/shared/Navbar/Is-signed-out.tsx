@@ -4,7 +4,7 @@ import { SignInButton } from '@clerk/nextjs'
 function IsSignedOut (): React.ReactElement {
   return (
     <SignInButton afterSignInUrl='/'>
-      <div className='w-full flex font-medium items-center cursor-pointer hover:text-primary-100'>
+      <div className='w-full flex font-medium items-center cursor-pointer hover:text-blue-400'>
         <FaUserShield className='w-5 h-5' />
         <span className='ml-2'>Sign In</span>
       </div>

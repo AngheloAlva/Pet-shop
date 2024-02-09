@@ -13,13 +13,13 @@ import BrandSelect from './Brand-select'
 import LifeStageSelect from './Life-stage-select'
 import PetTypeSelect from './Pet-type-select'
 
-function FilterButtons (
+function FilterButton (
   { setFilters, filters }: FilterProps
 ): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger>
-        <span className='bg-primary-100 text-bg-100 h-9 px-6 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'>
+        <span className='bg-blue-500 hover:bg-blue-400 hover:text-bg-100 text-bg-100 h-9 px-6 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'>
           Filter
         </span>
       </SheetTrigger>
@@ -40,4 +40,4 @@ function FilterButtons (
   )
 }
 
-export default FilterButtons
+export default FilterButton

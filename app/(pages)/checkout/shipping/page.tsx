@@ -61,7 +61,7 @@ function PaymentPage (): React.ReactElement {
   }
 
   return (
-    <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10'>
+    <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10 md:flex-row'>
       <AddressSection
         userId={user?.id ?? ''}
         address={userDb?.address?.[0] ?? null}
@@ -69,25 +69,31 @@ function PaymentPage (): React.ReactElement {
         setIsButtonEnabled={setIsButtonEnabled}
       />
 
-      <div>
-        <h2 className='text-2xl font-bold'>Shipping method</h2>
-        <ShippingMethodSelect onChange={handleShippingMethod} shippingMethod={shippingMethod.method} />
+      <div className='w-full md:w-1/3 space-y-10 md:space-y-5'>
+        <div>
+          <h2 className='text-2xl font-bold'>Shipping method</h2>
+          <ShippingMethodSelect onChange={handleShippingMethod} shippingMethod={shippingMethod.method} />
+        </div>
+
+        <SummarySection
+          products={products}
+          className='lg:w-full'
+          shippingCost={shippingMethod.price}
+        />
+
+        <Button
+          size={'lg'}
+          onClick={handlePay}
+          disabled={!isButtonEnabled}
+          className='w-full bg-green-600 hover:bg-green-500 mt-5'
+        >
+          {
+            isButtonLoading
+              ? <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
+              : 'Pay'
+          }
+        </Button>
       </div>
-
-      <SummarySection products={products} shippingCost={shippingMethod.price} />
-
-      <Button
-        size={'lg'}
-        onClick={handlePay}
-        disabled={!isButtonEnabled}
-        className='w-full bg-primary-200 hover:bg-primary-100 mt-5'
-      >
-        {
-          isButtonLoading
-            ? <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-            : 'Pay'
-        }
-      </Button>
     </main>
   )
 }

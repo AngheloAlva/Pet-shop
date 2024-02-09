@@ -8,12 +8,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa6'
 
-interface PrimaryInfoSectionProps {
+interface creamInfoSectionProps {
   product: Product
 }
 
-function PrimaryInfoSection (
-  { product }: PrimaryInfoSectionProps
+function creamInfoSection (
+  { product }: creamInfoSectionProps
 ): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
   const [quantity, setQuantity] = useState(1)
@@ -36,21 +36,25 @@ function PrimaryInfoSection (
   }
 
   return (
-    <section className='flex flex-col gap-2 text-text-100 lg:pt-10'>
+    <section className='flex flex-col gap-2 text-text-100 lg:pt-10 md:w-1/2 xl:w-2/3'>
       <h1 className='text-4xl tracking-wide font-bold text-blue text-pretty'>
         {product.name}
       </h1>
       <Link href={`/brands/${product.brand?.slug}`} className='w-fit'>
-        <h2 className='text-xl font-bold text-text-200'>
+        <h2 className='text-xl font-bold text-cream-700'>
           {product.brand?.name}
         </h2>
       </Link>
+
+      <p className='text-text-200 text-sm text-pretty'>
+        {product.miniDesc}
+      </p>
 
       <span className='text-2xl font-semibold mt-4'>
         {
           product.options?.[optionSelected].discount > 0
             ? (<>
-                <span className='text-primary-500 ml-2'>
+                <span className='text-cream-500 ml-2'>
                   {calculateDiscount(
                     product.options?.[optionSelected].price,
                     product.options?.[optionSelected].discount
@@ -75,9 +79,9 @@ function PrimaryInfoSection (
                 disabled={option.stock === 0}
                 onClick={() => { handleOptionChange(index) }}
                 className={optionSelected === index
-                  ? 'bg-primary-100 hover:bg-bg-primary-100 text-bg-100'
+                  ? 'bg-cream-600 hover:bg-bg-cream-600 text-bg-100'
                   : '' +
-                  'border bg-transparent border-input rounded-lg w-fit px-3 py-1 transition-colors hover:bg-primary-200 hover:text-bg-100'
+                  'border bg-transparent border-input rounded-lg w-fit px-3 py-1 transition-colors hover:bg-cream-500 hover:text-bg-100'
                 }
               >
                 {option.name}
@@ -92,13 +96,13 @@ function PrimaryInfoSection (
 
       <div className='flex w-full gap-2 items-center'>
         <Button variant={'outline'} className='min-w-11 min-h-11' onClick={handleSubtract}>
-          <FaMinus className='text-primary-500' />
+          <FaMinus className='text-text-200' />
         </Button>
         <Button variant={'outline'} className='text-text-200 min-w-11 min-h-11 hover:bg-white cursor-default'>
           {quantity}
         </Button>
         <Button variant={'outline'} className='min-w-11 min-h-11' onClick={handleAdd}>
-          <FaPlus className='text-primary-500' />
+          <FaPlus className='text-text-200' />
         </Button>
 
         <AddProductButton
@@ -111,4 +115,4 @@ function PrimaryInfoSection (
   )
 }
 
-export default PrimaryInfoSection
+export default creamInfoSection

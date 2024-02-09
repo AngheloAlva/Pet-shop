@@ -21,7 +21,7 @@ function CartButton (): React.ReactElement {
 
   return (
     <Popover>
-      <PopoverTrigger className='text-text-100 hover:text-bg-100 hover:bg-primary-100 p-1 rounded-lg transition-colors cursor-pointer'>
+      <PopoverTrigger className='text-text-200 hover:text-bg-100 hover:bg-cream-500 p-1 rounded-lg transition-colors cursor-pointer'>
         <FaBasketShopping className='w-7 h-7' />
       </PopoverTrigger>
       <PopoverContent className='w-[25rem]'>

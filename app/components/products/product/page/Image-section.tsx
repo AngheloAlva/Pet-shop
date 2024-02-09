@@ -10,7 +10,7 @@ function ImageSection (
   const [imageSelected, setImageSelected] = useState(0)
 
   return (
-    <section className='w-full lg:w-1/2 flex flex-col gap-4'>
+    <section className='w-full lg:w-2/5 flex flex-col gap-4'>
       <div className='p-7 bg-white rounded-lg border border-input overflow-hidden w-full'>
         <Image
           src={images[imageSelected]}

@@ -15,7 +15,7 @@ function AddressSection (
   { userId, address, setIsButtonEnabled, refetchUser }: AddressSectionProps
 ): React.ReactElement {
   return (
-    <div>
+    <div className='w-full md:w-2/3'>
       <h2 className='text-2xl font-bold mb-2'>Shipping address</h2>
       {
         address === null
@@ -25,7 +25,7 @@ function AddressSection (
               address={address}
               refetchUser={refetchUser}
             >
-              <Button type='submit' className='w-full' size={'lg'}>
+              <Button type='submit' className='w-full bg-blue-400 hover:bg-blue-300' size={'lg'}>
                 Save
               </Button>
             </AddressForm>

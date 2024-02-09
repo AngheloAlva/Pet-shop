@@ -21,10 +21,10 @@ function ResumeSection ({
         {isLoading && <p>Loading...</p>}
         {!isLoading && products.length === 0 &&
           <>
-            <p className='text-center font-medium mt-4 text-text-200'>Your cart is empty</p>
-            <Button size='lg' className='bg-primary-200 hover:bg-primary-100'>
-              <Link href='/products' className='w-full'>
-                Go to products
+            <p className='text-center font-medium text-xl mt-4 text-text-200'>Your cart is empty</p>
+            <Button size='lg' className='bg-blue-500 hover:bg-blue-400'>
+              <Link href='/' className='w-full'>
+                Go to home
               </Link>
             </Button>
           </>

@@ -53,7 +53,6 @@ const useCheckoutCart = (authId: string | undefined): CheckoutCartResponse => {
           duration: 3000,
           variant: 'destructive'
         })
-        console.log(error)
       } finally {
         setIsLoading(false)
       }

@@ -29,13 +29,17 @@ function CartPage (): React.ReactElement {
         <SummarySection products={products} />
       </div>
 
-      <UserDataSection user={userDb} authId={user?.id ?? ''} setIsButtonEnabled={setIsButtonEnabled} />
+      <UserDataSection
+        user={userDb}
+        authId={user?.id ?? ''}
+        setIsButtonEnabled={setIsButtonEnabled}
+      />
 
       <div>
         <Button
           size={'lg'}
           disabled={!isButtonEnabled}
-          className='w-full bg-primary-200 hover:bg-primary-100 mt-5'
+          className='w-full bg-green-600 hover:bg-green-500 mt-5'
         >
           <Link href='/checkout/shipping' className='w-full'>
             Go to shipping

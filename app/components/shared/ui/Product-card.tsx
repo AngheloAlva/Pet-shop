@@ -15,6 +15,7 @@ import {
 } from '../../ui/card'
 
 import type { Product } from '@/types/shop/products.types'
+import Image from 'next/image'
 
 function ProductCard ({ product }: { product: Product }): React.ReactElement {
   const [optionSelected, setOptionSelected] = useState(0)
@@ -29,9 +30,11 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
                 </span>
               : null
             }
-            <img
+            <Image
               src={product.images[0]}
               alt={product.name}
+              width={300}
+              height={300}
               className='h-full object-contain rounded-lg'
             />
         </CardHeader>
@@ -55,7 +58,7 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
                   <span className='line-through text-sm text-gray-500'>
                     {'$' + (product.options?.[optionSelected].price)?.toLocaleString()}
                   </span>
-                  <span className='text-primary-500 ml-2'>
+                  <span className='text-blue-500 ml-2'>
                     {calculateDiscount(
                       product.options?.[optionSelected].price,
                       product.options?.[optionSelected].discount
@@ -76,9 +79,9 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
                 disabled={option.stock === 0}
                 onClick={() => { setOptionSelected(index) }}
                 className={optionSelected === index
-                  ? 'bg-primary-100 hover:bg-bg-primary-100 text-bg-100'
+                  ? 'bg-cream-600 hover:bg-cream-600 text-bg-100'
                   : '' +
-                  'border bg-transparent border-input rounded-lg w-fit px-3 py-1 transition-colors hover:bg-primary-200 hover:text-bg-100'
+                  'border bg-transparent border-input rounded-lg w-fit px-3 py-1 transition-colors hover:bg-cream-500 hover:text-bg-100'
                 }
               >
                 {option.name}

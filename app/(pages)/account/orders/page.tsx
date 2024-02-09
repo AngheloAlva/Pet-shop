@@ -7,7 +7,6 @@ import { Button } from '@/app/components/ui/button'
 
 async function OrdersPage (): Promise<React.ReactElement> {
   const { userId } = auth()
-  console.log(userId)
 
   if (userId == null) {
     return (
