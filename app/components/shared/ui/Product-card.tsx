@@ -1,3 +1,5 @@
+'use client'
+
 import { calculateDiscount } from '@/app/helpers/calculateDiscount'
 import { useState } from 'react'
 import Link from 'next/link'

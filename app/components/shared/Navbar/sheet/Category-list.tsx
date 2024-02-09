@@ -1,6 +1,4 @@
-'use client'
-
-import useCategories from '@/app/hooks/useCategories'
+import { getCategories } from '@/app/lib/api/shop/category'
 import { petTypes } from '@/app/lib/consts'
 import Link from 'next/link'
 
@@ -11,8 +9,8 @@ import {
   AccordionTrigger
 } from '@/app/components/ui/accordion'
 
-function CategoryList (): React.ReactElement {
-  const { categories } = useCategories({
+async function CategoryList (): Promise<React.ReactElement> {
+  const categories = await getCategories({
     page: 1,
     limit: 100,
     isAvailable: true
