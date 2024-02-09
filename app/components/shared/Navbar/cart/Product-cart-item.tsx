@@ -99,13 +99,13 @@ function ProductCartItem (
               productCart.product.options[productCart.optionSelectedIndex].discount > 0
                 ? (<>
                   <span className='line-through text-sm text-muted-foreground'>
-                    ${productCart.product.options[productCart.optionSelectedIndex].price.toLocaleString()}
+                    {productCart.product.options[productCart.optionSelectedIndex].price.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                   </span>
                   <span className='ml-2'>
-                    ${priceWithDiscount.toLocaleString()}
+                    {priceWithDiscount.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                   </span>
                 </>)
-                : '$' + (price * productCart.quantity).toLocaleString()
+                : (price * productCart.quantity).toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
             }
           </p>
         </div>

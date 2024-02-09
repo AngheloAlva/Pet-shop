@@ -56,16 +56,16 @@ function ProductCard ({ product }: { product: Product }): React.ReactElement {
             product.options?.[optionSelected].discount > 0
               ? (<>
                   <span className='line-through text-sm text-gray-500'>
-                    {'$' + (product.options?.[optionSelected].price)?.toLocaleString()}
+                    {(product.options?.[optionSelected].price)?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                   </span>
                   <span className='text-blue-500 ml-2'>
                     {calculateDiscount(
                       product.options?.[optionSelected].price,
                       product.options?.[optionSelected].discount
-                    )?.toLocaleString()}
+                    )?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                   </span>
                 </>)
-              : '$' + (product.options?.[optionSelected].price)?.toLocaleString()
+              : (product.options?.[optionSelected].price)?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
           }
         </span>
 

@@ -24,19 +24,19 @@ function SummarySection ({
       <Card className='py-4 px-6 text-text-200'>
         <div className='flex justify-between font-medium'>
           <p><strong>Subtotal</strong></p>
-          <p>${totalPriceBeforeDiscount.toLocaleString()}</p>
+          <p>{totalPriceBeforeDiscount.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Discount</strong></p>
-          <p>${totalDiscount.toLocaleString()}</p>
+          <p>{totalDiscount.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Shipping</strong></p>
-          <p>${shippingCost.toLocaleString()}</p>
+          <p>{shippingCost.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
         </div>
         <div className='flex justify-between font-medium'>
           <p><strong>Total</strong></p>
-          <p>${totalPriceAfterDiscount.toLocaleString()}</p>
+          <p>{totalPriceAfterDiscount.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
         </div>
       </Card>
     </section>

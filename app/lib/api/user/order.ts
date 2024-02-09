@@ -10,7 +10,7 @@ const getOrders = async (page = 1, limit = 10): Promise<Order[]> => {
   return data
 }
 
-const getOrder = async (id: string): Promise<Order> => {
+const getOrder = async (id: number): Promise<Order> => {
   const { data } = await axiosInstance.get<Order>(`/order/${id}`)
 
   return data
