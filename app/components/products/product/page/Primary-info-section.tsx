@@ -50,21 +50,21 @@ function creamInfoSection (
         {product.miniDesc}
       </p>
 
-      <span className='text-2xl font-semibold mt-4'>
+      <span className='text-2xl font-semibold mt-4 space-x-2'>
         {
           product.options?.[optionSelected].discount > 0
             ? (<>
-                <span className='text-cream-500 ml-2'>
+                <span>
                   {calculateDiscount(
                     product.options?.[optionSelected].price,
                     product.options?.[optionSelected].discount
-                  )?.toLocaleString()}
+                  )?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                 </span>
-                <span className='line-through text-gray-500'>
-                  {'$' + (product.options?.[optionSelected].price)?.toLocaleString()}
+                <span className='line-through text-gray-500 text-base'>
+                  {(product.options?.[optionSelected].price)?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
                 </span>
               </>)
-            : '$' + (product.options?.[optionSelected].price)?.toLocaleString()
+            : (product.options?.[optionSelected].price)?.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })
         }
       </span>
 

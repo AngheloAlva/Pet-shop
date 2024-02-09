@@ -25,7 +25,7 @@ function OrderCard (
         <p><strong>Address: </strong>{order.address.street} {order.address.number}, {order.address.commune}, {order.address.region}</p>
 
         {(order.payment !== undefined && order.payment !== null) && (
-          <p><strong>Total: </strong>${order?.payment.amount.toLocaleString()}</p>
+          <p><strong>Total: </strong>{order?.payment.amount.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
         )}
 
         <div className='space-y-2'>
