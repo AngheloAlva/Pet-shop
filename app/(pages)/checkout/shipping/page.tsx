@@ -24,6 +24,7 @@ function PaymentPage (): React.ReactElement {
   const { products } = useCartStore()
   const { user: userDb, refetchUser } = useAddressData(user?.id ?? '')
   const { isButtonEnabled, setIsButtonEnabled } = useShippingButton(userDb, products)
+  const [isButtonLoading, setIsButtonLoading] = useState(false)
 
   const [shippingMethod, setShippingMethod] = useState<ShippingMethod>({
     method: 'SHOP_PICKUP',
@@ -34,6 +35,11 @@ function PaymentPage (): React.ReactElement {
     if (user === null || user === undefined) return
 
     try {
+      setIsButtonLoading(true)
+      setIsButtonEnabled(false)
+
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
       const url = await createCheckoutSession({
         shippingMethod: shippingMethod.method,
         authId: user.id
@@ -76,7 +82,11 @@ function PaymentPage (): React.ReactElement {
         disabled={!isButtonEnabled}
         className='w-full bg-primary-200 hover:bg-primary-100 mt-5'
       >
-        Pay
+        {
+          isButtonLoading
+            ? <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
+            : 'Pay'
+        }
       </Button>
     </main>
   )

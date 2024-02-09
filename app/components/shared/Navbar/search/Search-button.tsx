@@ -1,12 +1,12 @@
+import { FaMagnifyingGlass } from 'react-icons/fa6'
+import SearchSection from './Seach-section'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@/app/components/ui/dialog'
-import { FaMagnifyingGlass } from 'react-icons/fa6'
 
 function SearchButton (): React.ReactElement {
   return (
@@ -19,12 +19,12 @@ function SearchButton (): React.ReactElement {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
-          </DialogDescription>
+          <DialogTitle>
+            Search for a product
+          </DialogTitle>
         </DialogHeader>
+
+        <SearchSection />
       </DialogContent>
     </Dialog>
   )

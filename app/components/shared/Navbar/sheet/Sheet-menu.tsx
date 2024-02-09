@@ -20,6 +20,7 @@ function SheetMenu (): React.ReactElement {
             Categories
           </SheetTitle>
         </SheetHeader>
+
         <CategoryList />
       </SheetContent>
       </Sheet>

@@ -1,6 +1,6 @@
 'use client'
 
-import ProductsPageSkeleton from '@/app/components/products/page/Products-page-skeleton'
+import ProductsPageSkeleton from '@/app/components/skeletons/Products-page-skeleton'
 import ProductsSection from '@/app/components/products/page/Products-section'
 import useProducts from '@/app/hooks/useProducts'
 

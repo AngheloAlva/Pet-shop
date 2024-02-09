@@ -1,19 +1,17 @@
-'use client'
+import { getProducts } from '@/app/lib/api/shop/product'
 
-import ProductCardSkeleton from '../../shared/ui/Product-card-skeleton'
 import ProductCard from '../../shared/ui/Product-card'
-import useProducts from '@/app/hooks/useProducts'
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from '@/app/components/ui/carousel'
 
-function ProductsSection (): React.ReactElement {
-  const { products, isLoading } = useProducts({
-    InitialFilters: {},
+async function ProductsSection (): Promise<React.ReactElement> {
+  const products = await getProducts({
     isAvailable: true,
-    limit: 10
+    limit: 10,
+    page: 1
   })
 
   return (
@@ -22,23 +20,11 @@ function ProductsSection (): React.ReactElement {
 
       <Carousel opts={{ align: 'start', loop: true }}>
         <CarouselContent>
-          {
-            isLoading
-              ? (
-                  Array(10).fill(0).map((_, index) => (
-                    <CarouselItem key={index} className='basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6'>
-                      <ProductCardSkeleton />
-                    </CarouselItem>
-                  ))
-                )
-              : (
-                  products.map((product) => (
-                    <CarouselItem key={product.id} className='xs:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6'>
-                      <ProductCard product={product} />
-                    </CarouselItem>
-                  ))
-                )
-          }
+          {products.products.map((product) => (
+            <CarouselItem key={product.id} className='xs:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6'>
+              <ProductCard product={product} />
+            </CarouselItem>
+          ))}
         </CarouselContent>
       </Carousel>
     </section>

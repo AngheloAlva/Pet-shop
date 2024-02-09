@@ -1,18 +1,15 @@
-'use client'
-
-import useBrands from '@/app/hooks/useBrands'
-
 import BrandCard from '../ui/Brand-card'
 import {
   Carousel,
   CarouselContent,
   CarouselItem
 } from '@/app/components/ui/carousel'
+import { getBrands } from '@/app/lib/api/shop/brand'
 
-function BrandsSection (): React.ReactElement {
-  const { brands, isLoading } = useBrands({
+async function BrandsSection (): Promise<React.ReactElement> {
+  const brands = await getBrands({
     isAvailable: true,
-    limit: 10,
+    limit: 100,
     page: 1
   })
 
@@ -22,23 +19,11 @@ function BrandsSection (): React.ReactElement {
 
       <Carousel opts={{ align: 'start', loop: true }}>
         <CarouselContent>
-          {
-            isLoading
-              ? (
-                  Array(10).fill(0).map((_, index) => (
-                    <CarouselItem key={index} className='basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6'>
-                      {/* <ProductCardSkeleton /> */}
-                    </CarouselItem>
-                  ))
-                )
-              : (
-                  brands.map((brand) => (
-                    <CarouselItem key={brand.id} className='basis-1/2 sm:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 '>
-                      <BrandCard brand={brand} />
-                    </CarouselItem>
-                  ))
-                )
-          }
+          {brands.map((brand) => (
+            <CarouselItem key={brand.id} className='basis-1/2 sm:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 '>
+              <BrandCard brand={brand} />
+            </CarouselItem>
+          ))}
         </CarouselContent>
       </Carousel>
     </section>

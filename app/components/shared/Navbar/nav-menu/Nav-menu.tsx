@@ -1,6 +1,4 @@
-'use client'
-
-import useCategories from '@/app/hooks/useCategories'
+import { getCategories } from '@/app/lib/api/shop/category'
 import { petTypes } from '../../../../lib/consts'
 
 import {
@@ -12,11 +10,11 @@ import {
   NavigationMenuTrigger
 } from '@/app/components/ui/navigation-menu'
 
-function NavMenu (): React.ReactElement {
-  const { categories } = useCategories({
-    page: 1,
+async function NavMenu (): Promise<React.ReactElement> {
+  const categories = await getCategories({
+    isAvailable: true,
     limit: 100,
-    isAvailable: true
+    page: 1
   })
 
   return (

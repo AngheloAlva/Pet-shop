@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
+'use client'
+
 import { updateUser } from '@/app/lib/api/user/user'
 import useUserForm from '@/app/hooks/useUserForm'
 
@@ -24,7 +26,7 @@ import type { z } from 'zod'
 interface UserFormProps {
   user: User | null
   authId: string
-  setIsButtonEnabled: (enabled: boolean) => void
+  setIsButtonEnabled?: (enabled: boolean) => void
 }
 
 function UserForm (
@@ -36,7 +38,10 @@ function UserForm (
   const onSubmit = async (data: z.infer<typeof userFormSchema>): Promise<void> => {
     try {
       await updateUser(authId, data)
-      setIsButtonEnabled(true)
+      if (setIsButtonEnabled !== undefined) {
+        setIsButtonEnabled(true)
+      }
+
       toast({
         title: 'Success',
         description: 'User information updated',

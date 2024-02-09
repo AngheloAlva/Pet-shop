@@ -1,3 +1,5 @@
+'use client'
+
 import AddProductButton from '@/app/components/shared/ui/Add-product-button'
 import { Button } from '@/app/components/ui/button'
 import { calculateDiscount } from '@/app/helpers/calculateDiscount'

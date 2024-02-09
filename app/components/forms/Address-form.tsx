@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
+'use client'
+
 import { createAddress, updateAddress } from '@/app/lib/api/user/address'
 import useAddressForm from '@/app/hooks/useAddressForm'
 
@@ -26,8 +28,8 @@ interface AddressFormProps {
   address: Address | null
   isUpdate?: boolean
   children: React.ReactNode
-  refetchUser: () => Promise<void>
-  setIsButtonEnabled: (enabled: boolean) => void
+  refetchUser?: () => Promise<void>
+  setIsButtonEnabled?: (enabled: boolean) => void
 }
 
 function AddressForm (
@@ -53,7 +55,10 @@ function AddressForm (
           authId,
           ...data
         })
-        await refetchUser()
+
+        if (refetchUser !== undefined) {
+          await refetchUser()
+        }
       } else {
         if (address?.id === undefined) return
 
@@ -61,10 +66,15 @@ function AddressForm (
           ...data
         })
 
-        await refetchUser()
+        if (refetchUser !== undefined) {
+          await refetchUser()
+        }
       }
 
-      setIsButtonEnabled(true)
+      if (setIsButtonEnabled !== undefined) {
+        setIsButtonEnabled(true)
+      }
+
       toast({
         title: 'Success',
         description: 'User information updated',

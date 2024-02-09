@@ -1,10 +1,11 @@
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import SearchButton from './Search-button'
-import CartButton from './cart/Cart-button'
-import SheetMenu from './sheet/Sheet-menu'
 import AccountButton from './Account-button'
+import CartButton from './cart/Cart-button'
+import SearchButton from './search/Search-button'
+import SheetMenu from './sheet/Sheet-menu'
 import NavMenu from './nav-menu/Nav-menu'
 
 function Navbar (): React.ReactElement {
@@ -12,7 +13,10 @@ function Navbar (): React.ReactElement {
     <header className='bg-bg-100'>
       <nav className="flex py-2 px-4 items-center justify-between">
         <div className='flex gap-2 items-center md:hidden'>
-          <SheetMenu />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SheetMenu />
+          </Suspense>
+
           <SearchButton />
         </div>
 
@@ -35,7 +39,9 @@ function Navbar (): React.ReactElement {
         </div>
       </nav>
       <nav className='hidden md:flex items-center w-full justify-center'>
-        <NavMenu />
+        <Suspense fallback={<div>Loading...</div>}>
+          <NavMenu />
+        </Suspense>
       </nav>
     </header>
   )

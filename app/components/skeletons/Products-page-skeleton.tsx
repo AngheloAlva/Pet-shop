@@ -1,6 +1,6 @@
-import FilterSectionSkeleton from '../../shared/filter/Filter-section-skeleton'
-import ProductCardSkeleton from '../../shared/ui/Product-card-skeleton'
-import { Skeleton } from '../../ui/skeleton'
+import FilterSectionSkeleton from './Filter-section-skeleton'
+import ProductCardSkeleton from './Product-card-skeleton'
+import { Skeleton } from '../ui/skeleton'
 
 function ProductsPageSkeleton (): React.ReactElement {
   return (
