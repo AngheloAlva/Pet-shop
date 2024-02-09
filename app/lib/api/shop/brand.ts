@@ -4,10 +4,11 @@ import type { Brand, CreateBrand, UpdateBrand } from '@/types/shop/brand.types'
 import type { GetAllOfModel } from '@/types/shared/getAllOfModel'
 
 const createBrand = async ({
-  image, name, slug
+  image, name, slug, authId
 }: CreateBrand): Promise<Brand> => {
   const { data } = await axiosInstance.post<Brand>(
     '/brand', {
+      authId,
       image,
       name,
       slug
@@ -27,9 +28,9 @@ const getBrands = async ({
   return data
 }
 
-const getBrandById = async (id: string): Promise<Brand> => {
+const getBrandById = async (brandId: string): Promise<Brand> => {
   const { data } = await axiosInstance.get<Brand>(
-    `/brand/${id}`
+    `/brand/${brandId}`
   )
 
   return data
@@ -43,11 +44,12 @@ const getBrandBySlug = async (slug: string): Promise<Brand> => {
   return data
 }
 
-const updateBrand = async (id: string, {
-  image, name, slug
+const updateBrand = async (brandId: string, {
+  image, name, slug, authId
 }: UpdateBrand): Promise<Brand> => {
   const { data } = await axiosInstance.put<Brand>(
-    `/brand/${id}`, {
+    `/brand/${brandId}`, {
+      authId,
       image,
       name,
       slug
@@ -57,17 +59,23 @@ const updateBrand = async (id: string, {
   return data
 }
 
-const activateBrand = async (id: string): Promise<Brand> => {
+const activateBrand = async (brandId: number, authId: string): Promise<Brand> => {
   const { data } = await axiosInstance.patch<Brand>(
-    `/brand/activate/${id}`
+    `/brand/activate/${brandId}`, {
+      authId
+    }
   )
 
   return data
 }
 
-const deleteBrand = async (id: string): Promise<Brand> => {
+const deleteBrand = async (brandId: number, authId: string): Promise<Brand> => {
   const { data } = await axiosInstance.delete<Brand>(
-    `/brand/${id}`
+    `/brand/${brandId}`, {
+      data: {
+        authId
+      }
+    }
   )
 
   return data

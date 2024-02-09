@@ -23,6 +23,7 @@ interface Product {
 }
 
 interface CreateProduct {
+  authId: string
   categoryId: number
   petType: string[]
   name: string
@@ -36,6 +37,7 @@ interface CreateProduct {
 }
 
 interface UpdateProduct {
+  authId: string
   categoryId?: number
   petType?: string[]
   name?: string

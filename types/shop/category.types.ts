@@ -13,6 +13,7 @@ interface Category {
 }
 
 interface CreateCategory {
+  authId: string
   name: string
   slug: string
   description: string
@@ -21,6 +22,7 @@ interface CreateCategory {
 }
 
 interface UpdateCategory {
+  authId: string
   name?: string
   slug?: string
   description?: string

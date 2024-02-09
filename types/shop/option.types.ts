@@ -17,6 +17,7 @@ interface CreateOption {
 }
 
 interface UpdateOption {
+  authId: string
   price?: number
   stock?: number
   discount?: number
