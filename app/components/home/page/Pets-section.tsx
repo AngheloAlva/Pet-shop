@@ -1,11 +1,11 @@
 import PetCard from '../ui/Pet-card'
 
 const pets = [
-  { src: '/images/for-dogs.png', alt: 'For Dogs', href: '/pets/dogs' },
-  { src: '/images/for-cats.png', alt: 'For Cats', href: '/pets/cats' },
-  { src: '/images/for-birds.png', alt: 'For Birds', href: '/pets/birds' },
-  { src: '/images/for-reptiles.png', alt: 'For Reptiles', href: '/pets/reptiles' },
-  { src: '/images/for-small-pet.png', alt: 'For Small Pet', href: '/pets/small-pet' },
+  { src: '/images/for-dogs.png', alt: 'For Dogs', href: '/pets/dog' },
+  { src: '/images/for-cats.png', alt: 'For Cats', href: '/pets/cat' },
+  { src: '/images/for-birds.png', alt: 'For Birds', href: '/pets/bird' },
+  { src: '/images/for-reptiles.png', alt: 'For Reptiles', href: '/pets/reptile' },
+  { src: '/images/for-small-pet.png', alt: 'For Small Pet', href: '/pets/small_animal' },
   { src: '/images/for-fish.png', alt: 'For Fish', href: '/pets/fish' }
 ]
 
