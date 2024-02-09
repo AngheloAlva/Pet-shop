@@ -61,7 +61,7 @@ function PaymentPage (): React.ReactElement {
   }
 
   return (
-    <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10 md:flex-row'>
+    <main className='px-5 sm:px-10 pt-28 md:pt-40 text-text-100 md:px-20 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10 md:flex-row'>
       <AddressSection
         isLoading={isLoading}
         userId={user?.id ?? ''}

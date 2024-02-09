@@ -5,10 +5,13 @@ import BrandCarouselSkeleton from '../components/skeletons/Brands-carousel'
 import ProductsSection from '../components/home/page/Products-section'
 import BrandsSection from '../components/home/page/Brands-section'
 import PetsSection from '../components/home/page/Pets-section'
+import BannerSection from '../components/home/page/Banner-section'
 
 export default function Home (): React.ReactElement {
   return (
-    <main className='flex flex-col gap-10 pt-10 pb-20'>
+    <main className='flex flex-col gap-10 pb-20 pt-16 md:pt-28'>
+      <BannerSection />
+
       <Suspense fallback={<ProductsCarouselSkeleton />}>
         <ProductsSection />
       </Suspense>

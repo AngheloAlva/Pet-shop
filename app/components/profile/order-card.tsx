@@ -11,8 +11,14 @@ function OrderCard (
   return (
     <Card>
       <CardContent className='pt-5'>
-        <CardTitle className='text-xl mb-2'>
+        <CardTitle className='text-xl mb-2 flex items-center justify-between'>
           Order ID: {order.id}
+          <div className={
+            'rounded-lg border border-input px-3 py-1 text-sm text-bg-100' +
+            (order.paid ? ' bg-green-500' : ' bg-red-400')
+          }>
+            {order.paid ? 'Paid' : 'Unpaid'}
+          </div>
         </CardTitle>
         <p><strong>Order Date: </strong>{format(order.orderDate, 'PPP')}</p>
         <p><strong>Shipping Method: </strong>{order.shippingMethod}</p>

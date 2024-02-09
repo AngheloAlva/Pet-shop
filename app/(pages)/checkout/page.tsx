@@ -18,7 +18,7 @@ function CartPage (): React.ReactElement {
   const { isButtonEnabled, setIsButtonEnabled } = useCartButtonValidation(userDb, products)
 
   return (
-    <main className='px-5 sm:px-10 text-text-100 md:px-20 pt-10 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10'>
+    <main className='px-5 sm:px-10 pt-28 md:pt-40 text-text-100 md:px-20 lg:px-34 xl:px-44 2xl:px-60 pb-20 flex flex-col w-screen gap-10'>
       <div className='flex flex-col gap-10 lg:flex-row'>
         <ResumeSection
           products={products}

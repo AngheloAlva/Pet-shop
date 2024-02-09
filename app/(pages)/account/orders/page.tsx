@@ -10,7 +10,7 @@ async function OrdersPage (): Promise<React.ReactElement> {
 
   if (userId == null) {
     return (
-      <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
+      <main className='flex flex-col gap-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100 pt-24 md:pt-40'>
         <h1 className='text-3xl font-bold'>Orders</h1>
         <p>You must be logged in to see your orders.</p>
       </main>
@@ -20,7 +20,7 @@ async function OrdersPage (): Promise<React.ReactElement> {
   const orders = await getOrdersByUser(userId)
 
   return (
-    <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
+    <main className='flex flex-col gap-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100 pt-24 md:pt-40'>
       <h1 className='text-3xl font-bold'>Orders</h1>
 
       {

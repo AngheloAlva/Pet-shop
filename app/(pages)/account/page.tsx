@@ -21,7 +21,7 @@ async function AccountPage (): Promise<React.ReactElement> {
   const user = await getUserById(userId)
 
   return (
-    <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
+    <main className='flex flex-col gap-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100 pt-24 md:pt-36'>
       <h1 className='text-3xl font-bold'>Account</h1>
 
       <Button size={'lg'} className='bg-cream-600 hover:bg-cream-500'>
