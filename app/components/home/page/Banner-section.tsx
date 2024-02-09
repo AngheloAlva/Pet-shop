@@ -1,4 +1,8 @@
+'use client'
+
+import AutoPlay from 'embla-carousel-autoplay'
 import Image from 'next/image'
+
 import { Carousel, CarouselContent, CarouselItem } from '../../ui/carousel'
 
 function BannerSection (): React.ReactElement {
@@ -21,7 +25,17 @@ function BannerSection (): React.ReactElement {
   ]
 
   return (
-    <Carousel opts={{ align: 'start', loop: true }}>
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: true
+      }}
+      plugins={[
+        AutoPlay({
+          delay: 3000
+        })
+      ]}
+    >
       <CarouselContent>
         {bannerImages.map((image, index) => (
           <CarouselItem key={index}>
