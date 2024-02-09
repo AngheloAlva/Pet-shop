@@ -15,8 +15,8 @@ function SuccessfulPage (
 
       <div className='md:flex-row gap-8 flex-col flex items-center md:items-start'>
         <Image
-          width={1080}
-          height={1080}
+          width={700}
+          height={700}
           alt="Order successful"
           className='md:w-1/2 md:h-1/2 max-w-lg w-full'
           src="/images/successful.png"
