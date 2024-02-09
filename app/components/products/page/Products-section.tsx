@@ -1,6 +1,6 @@
 import PaginationButtons from '@/app/components/shared/ui/Pagination-buttons'
 import FilterSection from '@/app/components/shared/filter/Filter-section'
-import FilterButtons from '@/app/components/shared/filter/Filter-button'
+import FilterButton from '@/app/components/shared/filter/Filter-button'
 import ProductCard from '@/app/components/shared/ui/Product-card'
 
 import type { GetProductsWithFilters } from '@/types/shared/getProductsWithFilters'
@@ -27,7 +27,7 @@ function ProductsSection ({
           <p className='text-muted-foreground'>{total} products</p>
         </div>
         <div className='w-full flex items-center justify-end lg:hidden'>
-          <FilterButtons setFilters={setFilters} filters={filters} />
+          <FilterButton setFilters={setFilters} filters={filters} />
         </div>
       </section>
 
@@ -40,7 +40,7 @@ function ProductsSection ({
         </section>
       </div>
 
-      <div className='w-full flex items-center justify-center gap-2'>
+      <div className='w-full flex items-center justify-center gap-2 mt-5'>
         <PaginationButtons
           setPage={setPage}
           limit={limit}

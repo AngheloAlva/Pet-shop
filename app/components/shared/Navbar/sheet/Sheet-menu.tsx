@@ -11,7 +11,7 @@ import CategoryList from './Category-list'
 function SheetMenu (): React.ReactElement {
   return (
     <Sheet>
-      <SheetTrigger className='text-text-100 hover:text-bg-100 hover:bg-primary-100 p-1 rounded-lg transition-colors'>
+      <SheetTrigger className='text-text-200 hover:text-bg-100 hover:bg-cream-500 p-1 rounded-lg transition-colors'>
         <FaBars className='w-7 h-7' />
       </SheetTrigger>
       <SheetContent side={'left'}>

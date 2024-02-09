@@ -19,7 +19,7 @@ function PaginationButtons ({
       <Button
         onClick={() => { setPage(page - 1) } }
         disabled={page === 1}
-        className='bg-accent-100 hover:bg-accent-300'
+        className='bg-blue-500 hover:bg-blue-400'
       >
         <FaAngleLeft />
       </Button>
@@ -32,14 +32,14 @@ function PaginationButtons ({
                 key={index}
                 onClick={() => { setPage(index + 1) } }
                 disabled={page === index + 1}
-                className='bg-primary-100 hover:bg-primary-300'
+                className='bg-blue-500 hover:bg-blue-400'
               >
                 {index + 1}
               </Button>
             )
           } else if (index === maxQuantity) {
             return (
-              <Button key={index} disabled className='bg-primary-100 hover:bg-primary-300'>
+              <Button key={index} disabled className='bg-blue-500 hover:bg-blue-400'>
                 ...
               </Button>
             )
@@ -50,7 +50,7 @@ function PaginationButtons ({
       <Button
         onClick={() => { setPage(page + 1) } }
         disabled={page * limit >= total}
-        className='bg-accent-100 hover:bg-accent-300'
+        className='bg-blue-500 hover:bg-blue-400'
       >
         <FaAngleRight />
       </Button>

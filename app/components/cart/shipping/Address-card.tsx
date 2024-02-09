@@ -17,7 +17,7 @@ function AddressCard (
   return (
     <Card>
       <CardContent>
-        <CardTitle className='mt-5 mb-2 text-xl flex items-center justify-between text-text-100'>
+        <CardTitle className='mt-5 mb-2 text-xl flex items-center justify-between text-blue-500 font-bold'>
           {address.name}
           <EditAddressDialog
             address={address}

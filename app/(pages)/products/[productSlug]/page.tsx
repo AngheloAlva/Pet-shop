@@ -9,13 +9,13 @@ async function ProductPage (
   const product = await getProductBySlug(params.productSlug)
 
   return (
-    <main className='px-5 sm:px-10 md:px-20 pt-10 pb-20 lg:px-40 flex flex-col w-screen gap-10 lg:flex-row'>
-      <ImageSection images={product.images} name={product.name} />
-
-      <div>
+    <main className='px-5 sm:px-10 md:px-20 pb-20 lg:px-40 w-screen space-y-14 pt-28 md:pt-40'>
+      <div className='flex flex-col gap-10 md:flex-row'>
+        <ImageSection images={product.images} name={product.name} />
         <PrimaryInfoSection product={product} />
-        <DescriptionSection description={product.description} />
       </div>
+
+      <DescriptionSection description={product.description} />
     </main>
   )
 }

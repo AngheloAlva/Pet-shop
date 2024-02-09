@@ -104,7 +104,7 @@ function UserForm (
             )}
           />
 
-          <Button type="submit" className='mt-4'>
+          <Button type="submit" className='mt-4 bg-blue-400 hover:bg-blue-300'>
             Update Information
           </Button>
         </form>

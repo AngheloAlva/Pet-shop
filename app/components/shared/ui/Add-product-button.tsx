@@ -77,7 +77,7 @@ function AddProductButton ({
 
   return (
     <Button
-      className={cn(className, 'h-11 w-full bg-accent-200 hover:bg-accent-300')}
+      className={cn(className, 'h-11 w-full bg-green-600 hover:bg-green-500')}
       disabled={product.options[optionSelectedIndex].stock < quantity}
       onClick={async () => {
         await handleAddToCart()

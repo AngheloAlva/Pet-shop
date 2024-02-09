@@ -11,8 +11,14 @@ function OrderCard (
   return (
     <Card>
       <CardContent className='pt-5'>
-        <CardTitle className='text-xl mb-2'>
+        <CardTitle className='text-xl mb-2 flex items-center justify-between'>
           Order ID: {order.id}
+          <div className={
+            'rounded-lg border border-input px-3 py-1 text-sm text-bg-100' +
+            (order.paid ? ' bg-green-500' : ' bg-red-400')
+          }>
+            {order.paid ? 'Paid' : 'Unpaid'}
+          </div>
         </CardTitle>
         <p><strong>Order Date: </strong>{format(order.orderDate, 'PPP')}</p>
         <p><strong>Shipping Method: </strong>{order.shippingMethod}</p>
@@ -22,11 +28,13 @@ function OrderCard (
           <p><strong>Total: </strong>${order?.payment.amount.toLocaleString()}</p>
         )}
 
-        <div>
+        <div className='space-y-2'>
           <strong>Products:</strong>
-          {order.items.map((item) => (
-            <ProductOrderItem orderItem={item} key={item.id} />
-          ))}
+          <div className='space-y-4'>
+            {order.items.map((item) => (
+              <ProductOrderItem orderItem={item} key={item.id} />
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

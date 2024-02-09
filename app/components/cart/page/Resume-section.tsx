@@ -4,6 +4,7 @@ import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 
 import type { ProductCart } from '@/types/user/product-cart.types'
+import ProductCartItemSkeleton from '../../skeletons/Product-cart-item'
 
 interface ResumeSectionProps {
   userId: string
@@ -18,17 +19,24 @@ function ResumeSection ({
     <section className='flex flex-col gap-2 w-full lg:w-2/3'>
       <h1 className='text-3xl font-bold'>Cart</h1>
       <Card className='flex flex-col gap-5 py-4 px-6 '>
-        {isLoading && <p>Loading...</p>}
+        {isLoading && (
+          <ul className='flex flex-col gap-5'>
+            <ProductCartItemSkeleton />
+            <ProductCartItemSkeleton />
+          </ul>
+        )}
+
         {!isLoading && products.length === 0 &&
           <>
-            <p className='text-center font-medium mt-4 text-text-200'>Your cart is empty</p>
-            <Button size='lg' className='bg-primary-200 hover:bg-primary-100'>
-              <Link href='/products' className='w-full'>
-                Go to products
+            <p className='text-center font-medium text-xl mt-4 text-text-200'>Your cart is empty</p>
+            <Button size='lg' className='bg-blue-500 hover:bg-blue-400'>
+              <Link href='/' className='w-full'>
+                Go to home
               </Link>
             </Button>
           </>
         }
+
         {!isLoading && products.length > 0 && (
           <ul className='flex flex-col gap-5'>
             {products.map((product) => (

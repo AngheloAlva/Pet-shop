@@ -10,7 +10,7 @@ import NavMenu from './nav-menu/Nav-menu'
 
 function Navbar (): React.ReactElement {
   return (
-    <header className='bg-bg-100'>
+    <header className='bg-bg-100 fixed top-0 left-0 z-50 right-0 shadow-md'>
       <nav className="flex py-2 px-4 items-center justify-between">
         <div className='flex gap-2 items-center md:hidden'>
           <Suspense fallback={<div>Loading...</div>}>
@@ -38,7 +38,7 @@ function Navbar (): React.ReactElement {
           <CartButton />
         </div>
       </nav>
-      <nav className='hidden md:flex items-center w-full justify-center'>
+      <nav className='hidden md:flex items-center w-full justify-center pb-4'>
         <Suspense fallback={<div>Loading...</div>}>
           <NavMenu />
         </Suspense>
