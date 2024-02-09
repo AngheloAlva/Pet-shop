@@ -1,27 +1,21 @@
-'use client'
-
-import useProductBySlug from '@/app/hooks/useProductBySlug'
-
 import DescriptionSection from '@/app/components/products/product/page/Description-section'
 import PrimaryInfoSection from '@/app/components/products/product/page/Primary-info-section'
 import ImageSection from '@/app/components/products/product/page/Image-section'
+import { getProductBySlug } from '@/app/lib/api/shop/product'
 
-function ProductPage (
+async function ProductPage (
   { params }: { params: { productSlug: string } }
-): React.ReactElement {
-  const { product, isLoading } = useProductBySlug(params.productSlug)
+): Promise<React.ReactElement> {
+  const product = await getProductBySlug(params.productSlug)
 
   return (
     <main className='px-5 sm:px-10 md:px-20 pt-10 pb-20 lg:px-40 flex flex-col w-screen gap-10 lg:flex-row'>
-      {
-        isLoading
-          ? <p>Loading...</p>
-          : (<>
-              <ImageSection images={product.images} name={product.name} />
-              <PrimaryInfoSection product={product} />
-              <DescriptionSection description={product.description} />
-            </>)
-      }
+      <ImageSection images={product.images} name={product.name} />
+
+      <div>
+        <PrimaryInfoSection product={product} />
+        <DescriptionSection description={product.description} />
+      </div>
     </main>
   )
 }
