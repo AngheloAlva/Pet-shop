@@ -18,7 +18,7 @@ function CategoryBySlugPage (
   return (
     <>
       {
-        !isLoading && (
+        (!isLoading && products.length >= 1) && (
           <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
             <section className='max-w-xl'>
               <h1 className='text-xl font-bold'>{products[0].category?.name}</h1>
@@ -39,6 +39,17 @@ function CategoryBySlugPage (
                 page={page}
               />
             </div>
+          </main>
+        )
+      }
+
+      {
+        (!isLoading && products.length === 0) && (
+          <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 lg:px-40 text-text-100'>
+            <section className='max-w-xl'>
+              <h1 className='text-xl font-bold'>No products found</h1>
+              <p className='text-muted-foreground'>We couldn't find any products in this category</p>
+            </section>
           </main>
         )
       }

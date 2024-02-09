@@ -1,4 +1,4 @@
-import ProductCardSkeleton from '../shared/ui/Product-card-skeleton'
+import ProductCardSkeleton from './Product-card-skeleton'
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel'
 
 function ProductsCarouselSkeleton (): React.ReactElement {
