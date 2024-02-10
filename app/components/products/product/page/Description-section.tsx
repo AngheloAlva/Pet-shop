@@ -8,7 +8,7 @@ function DescriptionSection (
   { description }: DescriptionSectionProps
 ): React.ReactElement {
   const renderDescription = (description: string): React.ReactElement[] => {
-    return description.split('\n').map((section, index) => (
+    return description.split('\\n').map((section, index) => (
       <p key={index} className='text-sm'>
         {section}
       </p>
