@@ -5,5 +5,5 @@ export default authMiddleware({
 })
 
 export const config = {
-  matcher: ['/account(.*)', '/checkout(.*)']
+  matcher: ['/account(.*)', '/checkout(.*)', '/admin(.*)']
 }

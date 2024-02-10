@@ -12,7 +12,7 @@ import {
 } from '@/app/components/ui/popover'
 
 function AccountButton (): React.ReactElement {
-  const { isSignedIn } = useUser()
+  const { isSignedIn, user } = useUser()
 
   return (
     <Popover>
@@ -23,7 +23,7 @@ function AccountButton (): React.ReactElement {
         <div className='flex flex-col items-start gap-2 text-text-100'>
           {
             (isSignedIn ?? false)
-              ? <IsSignedIn />
+              ? <IsSignedIn userId={user?.id} />
               : <IsSignedOut />
           }
         </div>
