@@ -22,9 +22,9 @@ function DescriptionSection (
         (JSON.parse(description) as Array<{ title: string, content: string }>).map((section, index) => (
           <div key={index} className='flex flex-col gap-2'>
             <h3 className='text-md font-bold'>{section.title}</h3>
-            <p className='text-sm space-y-1'>
+            <div className='text-sm space-y-1'>
               {renderDescription(section.content)}
-            </p>
+            </div>
           </div>
         ))
       }
