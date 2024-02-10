@@ -7,7 +7,7 @@ import {
 import { getBrands } from '@/app/lib/api/shop/brand'
 
 async function BrandsSection (): Promise<React.ReactElement> {
-  const brands = await getBrands({
+  const { brands } = await getBrands({
     isAvailable: true,
     limit: 100,
     page: 1

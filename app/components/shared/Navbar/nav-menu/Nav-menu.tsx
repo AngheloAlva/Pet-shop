@@ -11,7 +11,7 @@ import {
 } from '@/app/components/ui/navigation-menu'
 
 async function NavMenu (): Promise<React.ReactElement> {
-  const categories = await getCategories({
+  const { categories } = await getCategories({
     isAvailable: true,
     limit: 100,
     page: 1
