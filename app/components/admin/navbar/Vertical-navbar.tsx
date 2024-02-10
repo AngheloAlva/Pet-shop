@@ -9,7 +9,7 @@ function VerticalAdminNavbar (): React.ReactElement {
   const pathName = usePathname()
 
   return (
-    <div className="flex-1 overflow-auto py-2 hidden md:block max-w-52">
+    <div className="flex-1 overflow-auto py-2 hidden md:block min-w-40 max-w-52">
       <nav className="grid items-start px-4 text-sm font-medium">
         <LinkItem href='/admin' icon={<FaHouse className='w-4 h-4' />} pathName={pathName} text='Home' />
         <LinkItem href='/admin/products' icon={<FaBoxesStacked className='w-4 h-4' />} pathName={pathName} text='Products' />

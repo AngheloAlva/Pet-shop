@@ -2,8 +2,8 @@ import axiosInstance from '../../axios/axios-instance'
 
 import type { Order } from '@/types/user/order.types'
 
-const getOrders = async (authId: string, page = 1, limit = 10): Promise<Order[]> => {
-  const { data } = await axiosInstance.get<Order[]>(
+const getOrders = async (authId: string, page = 1, limit = 10): Promise<{ total: number, orders: Order[] }> => {
+  const { data } = await axiosInstance.get<{ total: number, orders: Order[] }>(
     `/order?page=${page}&limit=${limit}`, {
       data: {
         authId

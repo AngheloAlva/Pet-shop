@@ -20,8 +20,8 @@ const createBrand = async ({
 
 const getBrands = async ({
   isAvailable, limit, page
-}: GetAllOfModel): Promise<Brand[]> => {
-  const { data } = await axiosInstance.get<Brand[]>(
+}: GetAllOfModel): Promise<{ total: number, brands: Brand[] }> => {
+  const { data } = await axiosInstance.get<{ total: number, brands: Brand[] }>(
     `/brand?isAvailable=${isAvailable}&limit=${limit}&page=${page}`
   )
 

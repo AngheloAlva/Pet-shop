@@ -21,8 +21,8 @@ const createCategory = async ({
 
 const getCategories = async ({
   isAvailable, limit, page
-}: GetAllOfModel): Promise<Category[]> => {
-  const { data } = await axiosInstance.get<Category[]>(
+}: GetAllOfModel): Promise<{ total: number, categories: Category[] }> => {
+  const { data } = await axiosInstance.get<{ total: number, categories: Category[] }>(
     `/category?isAvailable=${isAvailable}&limit=${limit}&page=${page}`
   )
 
