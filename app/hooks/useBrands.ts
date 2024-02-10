@@ -17,7 +17,7 @@ const useBrands = ({
     const fetchBrands = async (): Promise<void> => {
       try {
         const brands = await getBrands({ isAvailable, limit, page })
-        setBrands(brands)
+        setBrands(brands.brands)
         setIsLoading(false)
       } catch (error) {
         router.push('/404')

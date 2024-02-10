@@ -16,7 +16,7 @@ const useCategories = ({
     const fetchCategories = async (): Promise<void> => {
       try {
         const categories = await getCategories({ isAvailable, limit, page })
-        setCategories(categories)
+        setCategories(categories.categories)
         setIsLoading(false)
       } catch (error) {
         toast({

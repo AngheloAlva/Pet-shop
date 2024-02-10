@@ -60,7 +60,7 @@ const getProducts = async ({
   return data
 }
 
-const getProductById = async (id: string): Promise<Product> => {
+const getProductById = async (id: number): Promise<Product> => {
   const { data } = await axiosInstance.get<Product>(
     `/product/${id}`
   )
@@ -97,7 +97,7 @@ const updateProduct = async ({
   return data
 }
 
-const deleteProduct = async (id: string, authId: string): Promise<string> => {
+const deleteProduct = async (id: number, authId: string): Promise<string> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
     `/product/${id}`, {
       data: {
@@ -109,7 +109,7 @@ const deleteProduct = async (id: string, authId: string): Promise<string> => {
   return data.message
 }
 
-const activateProduct = async (id: string, authId: string): Promise<string> => {
+const activateProduct = async (id: number, authId: string): Promise<string> => {
   const { data } = await axiosInstance.put<{ message: string }>(
     `/product/activate/${id}`, {
       authId

@@ -2,10 +2,14 @@ import type { Product } from '@/types/shop/products.types'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card'
 import Image from 'next/image'
 import { Button } from '../../ui/button'
+import AlertDeleteProduct from './Alert-delete-product'
+import { useUser } from '@clerk/nextjs'
 
 function AdminProductItem (
-  { product }: { product: Product }
+  { product, refresh }: { product: Product, refresh: () => Promise<void> }
 ): React.ReactElement {
+  const { user } = useUser()
+
   return (
     <Card className='flex items-center'>
       <CardHeader className='p-2'>
@@ -18,7 +22,7 @@ function AdminProductItem (
         />
       </CardHeader>
 
-      <CardContent className='flex flex-col p-5'>
+      <CardContent className='flex flex-col p-5 w-full'>
         <CardTitle>
           {product.name}
         </CardTitle>
@@ -42,6 +46,21 @@ function AdminProductItem (
           }
         </div>
       </CardContent>
+
+      <div className='pr-2 flex flex-col gap-2 w-1/4'>
+        <Button variant={'outline'} size={'sm'} className='w-full'>
+          Edit
+        </Button>
+        {
+          user?.id !== undefined && (
+            <AlertDeleteProduct
+              productId={product.id}
+              authId={user?.id}
+              refresh={refresh}
+            />
+          )
+        }
+      </div>
     </Card>
   )
 }

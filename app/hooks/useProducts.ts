@@ -18,10 +18,11 @@ const useProducts = ({
 }: UseProducts): {
     page: number
     total: number
-    products: Product[]
     isLoading: boolean
-    setPage: (page: number) => void
+    products: Product[]
+    refresh: () => Promise<void>
     filters: GetProductsWithFilters
+    setPage: (page: number) => void
     setFilters: (filters: GetProductsWithFilters) => void
   } => {
   const [filters, setFilters] = useState<GetProductsWithFilters>(InitialFilters)
@@ -32,24 +33,24 @@ const useProducts = ({
 
   const router = useRouter()
 
-  useEffect(() => {
-    const fetchProducts = async (): Promise<void> => {
-      try {
-        const data = await getProducts({
-          isAvailable,
-          limit,
-          page,
-          ...filters
-        })
-        setProducts(data.products)
-        setTotal(data.total)
-        setIsLoading(false)
-      } catch (error) {
-        // router.push('/404')
-        console.error(error)
-      }
+  const fetchProducts = async (): Promise<void> => {
+    try {
+      const data = await getProducts({
+        isAvailable,
+        limit,
+        page,
+        ...filters
+      })
+      setProducts(data.products)
+      setTotal(data.total)
+      setIsLoading(false)
+    } catch (error) {
+      // router.push('/404')
+      console.error(error)
     }
+  }
 
+  useEffect(() => {
     void fetchProducts()
   }, [isAvailable, limit, router, filters, page])
 
@@ -60,7 +61,8 @@ const useProducts = ({
     setPage,
     products,
     isLoading,
-    setFilters
+    setFilters,
+    refresh: fetchProducts
   }
 }
 
