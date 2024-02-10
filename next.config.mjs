@@ -9,6 +9,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'www.mazuri.cl'
+      },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io'
       }
     ]
   }

@@ -33,7 +33,7 @@ interface CreateProduct {
   images: string[]
   brandId: number
   lifeStage: 'PUPPY' | 'ADULT' | 'SENIOR' | 'KITTEN' | 'ALL_LIFE_STAGES'
-  options: CreateOption
+  options: CreateOption[]
 }
 
 interface UpdateProduct {
