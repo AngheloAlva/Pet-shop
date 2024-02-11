@@ -31,7 +31,7 @@ function AdminSheetMenu (): React.ReactElement {
       <SheetContent side={'right'}>
         <SheetHeader>
           <SheetTitle>
-            Categories
+            Admin Menu
           </SheetTitle>
         </SheetHeader>
 
