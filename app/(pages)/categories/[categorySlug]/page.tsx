@@ -1,11 +1,11 @@
 'use client'
 
 import useProducts from '@/app/hooks/shop/useProducts'
+import Image from 'next/image'
 
+import ProductsPageSkeleton from '@/app/components/skeletons/Products-page-skeleton'
 import PaginationButtons from '@/app/components/shared/ui/Pagination-buttons'
 import ProductCard from '@/app/components/shared/ui/Product-card'
-import Image from 'next/image'
-import ProductsPageSkeleton from '@/app/components/skeletons/Products-page-skeleton'
 
 function CategoryBySlugPage (
   { params }: { params: { categorySlug: string } }
