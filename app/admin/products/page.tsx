@@ -12,7 +12,7 @@ function AdminProductsPage (): React.ReactElement {
             Create Product
           </Button>
         </Link>
-        <Link href='/admin/products/create' className='w-full'>
+        <Link href='/admin/products/deleted' className='w-full'>
           <Button className='bg-gray-600 w-full hover:bg-gray-500'>
             Deleted Products
           </Button>

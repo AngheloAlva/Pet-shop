@@ -110,7 +110,7 @@ const deleteProduct = async (id: number, authId: string): Promise<string> => {
 }
 
 const activateProduct = async (id: number, authId: string): Promise<string> => {
-  const { data } = await axiosInstance.put<{ message: string }>(
+  const { data } = await axiosInstance.patch<{ message: string }>(
     `/product/activate/${id}`, {
       authId
     }

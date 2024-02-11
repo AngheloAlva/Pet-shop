@@ -14,6 +14,7 @@ import {
 } from '../../ui/card'
 
 import type { Product } from '@/types/shop/products.types'
+import AlertRestoreProduct from './Alert-restore-product'
 
 function AdminProductItem (
   { product, refresh }: { product: Product, refresh: () => Promise<void> }
@@ -56,22 +57,29 @@ function AdminProductItem (
         }
       </CardContent>
 
-      <div className='pr-2 flex flex-col gap-2 w-1/4'>
-        <Link href={`/admin/products/update/${product.id}`}>
-          <Button variant={'outline'} size={'sm'} className='w-full'>
-            Edit
-          </Button>
-        </Link>
-        {
-          user?.id !== undefined && (
+      {user?.id !== undefined && (
+        product.isAvailable
+          ? (<div className='pr-2 flex flex-col gap-2 w-1/4'>
+            <Link href={`/admin/products/update/${product.id}`}>
+              <Button variant={'outline'} size={'sm'} className='w-full'>
+                Edit
+              </Button>
+            </Link>
+
             <AlertDeleteProduct
               productId={product.id}
               authId={user?.id}
               refresh={refresh}
             />
-          )
-        }
-      </div>
+          </div>)
+          : (<div className='pr-2 flex flex-col gap-2 w-1/4'>
+            <AlertRestoreProduct
+              authId={user?.id}
+              productId={product.id}
+              refresh={refresh}
+            />
+          </div>)
+      )}
     </Card>
   )
 }
