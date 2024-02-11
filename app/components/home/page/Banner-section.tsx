@@ -40,6 +40,7 @@ function BannerSection (): React.ReactElement {
         {bannerImages.map((image, index) => (
           <CarouselItem key={index}>
             <Image
+              priority
               src={image.src}
               alt={image.alt}
               width={2370}
@@ -47,6 +48,7 @@ function BannerSection (): React.ReactElement {
               className="hidden lg:block"
             />
             <Image
+              priority
               src={image.shortSrc}
               alt={image.alt}
               width={1200}

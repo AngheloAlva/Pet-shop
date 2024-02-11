@@ -6,6 +6,7 @@ import ProductsSection from '../components/home/page/Products-section'
 import BrandsSection from '../components/home/page/Brands-section'
 import PetsSection from '../components/home/page/Pets-section'
 import BannerSection from '../components/home/page/Banner-section'
+import ProductsByBrandSection from '../components/home/page/Products-by-brand-section'
 
 export default function Home (): React.ReactElement {
   return (
@@ -17,6 +18,10 @@ export default function Home (): React.ReactElement {
       </Suspense>
 
       <PetsSection />
+
+      <Suspense fallback={<ProductsCarouselSkeleton />}>
+        <ProductsByBrandSection />
+      </Suspense>
 
       <Suspense fallback={<BrandCarouselSkeleton />}>
         <BrandsSection />
