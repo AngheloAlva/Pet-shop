@@ -1,18 +1,18 @@
 'use client'
 
-import useProducts from '@/app/hooks/useProducts'
+import useOrdersWithPagination from '@/app/hooks/useOrdersWithPagination'
 
-import PaginationButtons from '../../shared/ui/Pagination-buttons'
-import FilterButton from '../../shared/filter/Filter-button'
-import AdminProductItem from './Product-item'
 import ProductsSectionSkeleton from '../skeletons/Products-section-skeleton'
+import PaginationButtons from '../../shared/ui/Pagination-buttons'
+import OrderItem from './Order-item'
 
-function AdminProductsSection (): React.ReactElement {
+function AdminOrdersSection (
+  { authId }: { authId: string }
+): React.ReactElement {
   const limit = 10
-  const { products, total, setFilters, filters, setPage, page, isLoading, refresh } = useProducts({
-    InitialFilters: {},
-    isAvailable: true,
-    limit
+  const { isLoading, orders, page, setPage, total } = useOrdersWithPagination({
+    limit,
+    authId
   })
 
   return (
@@ -23,14 +23,13 @@ function AdminProductsSection (): React.ReactElement {
           : (
               <section className='flex flex-col gap-2'>
                 <div className='flex items-center justify-between w-full'>
-                  <h2 className='text-lg font-bold'>Products</h2>
-                  <p>{total} products</p>
-                  <FilterButton filters={filters} setFilters={setFilters} />
+                  <h2 className='text-lg font-bold'>Orders</h2>
+                  <p>{total} orders</p>
                 </div>
                 <div className='flex gap-4'>
                   <section className='grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3'>
-                    {products.map((product) => (
-                      <AdminProductItem key={product.id} product={product} refresh={refresh} />
+                    {orders.map((order) => (
+                      <OrderItem key={order.id} order={order} />
                     ))}
                   </section>
                 </div>
@@ -50,4 +49,4 @@ function AdminProductsSection (): React.ReactElement {
   )
 }
 
-export default AdminProductsSection
+export default AdminOrdersSection
