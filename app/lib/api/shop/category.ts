@@ -47,11 +47,12 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
 }
 
 const updateCategory = async (categoryId: number, {
-  description, image, name, slug, authId
+  description, image, name, slug, authId, petType
 }: UpdateCategory): Promise<string> => {
   const { data } = await axiosInstance.put<{ message: string }>(
     `/category/${categoryId}`, {
       description,
+      petType,
       authId,
       image,
       name,

@@ -13,7 +13,7 @@ function ProductPage (): React.ReactElement {
   })
 
   return (
-    <div className='pt-20 md:pt-36'>
+    <main className='flex flex-col gap-5 pt-28 pb-20 px-5 sm:px-10 md:px-20 text-text-100'>
       {
         isLoading
           ? (
@@ -31,7 +31,7 @@ function ProductPage (): React.ReactElement {
               />
             )
       }
-    </div>
+    </main>
   )
 }
 

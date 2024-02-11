@@ -4,14 +4,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn11.bigcommerce.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.mazuri.cl'
-      },
-      {
-        protocol: 'https',
         hostname: 'utfs.io'
       }
     ]

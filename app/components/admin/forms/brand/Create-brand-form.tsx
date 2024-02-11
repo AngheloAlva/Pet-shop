@@ -55,7 +55,7 @@ function CreateBrandForm (
         <GenericField control={form.control} name="slug" label="Slug" placeholder='slug-slug' />
         <ImageField image={image} setImage={setImage} />
 
-        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300">
+        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300 sm:col-span-2">
           Create Brand
         </Button>
       </form>

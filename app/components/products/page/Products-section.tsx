@@ -20,7 +20,7 @@ function ProductsSection ({
   filters, limit, page, products, setFilters, setPage, total
 }: ProductsSectionProps): React.ReactElement {
   return (
-    <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 text-text-100'>
+    <>
       <section className='flex flex-col'>
         <div className='max-w-xl'>
           <h1 className='text-xl font-bold text-nowrap'>All Products</h1>
@@ -48,7 +48,7 @@ function ProductsSection ({
           page={page}
         />
       </div>
-    </main>
+    </>
   )
 }
 

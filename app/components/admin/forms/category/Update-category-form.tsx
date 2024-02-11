@@ -53,7 +53,7 @@ function UpdateCategoryForm (
         <GenericTextAreaField control={form.control} name="description" label="Description" placeholder='Description' />
         <PetTypeSelectField control={form.control} />
 
-        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300">
+        <Button type="submit" className="sm:col-span-2 bg-blue-400 w-full hover:bg-blue-300">
           Update Category
         </Button>
       </form>

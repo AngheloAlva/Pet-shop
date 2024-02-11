@@ -50,7 +50,7 @@ function UpdateBrandForm (
         <GenericField control={form.control} name="name" label="Name" placeholder='Name' />
         <GenericField control={form.control} name="slug" label="Slug" placeholder='slug-slug' />
 
-        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300">
+        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300 sm:col-span-2">
           Update Brand
         </Button>
       </form>

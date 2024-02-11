@@ -58,7 +58,7 @@ function CreateCategoryForm (
         <PetTypeSelectField control={form.control} />
         <ImageField image={image} setImage={setImage} />
 
-        <Button type="submit" className="bg-blue-400 w-full hover:bg-blue-300">
+        <Button type="submit" className="sm:col-span-2 bg-blue-400 w-full hover:bg-blue-300">
           Create Category
         </Button>
       </form>

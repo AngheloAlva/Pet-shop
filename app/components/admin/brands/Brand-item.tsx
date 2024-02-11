@@ -15,7 +15,7 @@ function AdminBrandItem (
 
   return (
     <Card className='p-5 flex gap-4'>
-      <div className='bg-cream-300 rounded-lg overflow-hidden p-2'>
+      <div className='bg-blue-200 rounded-lg overflow-hidden p-2'>
         <img src={brand.image} alt={brand.name} className='w-40 h-full object-contain' />
       </div>
       <div className='flex flex-col justify-between'>

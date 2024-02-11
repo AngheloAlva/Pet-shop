@@ -27,6 +27,7 @@ interface UpdateCategory {
   slug?: string
   description?: string
   image?: string
+  petType?: 'DOG' | 'CAT' | 'BIRD' | 'FISH' | 'REPTILE' | 'SMALL_ANIMAL'
 }
 
 export {

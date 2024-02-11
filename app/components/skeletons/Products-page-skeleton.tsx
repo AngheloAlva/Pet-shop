@@ -4,15 +4,9 @@ import { Skeleton } from '../ui/skeleton'
 
 function ProductsPageSkeleton (): React.ReactElement {
   return (
-    <main className='flex flex-col gap-5 pt-5 pb-20 px-5 sm:px-10 md:px-20 text-text-100'>
+    <main className='flex flex-col gap-5'>
       <section className='flex flex-col'>
-        <div className='max-w-xl'>
-          <h1 className='text-xl font-bold text-nowrap'>All Products</h1>
-          <Skeleton className='w-32 h-6' />
-        </div>
-        <div className='w-full flex items-center justify-end lg:hidden'>
-          <Skeleton className='w-20 h-9' />
-        </div>
+        <Skeleton className='w-full h-32' />
       </section>
 
       <div className='flex gap-4'>
