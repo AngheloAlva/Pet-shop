@@ -1,4 +1,4 @@
-import { getBrands } from '../lib/api/shop/brand'
+import { getBrands } from '../../lib/api/shop/brand'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 

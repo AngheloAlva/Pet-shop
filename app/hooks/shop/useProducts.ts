@@ -1,4 +1,4 @@
-import { getProducts } from '../lib/api/shop/product'
+import { getProducts } from '../../lib/api/shop/product'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 

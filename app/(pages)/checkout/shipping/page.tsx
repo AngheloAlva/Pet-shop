@@ -3,8 +3,8 @@
 'use client'
 
 import { createCheckoutSession } from '@/app/lib/api/shop/payment'
-import useShippingButton from '@/app/hooks/useShippingButton'
-import useAddressData from '@/app/hooks/useAddressData'
+import useShippingButton from '@/app/hooks/shop/useShippingButton'
+import useAddressData from '@/app/hooks/user/useAddressData'
 import { useCartStore } from '@/app/store/cart-store'
 import { shippingMethods } from '@/app/lib/consts'
 import { useRouter } from 'next/navigation'

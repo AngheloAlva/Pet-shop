@@ -2,7 +2,7 @@
 
 import ProductsPageSkeleton from '@/app/components/skeletons/Products-page-skeleton'
 import ProductsSection from '@/app/components/products/page/Products-section'
-import useProducts from '@/app/hooks/useProducts'
+import useProducts from '@/app/hooks/shop/useProducts'
 
 function ProductPage (): React.ReactElement {
   const limit = 12

@@ -1,7 +1,7 @@
 import type { Product } from '@/types/shop/products.types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { getProductBySlug } from '../lib/api/shop/product'
+import { getProductBySlug } from '../../lib/api/shop/product'
 
 const useProductBySlug = (
   slug: string

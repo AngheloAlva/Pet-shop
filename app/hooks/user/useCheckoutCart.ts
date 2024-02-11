@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-import { getCartInCheckout } from '../lib/api/shop/cart'
-import { useToast } from '../components/ui/use-toast'
-import { useCartStore } from '../store/cart-store'
-import { getUserById } from '../lib/api/user/user'
+import { getCartInCheckout } from '../../lib/api/shop/cart'
+import { useToast } from '../../components/ui/use-toast'
+import { useCartStore } from '../../store/cart-store'
+import { getUserById } from '../../lib/api/user/user'
 
 import type { User } from '@/types/user/user.types'
 

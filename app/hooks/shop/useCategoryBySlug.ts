@@ -1,4 +1,4 @@
-import { getCategoryBySlug } from '../lib/api/shop/category'
+import { getCategoryBySlug } from '../../lib/api/shop/category'
 import { useEffect, useState } from 'react'
 
 import type { Category } from '@/types/shop/category.types'

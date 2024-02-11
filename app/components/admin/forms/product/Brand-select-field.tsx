@@ -1,4 +1,4 @@
-import useBrands from '@/app/hooks/useBrands'
+import useBrands from '@/app/hooks/shop/useBrands'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../ui/select'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../../../ui/form'

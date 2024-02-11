@@ -1,5 +1,5 @@
-import { useToast } from '../components/ui/use-toast'
-import { getBrands } from '../lib/api/shop/brand'
+import { useToast } from '../../components/ui/use-toast'
+import { getBrands } from '../../lib/api/shop/brand'
 import { useEffect, useState } from 'react'
 
 import type { GetAllOfModel } from '@/types/shared/getAllOfModel'

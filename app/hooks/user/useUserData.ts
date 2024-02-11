@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import type { User } from '@/types/user/user.types'
-import { getUserById } from '../lib/api/user/user'
+import { getUserById } from '../../lib/api/user/user'
 
 const useUserData = (authId: string | undefined): {
   user: User | null

@@ -1,4 +1,4 @@
-import { getUserById } from '../lib/api/user/user'
+import { getUserById } from '../../lib/api/user/user'
 import { useEffect, useState } from 'react'
 
 import type { User } from '@/types/user/user.types'

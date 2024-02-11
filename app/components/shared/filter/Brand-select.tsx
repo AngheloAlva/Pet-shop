@@ -1,4 +1,4 @@
-import useBrands from '@/app/hooks/useBrands'
+import useBrands from '@/app/hooks/shop/useBrands'
 import { cn } from '@/app/lib/utils'
 
 import { Button } from '../../ui/button'

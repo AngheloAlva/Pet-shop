@@ -1,21 +1,21 @@
-import { useToast } from '../components/ui/use-toast'
-import { getOrders } from '../lib/api/user/order'
+import { useToast } from '../../components/ui/use-toast'
 import { useEffect, useState } from 'react'
 
-import type { Order } from '@/types/user/order.types'
+import { getUsers } from '../../lib/api/user/user'
+import type { User } from '@/types/user/user.types'
 
-interface UseOrdersWithPaginationResponse {
+interface UseUsersWithPaginationResponse {
   page: number
   total: number
-  orders: Order[]
+  users: User[]
   isLoading: boolean
   setPage: (page: number) => void
 }
 
-const useOrdersWithPagination = (
-  { limit, authId }: { limit: number, authId: string }
-): UseOrdersWithPaginationResponse => {
-  const [orders, setOrders] = useState<Order[]>([])
+const useUsersWithPagination = (
+  { limit, authId, isAvailable }: { limit: number, authId: string, isAvailable: boolean }
+): UseUsersWithPaginationResponse => {
+  const [users, setusers] = useState<User[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [total, setTotal] = useState<number>(0)
   const [page, setPage] = useState<number>(1)
@@ -24,13 +24,13 @@ const useOrdersWithPagination = (
   useEffect(() => {
     const fetchBrands = async (): Promise<void> => {
       try {
-        const orders = await getOrders(authId, page, limit)
-        setOrders(orders.orders)
-        setTotal(orders.total)
+        const users = await getUsers(authId, { page, limit, isAvailable })
+        setusers(users.users)
+        setTotal(users.total)
         setIsLoading(false)
       } catch (error) {
         toast({
-          title: 'Error getting orders',
+          title: 'Error getting users',
           description: (error as any).response?.data
         })
       }
@@ -42,10 +42,10 @@ const useOrdersWithPagination = (
   return {
     page,
     total,
-    orders,
+    users,
     setPage,
     isLoading
   }
 }
 
-export default useOrdersWithPagination
+export default useUsersWithPagination

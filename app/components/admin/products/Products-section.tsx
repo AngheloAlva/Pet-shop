@@ -1,6 +1,6 @@
 'use client'
 
-import useProducts from '@/app/hooks/useProducts'
+import useProducts from '@/app/hooks/shop/useProducts'
 
 import PaginationButtons from '../../shared/ui/Pagination-buttons'
 import FilterButton from '../../shared/filter/Filter-button'

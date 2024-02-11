@@ -1,7 +1,7 @@
 'use client'
 
-import useCartButtonValidation from '@/app/hooks/useCartButtonValidation'
-import useCheckoutCart from '@/app/hooks/useCheckoutCart'
+import useCartButtonValidation from '@/app/hooks/shop/useCartButtonValidation'
+import useCheckoutCart from '@/app/hooks/user/useCheckoutCart'
 import { useCartStore } from '@/app/store/cart-store'
 import { useUser } from '@clerk/nextjs'
 import Link from 'next/link'

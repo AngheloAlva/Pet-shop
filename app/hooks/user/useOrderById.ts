@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import type { Order } from '@/types/user/order.types'
-import { getOrder } from '../lib/api/user/order'
+import { getOrder } from '../../lib/api/user/order'
 
 const useOrderById = (orderId: number): { order: Order | null, isLoading: boolean } => {
   const [order, setOrder] = useState<Order | null>(null)

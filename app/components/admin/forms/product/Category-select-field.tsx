@@ -1,4 +1,4 @@
-import useCategories from '@/app/hooks/useCategories'
+import useCategories from '@/app/hooks/shop/useCategories'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../ui/select'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../../../ui/form'

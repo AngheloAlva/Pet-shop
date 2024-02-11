@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import type { Order } from '@/types/user/order.types'
-import { getOrdersByUser } from '../lib/api/user/order'
+import { getOrdersByUser } from '../../lib/api/user/order'
 
 const useUserOrders = (userId: string | undefined): {
   orders: Order[]

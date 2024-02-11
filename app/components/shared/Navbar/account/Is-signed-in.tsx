@@ -1,4 +1,4 @@
-import useUserData from '@/app/hooks/useUserData'
+import useUserData from '@/app/hooks/user/useUserData'
 import { SignOutButton } from '@clerk/nextjs'
 import Link from 'next/link'
 

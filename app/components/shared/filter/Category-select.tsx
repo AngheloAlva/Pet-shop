@@ -1,4 +1,4 @@
-import useCategories from '@/app/hooks/useCategories'
+import useCategories from '@/app/hooks/shop/useCategories'
 import { cn } from '@/app/lib/utils'
 
 import { Button } from '../../ui/button'

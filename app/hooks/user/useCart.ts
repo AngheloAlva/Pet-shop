@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getCart } from '../lib/api/shop/cart'
-import { useCartStore } from '../store/cart-store'
+import { getCart } from '../../lib/api/shop/cart'
+import { useCartStore } from '../../store/cart-store'
 
 const useCart = (authId: string | undefined): { isLoading: boolean } => {
   const [isLoading, setIsLoading] = useState<boolean>(true)

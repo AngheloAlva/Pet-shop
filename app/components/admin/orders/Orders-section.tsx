@@ -1,6 +1,6 @@
 'use client'
 
-import useOrdersWithPagination from '@/app/hooks/useOrdersWithPagination'
+import useOrdersWithPagination from '@/app/hooks/admin/useOrdersWithPagination'
 
 import ProductsSectionSkeleton from '../skeletons/Products-section-skeleton'
 import PaginationButtons from '../../shared/ui/Pagination-buttons'
