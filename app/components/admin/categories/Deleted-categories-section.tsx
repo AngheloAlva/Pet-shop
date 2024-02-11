@@ -5,7 +5,7 @@ import PaginationButtons from '../../shared/ui/Pagination-buttons'
 import ProductsSectionSkeleton from '../skeletons/Products-section-skeleton'
 import AdminCategoryItem from './Category-item'
 
-function AdminCategoriesSection (): React.ReactElement {
+function AdminDeletedCategoriesSection (): React.ReactElement {
   const limit = 10
   const {
     categories,
@@ -15,7 +15,7 @@ function AdminCategoriesSection (): React.ReactElement {
     setPage,
     refresh
   } = useCategoriesWithPagination({
-    isAvailable: true,
+    isAvailable: false,
     limit,
     page: 1
   })
@@ -28,7 +28,7 @@ function AdminCategoriesSection (): React.ReactElement {
           : (
               <section className='flex flex-col gap-2'>
                 <div className='flex items-center justify-between w-full'>
-                  <h2 className='text-lg font-bold'>Categories</h2>
+                  <h2 className='text-lg font-bold'>DeletedCategories</h2>
                   <p>{total} categories</p>
                 </div>
                 <div className='flex gap-4'>
@@ -60,4 +60,4 @@ function AdminCategoriesSection (): React.ReactElement {
   )
 }
 
-export default AdminCategoriesSection
+export default AdminDeletedCategoriesSection

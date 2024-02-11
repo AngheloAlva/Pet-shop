@@ -11,6 +11,7 @@ interface UseCategoriesWithPaginationResponse {
   setPage: (page: number) => void
   isLoading: boolean
   categories: Category[]
+  refresh: () => Promise<void>
 }
 
 const useCategoriesWithPagination = ({
@@ -22,21 +23,21 @@ const useCategoriesWithPagination = ({
   const [page, setPage] = useState<number>(1)
   const { toast } = useToast()
 
-  useEffect(() => {
-    const fetchCategories = async (): Promise<void> => {
-      try {
-        const categories = await getCategories({ isAvailable, limit, page })
-        setCategories(categories.categories)
-        setTotal(categories.total)
-        setIsLoading(false)
-      } catch (error) {
-        toast({
-          title: 'Error getting categories',
-          description: (error as any).response?.data
-        })
-      }
+  const fetchCategories = async (): Promise<void> => {
+    try {
+      const categories = await getCategories({ isAvailable, limit, page })
+      setCategories(categories.categories)
+      setTotal(categories.total)
+      setIsLoading(false)
+    } catch (error) {
+      toast({
+        title: 'Error getting categories',
+        description: (error as any).response?.data
+      })
     }
+  }
 
+  useEffect(() => {
     void fetchCategories()
   }, [limit, page])
 
@@ -45,7 +46,8 @@ const useCategoriesWithPagination = ({
     total,
     setPage,
     isLoading,
-    categories
+    categories,
+    refresh: fetchCategories
   }
 }
 

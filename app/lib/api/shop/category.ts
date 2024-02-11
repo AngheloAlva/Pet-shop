@@ -30,7 +30,7 @@ const getCategories = async ({
   return data
 }
 
-const getCategoryById = async (categoryId: string): Promise<Category> => {
+const getCategoryById = async (categoryId: number): Promise<Category> => {
   const { data } = await axiosInstance.get<Category>(
     `/category/${categoryId}`
   )
@@ -63,7 +63,7 @@ const updateCategory = async (categoryId: number, {
 }
 
 const activateCategory = async (categoryId: number, authId: string): Promise<string> => {
-  const { data } = await axiosInstance.put<{ message: string }>(
+  const { data } = await axiosInstance.patch<{ message: string }>(
     `/category/activate/${categoryId}`, {
       authId
     }

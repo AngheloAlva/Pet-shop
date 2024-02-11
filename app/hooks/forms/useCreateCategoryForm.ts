@@ -8,10 +8,12 @@ interface UseFormReturn<T extends FieldValues> {
   form: ReturnType<typeof useForm<T>>
 }
 
-const useCreateCategoryForm = (): UseFormReturn<z.infer<typeof createCategorySchema>> => {
+const useCreateCategoryForm = (
+  defaulValues?: z.infer<typeof createCategorySchema>
+): UseFormReturn<z.infer<typeof createCategorySchema>> => {
   const form = useForm<z.infer<typeof createCategorySchema>>({
     resolver: zodResolver(createCategorySchema),
-    defaultValues: {
+    defaultValues: defaulValues ?? {
       description: '',
       name: '',
       petType: 'DOG',
