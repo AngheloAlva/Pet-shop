@@ -23,6 +23,7 @@ interface Product {
 }
 
 interface CreateProduct {
+  authId: string
   categoryId: number
   petType: string[]
   name: string
@@ -32,10 +33,12 @@ interface CreateProduct {
   images: string[]
   brandId: number
   lifeStage: 'PUPPY' | 'ADULT' | 'SENIOR' | 'KITTEN' | 'ALL_LIFE_STAGES'
-  options: CreateOption
+  options: CreateOption[]
 }
 
 interface UpdateProduct {
+  authId: string
+  productId: number
   categoryId?: number
   petType?: string[]
   name?: string
@@ -44,7 +47,7 @@ interface UpdateProduct {
   description?: Array<{ title: string, content: string }>
   images?: string[]
   brandId?: number
-  lifeStage?: 'PUPPY' | 'ADULT' | 'SENIOR' | 'KITTEN'
+  lifeStage: 'PUPPY' | 'ADULT' | 'SENIOR' | 'KITTEN' | 'ALL_LIFE_STAGES'
 }
 
 interface UpdatedDataUpdatedProduct {

@@ -16,11 +16,11 @@ const createUser = async ({
   return data
 }
 
-const getUsers = async ({
+const getUsers = async (authId: string, {
   isAvailable, limit, page
-}: GetAllOfModel): Promise<User[]> => {
-  const { data } = await axiosInstance.get<User[]>(
-    `/user?page=${page}&limit=${limit}&isAvailable=${isAvailable}`
+}: GetAllOfModel): Promise<{ total: number, users: User[] }> => {
+  const { data } = await axiosInstance.get<{ total: number, users: User[] }>(
+    `/user?page=${page}&limit=${limit}&isAvailable=${isAvailable}&authId=${authId}`
   )
 
   return data

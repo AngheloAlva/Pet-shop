@@ -10,7 +10,7 @@ import {
 } from '@/app/components/ui/accordion'
 
 async function CategoryList (): Promise<React.ReactElement> {
-  const categories = await getCategories({
+  const { categories } = await getCategories({
     page: 1,
     limit: 100,
     isAvailable: true

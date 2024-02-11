@@ -3,7 +3,7 @@
 'use client'
 
 import { updateUser } from '@/app/lib/api/user/user'
-import useUserForm from '@/app/hooks/useUserForm'
+import useUserForm from '@/app/hooks/forms/useUserForm'
 
 import { Button } from '@/app/components/ui/button'
 import { useToast } from '../ui/use-toast'

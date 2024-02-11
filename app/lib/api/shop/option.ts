@@ -2,12 +2,13 @@ import axiosInstance from '../../axios/axios-instance'
 
 import type { UpdateOption } from '@/types/shop/option.types'
 
-const updteOption = async (id: number, {
-  discount, price, stock
+const updateOption = async (id: number, {
+  discount, price, stock, authId
 }: UpdateOption): Promise<string> => {
   const { data } = await axiosInstance.put<{ message: string }>(
     `/option/${id}`, {
       discount,
+      authId,
       price,
       stock
     }
@@ -16,15 +17,19 @@ const updteOption = async (id: number, {
   return data.message
 }
 
-const deleteOption = async (id: number): Promise<string> => {
+const deleteOption = async (id: number, authId: string): Promise<string> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
-    `/option/${id}`
+    `/option/${id}`, {
+      data: {
+        authId
+      }
+    }
   )
 
   return data.message
 }
 
 export {
-  updteOption,
+  updateOption,
   deleteOption
 }

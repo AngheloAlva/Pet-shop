@@ -2,8 +2,6 @@ import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { nunito } from './lib/fonts'
 
-import Navbar from './components/shared/Navbar/Navbar'
-import Footer from './components/shared/footer/Footer'
 import { Toaster } from './components/ui/toaster'
 
 import './globals.css'
@@ -22,9 +20,7 @@ export default function RootLayout ({
     <ClerkProvider>
       <html lang="en">
         <body className={nunito.className}>
-          <Navbar />
           {children}
-          <Footer />
           <Toaster />
         </body>
       </html>

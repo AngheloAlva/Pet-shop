@@ -4,12 +4,13 @@ import type { CreateProduct, Product, UpdateProduct } from '@/types/shop/product
 import type { GetProductsWithFilters } from '@/types/shared/getProductsWithFilters'
 
 const createProduct = async ({
-  brandId, categoryId, description, images, lifeStage, miniDesc, name, options, petType, slug
+  brandId, categoryId, description, images, lifeStage, miniDesc, name, options, petType, slug, authId
 }: CreateProduct): Promise<Product> => {
   const { data } = await axiosInstance.post<Product>(
     '/product', {
       slug,
       name,
+      authId,
       images,
       options,
       brandId,
@@ -59,7 +60,7 @@ const getProducts = async ({
   return data
 }
 
-const getProductById = async (id: string): Promise<Product> => {
+const getProductById = async (id: number): Promise<Product> => {
   const { data } = await axiosInstance.get<Product>(
     `/product/${id}`
   )
@@ -76,12 +77,13 @@ const getProductBySlug = async (slug: string): Promise<Product> => {
 }
 
 const updateProduct = async ({
-  brandId, categoryId, description, images, lifeStage, miniDesc, name, petType, slug
+  brandId, categoryId, description, images, lifeStage, miniDesc, name, petType, slug, authId, productId
 }: UpdateProduct): Promise<Product> => {
   const { data } = await axiosInstance.put<Product>(
-    `/product/${slug}`, {
+    `/product/${productId}`, {
       slug,
       name,
+      authId,
       images,
       brandId,
       petType,
@@ -95,17 +97,23 @@ const updateProduct = async ({
   return data
 }
 
-const deleteProduct = async (id: string): Promise<string> => {
+const deleteProduct = async (id: number, authId: string): Promise<string> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
-    `/product/${id}`
+    `/product/${id}`, {
+      data: {
+        authId
+      }
+    }
   )
 
   return data.message
 }
 
-const activateProduct = async (id: string): Promise<string> => {
-  const { data } = await axiosInstance.put<{ message: string }>(
-    `/product/activate/${id}`
+const activateProduct = async (id: number, authId: string): Promise<string> => {
+  const { data } = await axiosInstance.patch<{ message: string }>(
+    `/product/activate/${id}`, {
+      authId
+    }
   )
 
   return data.message

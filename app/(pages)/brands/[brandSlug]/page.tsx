@@ -1,6 +1,6 @@
 'use client'
 
-import useProducts from '@/app/hooks/useProducts'
+import useProducts from '@/app/hooks/shop/useProducts'
 
 import PaginationButtons from '@/app/components/shared/ui/Pagination-buttons'
 import ProductCard from '@/app/components/shared/ui/Product-card'

@@ -10,12 +10,14 @@ interface Brand {
 }
 
 interface CreateBrand {
+  authId: string
   name: string
   image: string
   slug: string
 }
 
 interface UpdateBrand {
+  authId: string
   name?: string
   image?: string
   slug?: string

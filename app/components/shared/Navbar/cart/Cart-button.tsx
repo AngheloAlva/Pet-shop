@@ -1,7 +1,7 @@
 'use client'
 
 import { useCartStore } from '@/app/store/cart-store'
-import useCart from '@/app/hooks/useCart'
+import useCart from '@/app/hooks/user/useCart'
 import { useUser } from '@clerk/nextjs'
 import Link from 'next/link'
 

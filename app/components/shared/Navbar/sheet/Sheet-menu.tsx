@@ -23,7 +23,7 @@ function SheetMenu (): React.ReactElement {
 
         <CategoryList />
       </SheetContent>
-      </Sheet>
+    </Sheet>
   )
 }
 

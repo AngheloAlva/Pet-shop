@@ -4,11 +4,13 @@ import type { Category, CreateCategory, UpdateCategory } from '@/types/shop/cate
 import type { GetAllOfModel } from '@/types/shared/getAllOfModel'
 
 const createCategory = async ({
-  description, image, name, slug
+  description, image, name, slug, authId, petType
 }: CreateCategory): Promise<Category> => {
   const { data } = await axiosInstance.post<Category>(
     '/category', {
       description,
+      petType,
+      authId,
       image,
       name,
       slug
@@ -20,17 +22,17 @@ const createCategory = async ({
 
 const getCategories = async ({
   isAvailable, limit, page
-}: GetAllOfModel): Promise<Category[]> => {
-  const { data } = await axiosInstance.get<Category[]>(
+}: GetAllOfModel): Promise<{ total: number, categories: Category[] }> => {
+  const { data } = await axiosInstance.get<{ total: number, categories: Category[] }>(
     `/category?isAvailable=${isAvailable}&limit=${limit}&page=${page}`
   )
 
   return data
 }
 
-const getCategoryById = async (id: string): Promise<Category> => {
+const getCategoryById = async (categoryId: number): Promise<Category> => {
   const { data } = await axiosInstance.get<Category>(
-    `/category/${id}`
+    `/category/${categoryId}`
   )
 
   return data
@@ -44,12 +46,13 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
   return data
 }
 
-const updateCategory = async (id: number, {
-  description, image, name, slug
+const updateCategory = async (categoryId: number, {
+  description, image, name, slug, authId
 }: UpdateCategory): Promise<string> => {
   const { data } = await axiosInstance.put<{ message: string }>(
-    `/category/${id}`, {
+    `/category/${categoryId}`, {
       description,
+      authId,
       image,
       name,
       slug
@@ -59,17 +62,23 @@ const updateCategory = async (id: number, {
   return data.message
 }
 
-const activateCategory = async (id: number): Promise<string> => {
-  const { data } = await axiosInstance.put<{ message: string }>(
-    `/category/activate/${id}`
+const activateCategory = async (categoryId: number, authId: string): Promise<string> => {
+  const { data } = await axiosInstance.patch<{ message: string }>(
+    `/category/activate/${categoryId}`, {
+      authId
+    }
   )
 
   return data.message
 }
 
-const deleteCategory = async (id: number): Promise<string> => {
+const deleteCategory = async (categoryId: number, authId: string): Promise<string> => {
   const { data } = await axiosInstance.delete<{ message: string }>(
-    `/category/${id}`
+    `/category/${categoryId}`, {
+      data: {
+        authId
+      }
+    }
   )
 
   return data.message
