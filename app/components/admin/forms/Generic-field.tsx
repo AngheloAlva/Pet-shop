@@ -12,10 +12,11 @@ interface GenericFieldProps {
   name: string
   label: string
   placeholder: string
+  type?: string
 }
 
 function GenericField (
-  { control, label, name, placeholder }: GenericFieldProps
+  { control, label, name, placeholder, type = 'text' }: GenericFieldProps
 ): React.ReactElement {
   return (
     <FormField
@@ -25,7 +26,7 @@ function GenericField (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input type={type} min={0} placeholder={placeholder} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

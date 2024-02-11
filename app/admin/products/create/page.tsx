@@ -1,5 +1,6 @@
-import CreateProductForm from '@/app/components/admin/forms/product/Create-product-form'
 import { auth } from '@clerk/nextjs'
+
+import CreateProductForm from '@/app/components/admin/forms/product/Create-product-form'
 
 function CreateProductPage (): React.ReactElement {
   const { userId } = auth()

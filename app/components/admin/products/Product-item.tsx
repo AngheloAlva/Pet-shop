@@ -1,9 +1,19 @@
-import type { Product } from '@/types/shop/products.types'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card'
-import Image from 'next/image'
-import { Button } from '../../ui/button'
-import AlertDeleteProduct from './Alert-delete-product'
 import { useUser } from '@clerk/nextjs'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import AlertDeleteProduct from './Alert-delete-product'
+import OptionDialog from './Option-dialog'
+import { Button } from '../../ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '../../ui/card'
+
+import type { Product } from '@/types/shop/products.types'
 
 function AdminProductItem (
   { product, refresh }: { product: Product, refresh: () => Promise<void> }
@@ -30,27 +40,28 @@ function AdminProductItem (
           {product.brand?.name}
         </CardDescription>
 
-        <div className='flex flex-wrap gap-2 text-xs mt-2'>
-          {
-            product.options?.map((option, index) => (
-              <Button
-                size={'sm'}
-                key={option.id}
-                variant={'secondary'}
-                disabled={option.stock === 0}
-                className={'border bg-transparent border-input rounded-lg w-fit px-3 py-1 hover:bg-white cursor-default'}
-              >
-                {option.name} - {option.price}
-              </Button>
-            ))
-          }
-        </div>
+        {
+          user?.id !== undefined && (
+            <div className='flex flex-wrap gap-2 text-xs mt-2'>
+              {product.options?.map((option, index) => (
+                <OptionDialog
+                  key={index}
+                  option={option}
+                  authId={user?.id}
+                  refresh={refresh}
+                />
+              ))}
+            </div>
+          )
+        }
       </CardContent>
 
       <div className='pr-2 flex flex-col gap-2 w-1/4'>
-        <Button variant={'outline'} size={'sm'} className='w-full'>
-          Edit
-        </Button>
+        <Link href={`/admin/products/update/${product.id}`}>
+          <Button variant={'outline'} size={'sm'} className='w-full'>
+            Edit
+          </Button>
+        </Link>
         {
           user?.id !== undefined && (
             <AlertDeleteProduct

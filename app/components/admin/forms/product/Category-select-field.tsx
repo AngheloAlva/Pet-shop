@@ -1,7 +1,7 @@
 import useCategories from '@/app/hooks/shop/useCategories'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../ui/select'
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../../../ui/form'
+import { FormControl, FormField, FormItem, FormLabel } from '../../../ui/form'
 
 import type { Control } from 'react-hook-form'
 

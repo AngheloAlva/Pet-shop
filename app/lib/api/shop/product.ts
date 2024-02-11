@@ -77,10 +77,10 @@ const getProductBySlug = async (slug: string): Promise<Product> => {
 }
 
 const updateProduct = async ({
-  brandId, categoryId, description, images, lifeStage, miniDesc, name, petType, slug, authId
+  brandId, categoryId, description, images, lifeStage, miniDesc, name, petType, slug, authId, productId
 }: UpdateProduct): Promise<Product> => {
   const { data } = await axiosInstance.put<Product>(
-    `/product/${slug}`, {
+    `/product/${productId}`, {
       slug,
       name,
       authId,

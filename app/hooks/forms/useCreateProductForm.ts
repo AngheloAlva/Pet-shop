@@ -8,10 +8,12 @@ interface UseFormReturn<T extends FieldValues> {
   form: ReturnType<typeof useForm<T>>
 }
 
-const useCreateProductForm = (): UseFormReturn<z.infer<typeof createProductSchema>> => {
+const useCreateProductForm = (
+  defaulValues?: z.infer<typeof createProductSchema>
+): UseFormReturn<z.infer<typeof createProductSchema>> => {
   const form = useForm<z.infer<typeof createProductSchema>>({
     resolver: zodResolver(createProductSchema),
-    defaultValues: {
+    defaultValues: defaulValues ?? {
       brandId: '',
       categoryId: '',
       description: [{

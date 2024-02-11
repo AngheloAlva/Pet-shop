@@ -25,16 +25,16 @@ function OptionsFields (
             </div>
             <div>
               <Label>Price</Label>
-              <Input type='number' { ...form.register(`options.${index}.price`) } placeholder="Price" />
+              <Input type='number' min={0} { ...form.register(`options.${index}.price`) } placeholder="Price" />
               <FormDescription>Price in CLP. Example: 17000</FormDescription>
             </div>
             <div>
               <Label>Stock</Label>
-              <Input type='number' { ...form.register(`options.${index}.stock`) } placeholder="Stock" />
+              <Input type='number' min={0} { ...form.register(`options.${index}.stock`) } placeholder="Stock" />
             </div>
             <div>
               <Label>Discount</Label>
-              <Input type='number' { ...form.register(`options.${index}.discount`) } placeholder="Discount" />
+              <Input type='number' min={0} { ...form.register(`options.${index}.discount`) } placeholder="Discount" />
               <FormDescription>Discount in percentage. Example: 10</FormDescription>
             </div>
 

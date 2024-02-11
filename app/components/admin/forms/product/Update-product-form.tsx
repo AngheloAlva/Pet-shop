@@ -3,9 +3,8 @@
 'use client'
 
 import useCreateProductForm from '@/app/hooks/forms/useCreateProductForm'
-import { createProduct } from '@/app/lib/api/shop/product'
+import { updateProduct } from '@/app/lib/api/shop/product'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 
 import GenericTextAreaField from '../Generic-text-area-field'
 import LifeStageSelectField from './Life-stage-select-field'
@@ -17,53 +16,46 @@ import BrandSelectField from './Brand-select-field'
 import { Separator } from '../../../ui/separator'
 import { useToast } from '../../../ui/use-toast'
 import { Form } from '@/app/components/ui/form'
-import OptionsFields from './Options-fields'
 import GenericField from '../Generic-field'
-import ImageField from './Image-field'
 
 import type { createProductSchema } from '@/app/lib/schemas/create-product-schema'
 import type { z } from 'zod'
 
-interface CreateProductFormProps {
+interface UpdateProductFormProps {
   authId: string
+  productId: number
+  defaultValues: z.infer<typeof createProductSchema>
 }
 
-function CreateProductForm (
-  { authId }: CreateProductFormProps
+function UpdateProductForm (
+  { authId, defaultValues, productId }: UpdateProductFormProps
 ): React.ReactElement {
-  const [images, setImages] = useState<string[]>([])
-  const { form } = useCreateProductForm()
+  const { form } = useCreateProductForm(defaultValues)
   const { toast } = useToast()
   const router = useRouter()
 
   const onSubmit = async (values: z.infer<typeof createProductSchema>): Promise<void> => {
     try {
-      await createProduct({
+      await updateProduct({
+        productId,
         authId,
-        images,
         ...values,
         categoryId: Number(values.categoryId),
         brandId: Number(values.brandId),
-        petType: [values.petType],
-        options: values.options.map(option => ({
-          ...option,
-          price: Number(option.price),
-          stock: Number(option.stock),
-          discount: Number(option.discount)
-        }))
+        petType: [values.petType]
       })
 
       toast({
-        title: 'Product created',
-        description: 'The product has been created successfully',
+        title: 'Product updated',
+        description: 'The product has been updated successfully',
         duration: 3000
       })
 
       router.push('/admin/products')
     } catch (error) {
       toast({
-        title: 'Error creating product',
-        description: 'There was an error creating the product, please try again later',
+        title: 'Error updating product',
+        description: 'There was an error updating the product. Please try again',
         variant: 'destructive',
         duration: 3000
       })
@@ -80,23 +72,17 @@ function CreateProductForm (
         <GenericTextAreaField control={form.control} name="miniDesc" label='Mini Description' placeholder='Mini Description' />
         <PetTypeSelectField control={form.control} />
         <LifeStageSelectField control={form.control} />
-        <ImageField setImages={setImages} images={images} />
-        <div className='space-y-4 sm:col-span-2'>
-          <Separator />
-          <OptionsFields form={form} />
-          <Separator />
-        </div>
         <div className='space-y-4 sm:col-span-2'>
           <DescriptionFields form={form} />
           <Separator />
         </div>
 
         <Button type="submit" className='mt-4 sm:col-span-2 bg-blue-400 hover:bg-blue-300'>
-          Create Product
+          Update Product
         </Button>
       </form>
     </Form>
   )
 }
 
-export default CreateProductForm
+export default UpdateProductForm
