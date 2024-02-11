@@ -6,10 +6,10 @@ import ProductsSectionSkeleton from '../skeletons/Products-section-skeleton'
 import PaginationButtons from '../../shared/ui/Pagination-buttons'
 import AdminBrandItem from './Brand-item'
 
-function AdminBrandsSection (): React.ReactElement {
+function AdminDeletedBrandsSection (): React.ReactElement {
   const limit = 10
-  const { brands, isLoading, total, page, setPage } = useBrandsWithPagination({
-    isAvailable: true,
+  const { brands, isLoading, total, page, setPage, refresh } = useBrandsWithPagination({
+    isAvailable: false,
     limit,
     page: 1
   })
@@ -22,16 +22,17 @@ function AdminBrandsSection (): React.ReactElement {
           : (
               <section className='flex flex-col gap-2'>
                 <div className='flex items-center justify-between w-full'>
-                  <h2 className='text-lg font-bold'>Brands</h2>
+                  <h2 className='text-lg font-bold'>Deleted Brands</h2>
                   <p>{total} brands</p>
                 </div>
                 <div className='flex gap-4'>
-                  <section className='grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3'>
-                    {brands.length > 0 && (
-                      brands.map((brand) => (
-                        <AdminBrandItem key={brand.id} brand={brand} />
-                      ))
-                    )}
+                  <section className='grid w-full grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3'>
+                    {brands.length > 0
+                      ? (brands.map((brand) => (
+                          <AdminBrandItem key={brand.id} brand={brand} refresh={refresh} />
+                        )))
+                      : <p className='text-lg text-center my-5 font-extrabold'>No Delted brands found</p>
+                    }
                   </section>
                 </div>
 
@@ -50,4 +51,4 @@ function AdminBrandsSection (): React.ReactElement {
   )
 }
 
-export default AdminBrandsSection
+export default AdminDeletedBrandsSection

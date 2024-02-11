@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import AdminBrandsSection from '@/app/components/admin/brands/BrandsSection'
+import AdminBrandsSection from '@/app/components/admin/brands/Brands-section'
 import { Separator } from '@/app/components/ui/separator'
 import { Button } from '@/app/components/ui/button'
 

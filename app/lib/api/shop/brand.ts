@@ -28,7 +28,7 @@ const getBrands = async ({
   return data
 }
 
-const getBrandById = async (brandId: string): Promise<Brand> => {
+const getBrandById = async (brandId: number): Promise<Brand> => {
   const { data } = await axiosInstance.get<Brand>(
     `/brand/${brandId}`
   )
@@ -44,7 +44,7 @@ const getBrandBySlug = async (slug: string): Promise<Brand> => {
   return data
 }
 
-const updateBrand = async (brandId: string, {
+const updateBrand = async (brandId: number, {
   image, name, slug, authId
 }: UpdateBrand): Promise<Brand> => {
   const { data } = await axiosInstance.put<Brand>(

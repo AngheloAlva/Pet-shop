@@ -10,6 +10,7 @@ interface UseBrandsWithPaginationResponse {
   total: number
   brands: Brand[]
   isLoading: boolean
+  refresh: () => Promise<void>
   setPage: (page: number) => void
 }
 
@@ -22,21 +23,21 @@ const useBrandsWithPagination = ({
   const [page, setPage] = useState<number>(1)
   const { toast } = useToast()
 
-  useEffect(() => {
-    const fetchBrands = async (): Promise<void> => {
-      try {
-        const brands = await getBrands({ isAvailable, limit, page })
-        setBrands(brands.brands)
-        setTotal(brands.total)
-        setIsLoading(false)
-      } catch (error) {
-        toast({
-          title: 'Error getting brands',
-          description: (error as any).response?.data
-        })
-      }
+  const fetchBrands = async (): Promise<void> => {
+    try {
+      const brands = await getBrands({ isAvailable, limit, page })
+      setBrands(brands.brands)
+      setTotal(brands.total)
+      setIsLoading(false)
+    } catch (error) {
+      toast({
+        title: 'Error getting brands',
+        description: (error as any).response?.data
+      })
     }
+  }
 
+  useEffect(() => {
     void fetchBrands()
   }, [limit, page])
 
@@ -45,7 +46,8 @@ const useBrandsWithPagination = ({
     total,
     brands,
     setPage,
-    isLoading
+    isLoading,
+    refresh: fetchBrands
   }
 }
 
