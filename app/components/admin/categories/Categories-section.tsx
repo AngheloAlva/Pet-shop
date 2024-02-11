@@ -1,18 +1,16 @@
 'use client'
 
-import useProducts from '@/app/hooks/useProducts'
-
+import useCategoriesWithPagination from '@/app/hooks/useCategoriesWithPagination'
 import PaginationButtons from '../../shared/ui/Pagination-buttons'
-import FilterButton from '../../shared/filter/Filter-button'
-import AdminProductItem from './Product-item'
 import ProductsSectionSkeleton from '../skeletons/Products-section-skeleton'
+import AdminCategoryItem from './Category-item'
 
-function AdminProductsSection (): React.ReactElement {
+function AdminCategoriesSection (): React.ReactElement {
   const limit = 10
-  const { products, total, setFilters, filters, setPage, page, isLoading, refresh } = useProducts({
-    InitialFilters: {},
+  const { categories, isLoading, total, page, setPage } = useCategoriesWithPagination({
     isAvailable: true,
-    limit
+    limit,
+    page: 1
   })
 
   return (
@@ -23,15 +21,16 @@ function AdminProductsSection (): React.ReactElement {
           : (
               <section className='flex flex-col gap-2'>
                 <div className='flex items-center justify-between w-full'>
-                  <h2 className='text-lg font-bold'>Products</h2>
-                  <p>{total} products</p>
-                  <FilterButton filters={filters} setFilters={setFilters} />
+                  <h2 className='text-lg font-bold'>Categories</h2>
+                  <p>{total} categories</p>
                 </div>
                 <div className='flex gap-4'>
                   <section className='grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3'>
-                    {products.map((product) => (
-                      <AdminProductItem key={product.id} product={product} refresh={refresh} />
-                    ))}
+                    {categories.length > 0 && (
+                      categories.map((category) => (
+                        <AdminCategoryItem key={category.id} category={category} />
+                      ))
+                    )}
                   </section>
                 </div>
 
@@ -50,4 +49,4 @@ function AdminProductsSection (): React.ReactElement {
   )
 }
 
-export default AdminProductsSection
+export default AdminCategoriesSection

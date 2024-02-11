@@ -2,21 +2,19 @@ import { useToast } from '@/app/components/ui/use-toast'
 import { UploadButton } from '@/app/utils/uploadthing'
 import { Label } from '@/app/components/ui/label'
 
-import type { Dispatch, SetStateAction } from 'react'
-
 function ImageField (
-  { setImages, images }: { setImages: Dispatch<SetStateAction<string[]>>, images: string[] }
+  { image, setImage }: { image: string, setImage: (image: string) => void }
 ): React.ReactElement {
   const { toast } = useToast()
 
   return (
     <div>
-      <Label>Images</Label>
+      <Label>Image</Label>
       <UploadButton
         endpoint="imageUploader"
         appearance={{ button: { width: '100%', backgroundColor: '#DEB887' } }}
         onClientUploadComplete={(res: Array<{ url: string }>) => {
-          setImages([...images, res[0].url])
+          setImage(res[0].url)
         }}
         onUploadError={(error: Error) => {
           toast({
