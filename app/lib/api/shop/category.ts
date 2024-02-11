@@ -4,11 +4,12 @@ import type { Category, CreateCategory, UpdateCategory } from '@/types/shop/cate
 import type { GetAllOfModel } from '@/types/shared/getAllOfModel'
 
 const createCategory = async ({
-  description, image, name, slug, authId
+  description, image, name, slug, authId, petType
 }: CreateCategory): Promise<Category> => {
   const { data } = await axiosInstance.post<Category>(
     '/category', {
       description,
+      petType,
       authId,
       image,
       name,

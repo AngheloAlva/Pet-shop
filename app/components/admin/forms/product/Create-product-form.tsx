@@ -32,9 +32,6 @@ function CreateProductForm (
   const { toast } = useToast()
   const router = useRouter()
 
-  console.log(form.getValues())
-  console.log(form.formState.errors)
-
   const onSubmit = async (values: z.infer<typeof createProductSchema>): Promise<void> => {
     try {
       await createProduct({
