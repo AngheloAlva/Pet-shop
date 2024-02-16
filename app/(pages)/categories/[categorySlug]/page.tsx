@@ -22,7 +22,7 @@ function CategoryBySlugPage (
       {
         (!isLoading && products.length >= 1)
           ? (<>
-              <section className='max-w-xl flex gap-2 '>
+              <section className='max-w-2xl flex gap-4'>
                 <Image
                   className='w-32 h-32 rounded-lg shadow-md'
                   src={products[0].category?.image ?? '/images/placeholder.png'}

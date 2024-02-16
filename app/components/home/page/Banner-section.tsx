@@ -43,8 +43,8 @@ function BannerSection (): React.ReactElement {
               priority
               src={image.src}
               alt={image.alt}
-              width={2370}
-              height={585}
+              width={2173}
+              height={536}
               className="hidden lg:block"
             />
             <Image
