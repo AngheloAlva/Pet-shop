@@ -10,6 +10,7 @@ interface LinkItemProps {
 function LinkItem ({
   pathName, href, icon, text
 }: LinkItemProps): React.ReactElement {
+  console.log(pathName, href)
   return (
     <Link
       className={`
