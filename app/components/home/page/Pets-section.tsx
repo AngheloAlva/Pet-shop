@@ -1,12 +1,12 @@
 import PetCard from '../ui/Pet-card'
 
 const pets = [
-  { src: '/images/for-dogs.png', alt: 'For Dogs', href: '/pets/dog' },
-  { src: '/images/for-cats.png', alt: 'For Cats', href: '/pets/cat' },
-  { src: '/images/for-birds.png', alt: 'For Birds', href: '/pets/bird' },
-  { src: '/images/for-reptiles.png', alt: 'For Reptiles', href: '/pets/reptile' },
-  { src: '/images/for-small-pet.png', alt: 'For Small Pet', href: '/pets/small_animal' },
-  { src: '/images/for-fish.png', alt: 'For Fish', href: '/pets/fish' }
+  { src: '/pets/for-dogs.png', alt: 'For Dogs', href: '/pets/dog' },
+  { src: '/pets/for-cats.png', alt: 'For Cats', href: '/pets/cat' },
+  { src: '/pets/for-birds.png', alt: 'For Birds', href: '/pets/bird' },
+  { src: '/pets/for-reptiles.png', alt: 'For Reptiles', href: '/pets/reptile' },
+  { src: '/pets/for-small-pet.png', alt: 'For Small Pet', href: '/pets/small_animal' },
+  { src: '/pets/for-fish.png', alt: 'For Fish', href: '/pets/fish' }
 ]
 
 function PetsSection (): React.ReactElement {

@@ -22,7 +22,7 @@ function Navbar (): React.ReactElement {
 
         <Link href='/'>
           <Image
-            src={'/images/logo.svg'}
+            src={'/logo.svg'}
             priority
             alt="logo"
             width={50}

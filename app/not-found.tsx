@@ -22,7 +22,7 @@ function NotFound (): React.ReactElement {
       </div>
 
       <Image
-        src='/images/not-found.svg'
+        src='/errors/not-found.svg'
         alt='Not found illustration'
         className='md:w-1/2 md:h-auto'
         width={700}

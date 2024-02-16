@@ -25,7 +25,7 @@ function CategoryBySlugPage (
               <section className='max-w-2xl flex gap-4'>
                 <Image
                   className='w-32 h-32 rounded-lg shadow-md'
-                  src={products[0].category?.image ?? '/images/placeholder.png'}
+                  src={products[0].category?.image ?? '/placeholder.png'}
                   alt={products[0].category?.name ?? 'category image'}
                   width={500}
                   height={500}

@@ -21,7 +21,7 @@ function CancelPage (): React.ReactElement {
         alt='Cancel'
         width={700}
         height={700}
-        src='/images/cancel.png'
+        src='/errors/cancel.png'
         className='max-w-md w-full'
       />
     </main>

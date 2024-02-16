@@ -8,7 +8,7 @@ function AdminNavbar (): React.ReactElement {
       <Link href="/admin">
         <Image
           priority
-          src="/images/logo.svg"
+          src="/logo.svg"
           alt="logo"
           width={50}
           height={50}

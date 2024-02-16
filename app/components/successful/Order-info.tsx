@@ -46,36 +46,4 @@ async function OrderInfo (
   )
 }
 
-// {
-//   id: 22,
-//   userId: 2,
-//   orderDate: '2024-02-09T13:09:16.986Z',
-//   shippingMethod: 'SHOP_PICKUP',
-//   addressId: 2,
-//   paid: false,
-//   checkoutSessionId: null,
-//   items: [
-//     {
-//       id: 36,
-//       orderId: 22,
-//       productId: 24,
-//       productName: 'Acana Dog Classic Wild Coast 9.7 kg',
-//       productImage: 'https://cdn11.bigcommerce.com/s-d331r3r4ex/images/stencil/608x608/products/21530/45785/601221__16426.1698239821.jpg?c=1',
-//       productDescription: 'Acana Puppy & Junior is a food made with free-range chicken, turkey, wild fish and whole eggs from the nest in WholePrey™ proportions to fully nourish your puppy. Prepared in DogStar® kitchens in Kentucky with fresh, regional ingredients. Unique and Biologically Appropriate™, a delicious and natural way to keep your dog healthy, happy and strong.',
-//       productPrice: 56990,
-//       optionSelectedIndex: 0,
-//       quantity: 1
-//     }
-//   ],
-//   payment: {
-//     id: 19,
-//     orderId: 22,
-//     amount: 56990,
-//     currency: 'clp',
-//     stripeSessionId: 'cs_test_a15w8OaozhsJ2bmE3lqwnH4SDoWdJ1XydkAbXp7c4bBHBiyvsdz2tUoC96',
-//     status: 'PENDING',
-//     createdAt: '2024-02-09T13:09:16.986Z'
-//   }
-// }
-
 export default OrderInfo

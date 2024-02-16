@@ -19,7 +19,7 @@ function SuccessfulPage (
           height={700}
           alt="Order successful"
           className='md:w-1/2 md:h-1/2 max-w-lg w-full'
-          src="/images/successful.png"
+          src="/success/successful.png"
         />
 
         <Suspense fallback={<OrderInfoSkeleton />}>

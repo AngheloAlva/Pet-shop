@@ -32,7 +32,7 @@ function Footer (): React.ReactElement {
       <div className='flex flex-col gap-14 sm:flex-row w-full justify-between'>
         <div className="flex items-end justify-between w-full sm:min-h-full sm:flex-col sm:items-start sm:w-auto">
           <Image
-            src={'/images/2.svg'}
+            src={'/2.svg'}
             alt="Logo"
             width={150}
             height={100}
@@ -77,7 +77,7 @@ function Footer (): React.ReactElement {
 
       <div className='w-full flex items-start sm:items-end justify-end sm:justify-between'>
         <Image
-          src={'/images/footer-image.png'}
+          src={'/footer/footer-image.png'}
           alt="Footer Image"
           width={200}
           height={100}
