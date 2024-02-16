@@ -8,18 +8,18 @@ import { Carousel, CarouselContent, CarouselItem } from '../../ui/carousel'
 function BannerSection (): React.ReactElement {
   const bannerImages = [
     {
-      src: '/images/banners/banner-1.png',
-      shortSrc: '/images/banners/short-banner-1.png',
+      src: '/images/banner-1.png',
+      shortSrc: '/images/short-banner-1.png',
       alt: 'Banner 1'
     },
     {
-      src: '/images/banners/banner-2.png',
-      shortSrc: '/images/banners/short-banner-2.png',
+      src: '/images/banner-2.png',
+      shortSrc: '/images/short-banner-2.png',
       alt: 'Banner 2'
     },
     {
-      src: '/images/banners/banner-3.png',
-      shortSrc: '/images/banners/short-banner-3.png',
+      src: '/images/banner-3.png',
+      shortSrc: '/images/short-banner-3.png',
       alt: 'Banner 3'
     }
   ]
