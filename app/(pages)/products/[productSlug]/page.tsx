@@ -1,6 +1,19 @@
-import ProductData from '@/app/components/products/page/Product-data'
+import { getProductBySlug } from '@/app/lib/api/shop/product'
+
 import ProductDataSkeleton from '@/app/components/skeletons/Product-data-skeleton'
+import ProductData from '@/app/components/products/page/Product-data'
 import { Suspense } from 'react'
+
+import type { Metadata } from 'next'
+
+export async function generateMetadata ({ params }: { params: { productSlug: string } }): Promise<Metadata> {
+  const { name, brand, category, lifeStage, petType } = await getProductBySlug(params.productSlug)
+
+  return {
+    title: name,
+    description: `Buy ${name} from ${brand?.name} of ${category?.name} for your ${lifeStage} ${petType[0]} at PetStore.`
+  }
+}
 
 async function ProductPage (
   { params }: { params: { productSlug: string } }
