@@ -1,0 +1,193 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum LifeStage {
+  PUPPY
+  ADULT
+  SENIOR
+  KITTEN
+  ALL_LIFE_STAGES
+}
+
+enum ShippingMethod {
+  CHILEXPRESS
+  STARKEN
+  CORREOS_CHILE
+  SHOP_PICKUP
+}
+
+enum PetType {
+  DOG
+  CAT
+  BIRD
+  FISH
+  REPTILE
+  SMALL_ANIMAL
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model Brand {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  name        String
+  image       String
+  isAvailable Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  products    Product[]
+}
+
+model Product {
+  id            Int       @id   @default(autoincrement())
+  slug          String    @unique
+  name          String
+  miniDesc      String
+  description   String
+  sku           String
+  images        String[]
+  isAvailable   Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  categoryId    Int
+  brandId       Int
+  options       Option[]
+  petType       PetType[]
+  lifeStage     LifeStage
+  productItems  OrderItem[]
+  brand         Brand     @relation(fields: [brandId], references: [id])
+  category      Category  @relation(fields: [categoryId], references: [id])
+}
+
+model Option {
+  id        Int       @id @default(autoincrement())
+  name      String
+  price     Float
+  stock     Int
+  discount  Float
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  productId Int
+  product   Product   @relation(fields: [productId], references: [id])
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  description String
+  image       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  isAvailable Boolean   @default(true)
+
+  petType     PetType
+  products    Product[]
+}
+
+model User {
+  id            String    @id @default(uuid())
+  rut           String    @unique
+  email         String    @unique
+  password      String
+  emailVerified DateTime?
+  name          String
+  lastName      String
+  bornDate      DateTime?
+  role          Role      @default(USER)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  orders        Order[]
+  address       Address[]
+}
+
+model Address {
+  id              Int       @id @default(autoincrement())
+  name            String
+  street          String
+  number          String
+  zipCode         String
+  commune         String
+  region          String
+  isApartment     Boolean
+  apartmentNumber String?
+  phone           String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  userId          String    @unique
+  user            User      @relation(fields: [userId], references: [id])
+}
+
+model Order {
+  id                Int       @id  @default(autoincrement())
+  address           String
+  subtotal          Float
+  discount          Float
+  total             Float
+  shippingCost      Float
+  checkoutSessionId String?
+  orderDate         DateTime  @default(now())
+  paid              Boolean   @default(false)
+
+  userId            String
+  payment           Payment?
+  items             OrderItem[]
+  shippingMethod    ShippingMethod
+  user              User      @relation(fields: [userId], references: [id])
+}
+
+model OrderItem {
+  id              Int      @id   @default(autoincrement())
+  optionSelected  Int
+  quantity        Int
+  sku             String
+  productName     String
+  productImage    String
+  productPrice    Float
+  productDiscount Float
+
+  orderId         Int
+  productId       Int
+  order           Order    @relation(fields: [orderId], references: [id])
+  product         Product  @relation(fields: [productId], references: [id])
+}
+
+model Payment {
+  id              Int       @id @default(autoincrement())
+  amount          Float
+  currency        String
+  stripeSessionId String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  status          PaymentStatus
+  orderId         Int       @unique
+  order           Order     @relation(fields: [orderId], references: [id])
+}
