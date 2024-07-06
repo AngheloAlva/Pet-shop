@@ -204,7 +204,7 @@ async function main() {
 	const allForPawsBrand = await prisma.brand.create({
 		data: {
 			name: "All for Paws",
-			image: "true,https://utfs.io/f/272b9902-f0ea-4318-a1f3-1fbd7e65c6d5-22gb.avif",
+			image: "https://utfs.io/f/272b9902-f0ea-4318-a1f3-1fbd7e65c6d5-22gb.avif",
 			slug: "paws-all-for",
 		},
 	})

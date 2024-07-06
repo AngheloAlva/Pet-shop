@@ -43,8 +43,8 @@ export const getBrands = async ({
 				where: {
 					isAvailable,
 				},
+				skip: (page - 1) * limit,
 				take: limit,
-				skip: page * limit,
 			}),
 		])
 
