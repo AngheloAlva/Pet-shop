@@ -149,7 +149,7 @@ const getProductById = async (
 
 const getProductBySlug = async (
 	slug: string
-): Promise<{ ok: boolean; data?: Product | null; message?: string }> => {
+): Promise<{ ok: boolean; data?: GetProductResponse | null; message?: string }> => {
 	try {
 		const product = await prisma.product.findUnique({
 			where: {
