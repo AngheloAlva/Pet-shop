@@ -23,16 +23,16 @@ export interface CreateOption {
 }
 
 export interface GetProductsWithFilters extends GetAllOfModel {
-	search: string | null
-	petType: PetType | null
-	maxPrice: number | null
-	minPrice: number | null
-	lifeStage: LifeStage | null
-	brandSlug: string | null
-	categorySlug: string | null
+	search?: string | null
+	petType?: PetType | null
+	maxPrice?: number | null
+	minPrice?: number | null
+	lifeStage?: LifeStage | null
+	brandSlug?: string | null
+	categorySlug?: string | null
 }
 
-export interface GetProductByIdResponse extends Product {
+export interface GetProductResponse extends Product {
 	category: Category
 	brand: Brand
 	options: Option[]

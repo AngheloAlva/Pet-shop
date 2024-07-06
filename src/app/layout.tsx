@@ -1,3 +1,6 @@
+import { Navbar } from "@/components/navbar"
+import { Toaster } from "@/components/ui"
+
 import { nunito } from "@/config/fonts"
 import "./globals.css"
 
@@ -19,7 +22,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={nunito.className}>{children}</body>
+			<body className={nunito.className}>
+				<Navbar />
+				{children}
+				<Toaster />
+			</body>
 		</html>
 	)
 }

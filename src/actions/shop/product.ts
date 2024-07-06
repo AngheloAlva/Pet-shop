@@ -1,13 +1,14 @@
 "use server"
 
-import {
-	CreateProduct,
-	GetProductByIdResponse,
-	GetProductsWithFilters,
-	UpdateProduct,
-} from "@/interfaces"
 import prisma from "@/lib/prisma"
-import { Product } from "@prisma/client"
+
+import type {
+	CreateProduct,
+	UpdateProduct,
+	GetProductResponse,
+	GetProductsWithFilters,
+} from "@/interfaces"
+import type { Product } from "@prisma/client"
 
 const createProduct = async ({
 	sku,
@@ -66,7 +67,7 @@ const getProducts = async ({
 	categorySlug,
 }: GetProductsWithFilters): Promise<{
 	ok: boolean
-	products?: Product[]
+	products?: GetProductResponse[]
 	total: number
 	message?: string
 }> => {
@@ -121,7 +122,7 @@ const getProducts = async ({
 
 const getProductById = async (
 	id: number
-): Promise<{ ok: boolean; data?: GetProductByIdResponse | null; message?: string }> => {
+): Promise<{ ok: boolean; data?: GetProductResponse | null; message?: string }> => {
 	try {
 		const product = await prisma.product.findUnique({
 			where: {
