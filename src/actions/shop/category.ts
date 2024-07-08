@@ -37,8 +37,6 @@ const createCategory = async ({
 
 const getCategories = async ({
 	isAvailable,
-	limit,
-	page,
 }: GetAllOfModel): Promise<{
 	ok: boolean
 	total: number
@@ -52,8 +50,6 @@ const getCategories = async ({
 				where: {
 					isAvailable,
 				},
-				take: limit,
-				skip: page * limit,
 			}),
 		])
 

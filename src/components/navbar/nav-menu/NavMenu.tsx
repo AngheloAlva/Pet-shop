@@ -1,4 +1,6 @@
 import { getCategories } from "@/actions"
+import { petTypes } from "@/lib"
+
 import {
 	NavigationMenu,
 	NavigationMenuItem,
@@ -7,7 +9,6 @@ import {
 	NavigationMenuContent,
 	NavigationMenuTrigger,
 } from "@/components/ui"
-import { petTypes } from "@/lib"
 
 export default async function NavMenu(): Promise<React.ReactElement> {
 	const { categories } = await getCategories({
