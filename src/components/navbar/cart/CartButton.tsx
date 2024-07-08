@@ -5,8 +5,8 @@ import Link from "next/link"
 import { useCartStore } from "@/store/cart"
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
+import { ProductCartItem } from "./ProductCartItem"
 import { FaBasketShopping } from "react-icons/fa6"
-import ProductCartItem from "./ProductCartItem"
 import { Button } from "@/components/ui"
 
 function CartButton(): React.ReactElement {
@@ -14,7 +14,7 @@ function CartButton(): React.ReactElement {
 
 	return (
 		<Popover>
-			<PopoverTrigger className="text-text-200 hover:text-bg-100 hover:bg-cream-500 cursor-pointer rounded-lg p-1 transition-colors">
+			<PopoverTrigger className="cursor-pointer rounded-lg p-1 text-text-200 transition-colors hover:bg-cream-500 hover:text-bg-100">
 				<FaBasketShopping className="h-7 w-7" />
 			</PopoverTrigger>
 			<PopoverContent className="w-[25rem]">

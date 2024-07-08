@@ -1,11 +1,11 @@
 "use client"
 
+import { useCartStore } from "@/store/cart"
 import { cn } from "@/lib"
 
-import { useToast, ToastAction, Button } from "@/components/ui"
+import { useToast, Button } from "@/components/ui"
 
-import type { GetProductResponse } from "@/interfaces"
-import { useCartStore } from "@/store/cart"
+import type { GetProductResponse, ProductCart } from "@/interfaces"
 
 interface AddProductButtonProps {
 	quantity: number
@@ -32,7 +32,15 @@ function AddProductButton({
 			return
 		}
 
-		// useCartStore.getState().addProduct(newProductCart)
+		const newProductCart: ProductCart = {
+			id: product.id,
+			quantity,
+			product,
+			productId: product.id,
+			optionSelectedIndex,
+		}
+
+		useCartStore.getState().addProduct(newProductCart)
 	}
 
 	return (

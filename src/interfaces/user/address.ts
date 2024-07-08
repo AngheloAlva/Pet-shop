@@ -12,7 +12,6 @@ export interface CreateAddress {
 }
 
 export interface UpdateAddress {
-	id: number
 	name: string
 	number: string
 	region: string

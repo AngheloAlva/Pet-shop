@@ -9,7 +9,7 @@ import type { ProductCart } from "@/interfaces"
 import { useCartStore } from "@/store/cart"
 import Image from "next/image"
 
-function ProductCartItem({ productCart }: { productCart: ProductCart }): React.ReactElement {
+export function ProductCartItem({ productCart }: { productCart: ProductCart }): React.ReactElement {
 	const price = productCart.product.options[productCart.optionSelectedIndex].price
 	const priceWithDiscount = calculateDiscount(
 		price,
@@ -49,10 +49,12 @@ function ProductCartItem({ productCart }: { productCart: ProductCart }): React.R
 				/>
 			</Link>
 
-			<div className="text-text-200 flex w-full items-start">
+			<div className="flex w-full items-start text-text-200">
 				<div className="flex w-full flex-col">
 					<Link href={`/products/${productCart.product.slug}`} className="font-medium">
-						{productCart.product.name}{" "}
+						{productCart.product.name}
+						{" - "}
+						{productCart.product.options[productCart.optionSelectedIndex].name}
 					</Link>
 					<p className="text-nowrap text-sm text-muted-foreground">
 						{/* Option: {productCart.product.options[productCart.optionSelectedIndex].name} */}
@@ -89,14 +91,14 @@ function ProductCartItem({ productCart }: { productCart: ProductCart }): React.R
 						<FaTrashCan />
 					</Button>
 
-					<div className="text-text-200 flex gap-1">
+					<div className="flex gap-1 text-text-200">
 						<Button size={"sm"} variant={"outline"} onClick={handleSubtract}>
 							<FaMinus />
 						</Button>
 						<Button
 							size={"sm"}
 							variant={"outline"}
-							className="text-text-200 cursor-default hover:bg-white"
+							className="cursor-default text-text-200 hover:bg-white"
 						>
 							{productCart.quantity}
 						</Button>
@@ -109,5 +111,3 @@ function ProductCartItem({ productCart }: { productCart: ProductCart }): React.R
 		</div>
 	)
 }
-
-export default ProductCartItem
