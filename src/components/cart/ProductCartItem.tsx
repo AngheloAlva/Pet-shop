@@ -1,15 +1,19 @@
 import Link from "next/link"
 
 import { calculateDiscount } from "@/helpers"
+import { useCartStore } from "@/store"
+import Image from "next/image"
 
 import { FaMinus, FaPlus, FaTrashCan } from "react-icons/fa6"
 import { Button } from "@/components/ui"
 
 import type { ProductCart } from "@/interfaces"
-import { useCartStore } from "@/store/cart"
-import Image from "next/image"
 
-export function ProductCartItem({ productCart }: { productCart: ProductCart }): React.ReactElement {
+export default function ProductCartItem({
+	productCart,
+}: {
+	productCart: ProductCart
+}): React.ReactElement {
 	const price = productCart.product.options[productCart.optionSelectedIndex].price
 	const priceWithDiscount = calculateDiscount(
 		price,
@@ -26,15 +30,15 @@ export function ProductCartItem({ productCart }: { productCart: ProductCart }): 
 			return
 		}
 
-		useCartStore
-			.getState()
-			.increaseQuantity(productCart.product.id, productCart.optionSelectedIndex)
+		useCartStore.getState().updateProductQuantity(productCart, productCart.quantity + 1)
 	}
 
 	const handleSubtract = async (): Promise<void> => {
-		useCartStore
-			.getState()
-			.decreaseQuantity(productCart.product.id, productCart.optionSelectedIndex)
+		if (productCart.quantity === 1) {
+			return
+		}
+
+		useCartStore.getState().updateProductQuantity(productCart, productCart.quantity - 1)
 	}
 
 	return (
@@ -56,9 +60,6 @@ export function ProductCartItem({ productCart }: { productCart: ProductCart }): 
 						{" - "}
 						{productCart.product.options[productCart.optionSelectedIndex].name}
 					</Link>
-					<p className="text-nowrap text-sm text-muted-foreground">
-						{/* Option: {productCart.product.options[productCart.optionSelectedIndex].name} */}
-					</p>
 					<p className="text-nowrap text-sm text-muted-foreground">
 						Quantity: {productCart.quantity}
 					</p>

@@ -1,16 +1,14 @@
 "use client"
 
+import { useCartStore } from "@/store"
 import Link from "next/link"
 
-import { useCartStore } from "@/store/cart"
-
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
-import { ProductCartItem } from "./ProductCartItem"
+import { Popover, PopoverContent, PopoverTrigger, Button } from "@/components/ui"
 import { FaBasketShopping } from "react-icons/fa6"
-import { Button } from "@/components/ui"
+import ProductCartItem from "./ProductCartItem"
 
-function CartButton(): React.ReactElement {
-	const { products } = useCartStore()
+export default function CartButton(): React.ReactElement {
+	const { cart } = useCartStore()
 
 	return (
 		<Popover>
@@ -19,17 +17,16 @@ function CartButton(): React.ReactElement {
 			</PopoverTrigger>
 			<PopoverContent className="w-[25rem]">
 				<div className="flex flex-col">
-					{products.length === 0 && (
+					{cart.length === 0 ? (
 						<p className="text-center font-semibold">No hay productos en el carrito</p>
-					)}
-					{products.length > 0 && (
+					) : (
 						<div className="flex flex-col gap-5">
-							{products.map((product, index) => {
+							{cart.map((item, index) => {
 								if (index >= 3) {
 									return null
 								}
 
-								return <ProductCartItem key={product.id} productCart={product} />
+								return <ProductCartItem key={item.id} productCart={item} />
 							})}
 						</div>
 					)}
@@ -44,5 +41,3 @@ function CartButton(): React.ReactElement {
 		</Popover>
 	)
 }
-
-export default CartButton

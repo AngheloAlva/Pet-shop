@@ -6,7 +6,7 @@ import useProducts from "@/hooks/useProduct"
 import ProductSearchItem from "./ProductSeachItem"
 import { Input } from "@/components/ui"
 
-function SearchSection(): React.ReactElement {
+export default function SearchSection(): React.ReactElement {
 	const { products, setFilters, isLoading } = useProducts({
 		initialFilters: {
 			isAvailable: true,
@@ -42,5 +42,3 @@ function SearchSection(): React.ReactElement {
 		</div>
 	)
 }
-
-export default SearchSection

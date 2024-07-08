@@ -13,7 +13,11 @@ import { useBrands } from "@/hooks"
 import { GetProductsWithFilters } from "@/interfaces"
 import { cn } from "@/lib"
 
-export function BrandSelect({ setFilters, filters, className }: FilterProps): React.ReactElement {
+export default function BrandSelect({
+	setFilters,
+	filters,
+	className,
+}: FilterProps): React.ReactElement {
 	const { brands } = useBrands({
 		isAvailable: true,
 		limit: 100,
@@ -38,7 +42,7 @@ export function BrandSelect({ setFilters, filters, className }: FilterProps): Re
 		<div>
 			<Label>Brand</Label>
 			<div className={cn("flex items-center justify-between gap-2", className)}>
-				<Select onValueChange={handleBrandChange} defaultValue={filters.brandSlug}>
+				<Select onValueChange={handleBrandChange} defaultValue={filters.brandSlug || ""}>
 					<SelectTrigger>
 						<SelectValue placeholder="Select a brand" />
 					</SelectTrigger>

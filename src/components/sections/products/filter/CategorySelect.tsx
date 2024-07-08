@@ -42,7 +42,7 @@ export default function CategorySelect({
 		<div>
 			<Label>Category</Label>
 			<div className={cn("flex items-center justify-between gap-2", className)}>
-				<Select onValueChange={handleCategoryChange} defaultValue={filters.categorySlug}>
+				<Select onValueChange={handleCategoryChange} defaultValue={filters.categorySlug || ""}>
 					<SelectTrigger>
 						<SelectValue placeholder="Select a category" />
 					</SelectTrigger>

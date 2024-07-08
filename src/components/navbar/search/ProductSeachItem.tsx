@@ -5,7 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 import type { GetProductResponse } from "@/interfaces"
 
-function ProductSearchItem({ product }: { product: GetProductResponse }): React.ReactElement {
+export default function ProductSearchItem({
+	product,
+}: {
+	product: GetProductResponse
+}): React.ReactElement {
 	return (
 		<Card>
 			<Link
@@ -35,5 +39,3 @@ function ProductSearchItem({ product }: { product: GetProductResponse }): React.
 		</Card>
 	)
 }
-
-export default ProductSearchItem

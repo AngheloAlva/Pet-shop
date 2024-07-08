@@ -1,7 +1,7 @@
 import { FaUserShield } from "react-icons/fa6"
 import { Button } from "@/components/ui"
 
-function IsSignedOut(): React.ReactElement {
+export default function IsSignedOut(): React.ReactElement {
 	return (
 		<Button>
 			<div className="flex w-full cursor-pointer items-center font-medium hover:text-blue-400">
@@ -11,5 +11,3 @@ function IsSignedOut(): React.ReactElement {
 		</Button>
 	)
 }
-
-export default IsSignedOut

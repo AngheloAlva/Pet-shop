@@ -1,16 +1,20 @@
 "use client"
 
+import { calculateDiscount } from "@/helpers"
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, Button } from "@/components/ui"
+import AddProductButton from "../../cart/AddProductButton"
 
 import type { GetProductResponse } from "@/interfaces"
-import { calculateDiscount } from "@/helpers"
-import AddProductButton from "./Add-product-button"
 
-export function ProductCard({ product }: { product: GetProductResponse }): React.ReactElement {
+export default function ProductCard({
+	product,
+}: {
+	product: GetProductResponse
+}): React.ReactElement {
 	const [optionSelected, setOptionSelected] = useState(0)
 
 	return (
@@ -75,9 +79,9 @@ export function ProductCard({ product }: { product: GetProductResponse }): React
 							}}
 							className={
 								optionSelected === index
-									? "bg-cream-600 hover:bg-cream-600 text-bg-100"
+									? "bg-cream-600 text-bg-100 hover:bg-cream-600"
 									: "" +
-										"hover:bg-cream-500 hover:text-bg-100 w-fit rounded-lg border border-input bg-transparent px-3 py-1 transition-colors"
+										"w-fit rounded-lg border border-input bg-transparent px-3 py-1 transition-colors hover:bg-cream-500 hover:text-bg-100"
 							}
 						>
 							{option.name}

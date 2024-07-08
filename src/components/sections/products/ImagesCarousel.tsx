@@ -14,7 +14,7 @@ interface ImagesCarouselProps {
 	setImageSelected: (index: number) => void
 }
 
-function ImagesCarousel({
+export default function ImagesCarousel({
 	images,
 	name,
 	setImageSelected,
@@ -45,5 +45,3 @@ function ImagesCarousel({
 		</Carousel>
 	)
 }
-
-export default ImagesCarousel

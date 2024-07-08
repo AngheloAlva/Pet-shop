@@ -1,6 +1,6 @@
 import { PaginationButtons, ProductCard } from "@/components/ui"
-import { FilterButton } from "./filter/FilterButton"
 import FilterSection from "./filter/FilterSection"
+import FilterButton from "./filter/FilterButton"
 
 import type { GetProductResponse, GetProductsWithFilters } from "@/interfaces"
 
@@ -14,7 +14,7 @@ interface ProductsSectionProps {
 	limit: number
 }
 
-function AllProductsSection({
+export default function AllProductsSection({
 	filters,
 	limit,
 	page,
@@ -50,5 +50,3 @@ function AllProductsSection({
 		</>
 	)
 }
-
-export default AllProductsSection

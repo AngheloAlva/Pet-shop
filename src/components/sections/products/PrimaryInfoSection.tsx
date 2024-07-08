@@ -4,8 +4,9 @@ import { calculateDiscount } from "@/helpers"
 import { useState } from "react"
 import Link from "next/link"
 
-import { Button, AddProductButton } from "@/components/ui"
+import { AddProductButton } from "@/components/cart"
 import { FaPlus, FaMinus } from "react-icons/fa6"
+import { Button } from "@/components/ui"
 
 import type { GetProductResponse } from "@/interfaces"
 
@@ -37,13 +38,13 @@ export default function PrimaryInfoSection({
 	}
 
 	return (
-		<section className="text-text-100 flex flex-col gap-2 md:w-1/2 lg:pt-10 xl:w-2/3">
+		<section className="flex flex-col gap-2 text-text-100 md:w-1/2 lg:pt-10 xl:w-2/3">
 			<h1 className="text-blue text-pretty text-4xl font-bold tracking-wide">{product.name}</h1>
 			<Link href={`/brands/${product.brand?.slug}`} className="w-fit">
-				<h2 className="text-cream-700 text-xl font-bold">{product.brand?.name}</h2>
+				<h2 className="text-xl font-bold text-cream-700">{product.brand?.name}</h2>
 			</Link>
 
-			<p className="text-text-200 text-pretty text-sm">{product.miniDesc}</p>
+			<p className="text-pretty text-sm text-text-200">{product.miniDesc}</p>
 
 			<span className="mt-4 space-x-2 text-2xl font-semibold">
 				{product.options?.[optionSelected].discount > 0 ? (
@@ -82,16 +83,16 @@ export default function PrimaryInfoSection({
 							}}
 							className={
 								optionSelected === index
-									? "bg-cream-600 hover:bg-bg-cream-600 text-bg-100"
+									? "hover:bg-bg-cream-600 bg-cream-600 text-bg-100"
 									: "" +
-										"hover:bg-cream-500 hover:text-bg-100 w-fit rounded-lg border border-input bg-transparent px-3 py-1 transition-colors"
+										"w-fit rounded-lg border border-input bg-transparent px-3 py-1 transition-colors hover:bg-cream-500 hover:text-bg-100"
 							}
 						>
 							{option.name}
 						</Button>
 					))}
 				</div>
-				<p className="text-text-200 mt-1 text-sm">
+				<p className="mt-1 text-sm text-text-200">
 					{product.options?.[optionSelected].stock} in stock
 				</p>
 			</div>
@@ -102,7 +103,7 @@ export default function PrimaryInfoSection({
 				</Button>
 				<Button
 					variant={"outline"}
-					className="text-text-200 min-h-11 min-w-11 cursor-default hover:bg-white"
+					className="min-h-11 min-w-11 cursor-default text-text-200 hover:bg-white"
 				>
 					{quantity}
 				</Button>

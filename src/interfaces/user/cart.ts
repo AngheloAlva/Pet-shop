@@ -2,9 +2,10 @@ import type { Option, Product } from "@prisma/client"
 
 export interface ProductCart {
 	id: number
+	price: number
 	quantity: number
-	product: ProductInCart
 	productId: number
+	product: ProductInCart
 	optionSelectedIndex: number
 }
 

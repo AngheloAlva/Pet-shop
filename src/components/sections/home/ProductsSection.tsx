@@ -1,10 +1,10 @@
 import { getProducts } from "@/actions"
 
-import { Carousel, CarouselItem, CarouselContent, ProductCard } from "@/components/ui"
+import { Carousel, CarouselItem, CarouselContent } from "@/components/ui"
+import { ProductCard } from "@/components/cart"
 
-async function ProductsByBrandSection(): Promise<React.ReactElement> {
+async function ProductsSection(): Promise<React.ReactElement> {
 	const { products } = await getProducts({
-		brandSlug: "acana",
 		isAvailable: true,
 		limit: 10,
 		page: 1,
@@ -12,7 +12,7 @@ async function ProductsByBrandSection(): Promise<React.ReactElement> {
 
 	return (
 		<section className="px-5 sm:px-10 md:px-20 lg:px-40">
-			<h2 className="mb-2 text-3xl font-bold">Acana Products</h2>
+			<h2 className="mb-2 text-3xl font-bold">Products</h2>
 
 			<Carousel opts={{ align: "start", loop: true }}>
 				<CarouselContent>
@@ -31,4 +31,4 @@ async function ProductsByBrandSection(): Promise<React.ReactElement> {
 	)
 }
 
-export default ProductsByBrandSection
+export default ProductsSection

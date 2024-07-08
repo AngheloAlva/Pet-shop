@@ -1,19 +1,20 @@
 "use client"
 
-import { ResumeSection, SummarySection, UserDataSection } from "@/components/sections"
-import { Button } from "@/components/ui"
-import { useCartStore } from "@/store/cart"
+import { useCartStore } from "@/store"
 import Link from "next/link"
 
+import { ResumeSection, SummarySection } from "@/components/cart"
+import { Button } from "@/components/ui"
+
 function CartPage(): React.ReactElement {
-	const { products } = useCartStore()
+	const { cart } = useCartStore()
 
 	return (
 		<main className="lg:px-34 flex w-screen flex-col gap-10 px-5 pb-20 pt-28 text-text-100 sm:px-10 md:px-20 md:pt-40 xl:px-44 2xl:px-60">
 			<div className="flex flex-col gap-10 lg:flex-row">
-				<ResumeSection products={products} />
+				<ResumeSection products={cart} />
 
-				<SummarySection products={products} />
+				<SummarySection products={cart} />
 			</div>
 
 			{/* <UserDataSection

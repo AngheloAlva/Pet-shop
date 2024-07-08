@@ -1,6 +1,6 @@
 "use client"
 
-import { useCartStore } from "@/store/cart"
+import { useCartStore } from "@/store"
 import { cn } from "@/lib"
 
 import { useToast, Button } from "@/components/ui"
@@ -14,7 +14,7 @@ interface AddProductButtonProps {
 	optionSelectedIndex: number
 }
 
-function AddProductButton({
+export default function AddProductButton({
 	optionSelectedIndex,
 	product,
 	quantity,
@@ -33,11 +33,12 @@ function AddProductButton({
 		}
 
 		const newProductCart: ProductCart = {
-			id: product.id,
-			quantity,
 			product,
-			productId: product.id,
+			quantity,
+			id: product.id,
 			optionSelectedIndex,
+			productId: product.id,
+			price: product.options[optionSelectedIndex].price,
 		}
 
 		useCartStore.getState().addProduct(newProductCart)
@@ -55,5 +56,3 @@ function AddProductButton({
 		</Button>
 	)
 }
-
-export default AddProductButton

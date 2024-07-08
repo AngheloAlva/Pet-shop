@@ -1,20 +1,17 @@
 "use client"
 
-import { createCheckoutSession } from "@/actions"
-import { SummarySection } from "@/components/sections"
-import AddressSection from "@/components/sections/cart/AddressSEction"
-import ShippingMethodSelect from "@/components/sections/cart/ShippingMethodSelect"
-import { Button } from "@/components/ui"
-import { shippingMethods } from "@/lib"
-import { useCartStore } from "@/store/cart"
-import { ShippingMethod } from "@prisma/client"
 import { useRouter } from "next/navigation"
+import { shippingMethods } from "@/lib"
+import { useCartStore } from "@/store"
 import { useState } from "react"
+
+import { ShippingMethodSelect, SummarySection } from "@/components/cart"
+import { Button } from "@/components/ui"
 
 function PaymentPage(): React.ReactElement {
 	// const { user } = useUser()
 	const router = useRouter()
-	const { products } = useCartStore()
+	const { cart } = useCartStore()
 	// const { user: userDb, refetchUser, isLoading } = useAddressData(user?.id ?? "")
 	// const { isButtonEnabled, setIsButtonEnabled } = useShippingButton(userDb, products)
 	const [isButtonLoading, setIsButtonLoading] = useState(false)
@@ -77,11 +74,7 @@ function PaymentPage(): React.ReactElement {
 					/>
 				</div>
 
-				<SummarySection
-					products={products}
-					className="lg:w-full"
-					shippingCost={shippingMethod.price}
-				/>
+				<SummarySection products={cart} className="lg:w-full" shippingCost={shippingMethod.price} />
 
 				<Button
 					size={"lg"}

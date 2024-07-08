@@ -5,7 +5,7 @@ import { Button, Separator } from "@/components/ui"
 
 import type { User } from "@prisma/client"
 
-function IsSignedIn({ user }: { user: User }): React.ReactElement {
+export default function IsSignedIn({ user }: { user: User }): React.ReactElement {
 	return (
 		<>
 			{user?.role === "ADMIN" && (
@@ -41,5 +41,3 @@ function IsSignedIn({ user }: { user: User }): React.ReactElement {
 		</>
 	)
 }
-
-export default IsSignedIn

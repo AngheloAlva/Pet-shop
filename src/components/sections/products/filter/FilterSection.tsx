@@ -1,9 +1,8 @@
+import BrandSelect from "./BrandSelect"
 import { Separator } from "@/components/ui"
-
-import { LifeStageSelect } from "./LifeStageSelect"
+import PetTypeSelect from "./PetTypeSelect"
 import CategorySelect from "./CategorySelect"
-import { BrandSelect } from "./BrandSelect"
-import { PetTypeSelect } from "./PetTypeSelect"
+import LifeStageSelect from "./LifeStageSelect"
 
 import type { GetProductsWithFilters } from "@/interfaces"
 

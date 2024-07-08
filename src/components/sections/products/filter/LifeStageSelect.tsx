@@ -12,7 +12,7 @@ import {
 } from "@/components/ui"
 import type { GetProductsWithFilters } from "@/interfaces"
 
-export function LifeStageSelect({
+export default function LifeStageSelect({
 	setFilters,
 	filters,
 	className,
@@ -43,7 +43,7 @@ export function LifeStageSelect({
 		<div>
 			<Label>Life Stage</Label>
 			<div className={cn("flex items-center justify-between gap-2", className)}>
-				<Select onValueChange={handleLifeStageChange} defaultValue={filters.lifeStage}>
+				<Select onValueChange={handleLifeStageChange} defaultValue={filters.lifeStage || ""}>
 					<SelectTrigger>
 						<SelectValue placeholder="Select a Life Stage" />
 					</SelectTrigger>

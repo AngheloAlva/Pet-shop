@@ -2,7 +2,9 @@ interface DescriptionSectionProps {
 	description: string
 }
 
-function DescriptionSection({ description }: DescriptionSectionProps): React.ReactElement {
+export default function DescriptionSection({
+	description,
+}: DescriptionSectionProps): React.ReactElement {
 	const renderDescription = (description: string): React.ReactElement[] => {
 		return description.split("\\n").map((section, index) => (
 			<p key={index} className="text-sm">
@@ -12,7 +14,7 @@ function DescriptionSection({ description }: DescriptionSectionProps): React.Rea
 	}
 
 	return (
-		<section className="text-text-100 flex flex-col gap-4 lg:pt-10">
+		<section className="flex flex-col gap-4 text-text-100 lg:pt-10">
 			<h2 className="text-xl font-bold">Description</h2>
 			{(JSON.parse(description) as Array<{ title: string; content: string }>).map(
 				(section, index) => (
@@ -25,5 +27,3 @@ function DescriptionSection({ description }: DescriptionSectionProps): React.Rea
 		</section>
 	)
 }
-
-export default DescriptionSection

@@ -1,5 +1,5 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6"
-import { Button } from "../button"
+import { Button } from "@/components/ui"
 
 interface PaginationButtonsProps {
 	setPage: (page: number) => void
@@ -8,7 +8,7 @@ interface PaginationButtonsProps {
 	page: number
 }
 
-function PaginationButtons({
+export default function PaginationButtons({
 	setPage,
 	limit,
 	page,
@@ -63,5 +63,3 @@ function PaginationButtons({
 		</>
 	)
 }
-
-export default PaginationButtons

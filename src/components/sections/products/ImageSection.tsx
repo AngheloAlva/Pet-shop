@@ -4,7 +4,13 @@ import Image from "next/image"
 import { useState } from "react"
 import ImagesCarousel from "./ImagesCarousel"
 
-function ImageSection({ images, name }: { images: string[]; name: string }): React.ReactElement {
+export default function ImageSection({
+	images,
+	name,
+}: {
+	images: string[]
+	name: string
+}): React.ReactElement {
 	const [imageSelected, setImageSelected] = useState(0)
 
 	return (
@@ -24,5 +30,3 @@ function ImageSection({ images, name }: { images: string[]; name: string }): Rea
 		</section>
 	)
 }
-
-export default ImageSection

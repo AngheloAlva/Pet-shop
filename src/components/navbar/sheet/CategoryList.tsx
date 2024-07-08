@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui"
 
-async function CategoryList(): Promise<React.ReactElement> {
+export default async function CategoryList(): Promise<React.ReactElement> {
 	const { categories } = await getCategories({
 		page: 1,
 		limit: 100,
@@ -12,7 +12,7 @@ async function CategoryList(): Promise<React.ReactElement> {
 	})
 
 	return (
-		<div className="text-text-100 flex flex-col gap-2">
+		<div className="flex flex-col gap-2 text-text-100">
 			<Accordion type="single" collapsible>
 				{petTypes.map((petType, index) => {
 					return (
@@ -44,5 +44,3 @@ async function CategoryList(): Promise<React.ReactElement> {
 		</div>
 	)
 }
-
-export default CategoryList

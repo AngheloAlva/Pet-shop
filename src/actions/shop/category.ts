@@ -47,8 +47,8 @@ const getCategories = async ({
 }> => {
 	try {
 		const [total, categories] = await Promise.all([
-			prisma.category.count(),
-			prisma.category.findMany({
+			await prisma.category.count(),
+			await prisma.category.findMany({
 				where: {
 					isAvailable,
 				},

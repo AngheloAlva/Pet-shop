@@ -9,7 +9,7 @@ import {
 } from "@/components/ui"
 import { petTypes } from "@/lib"
 
-async function NavMenu(): Promise<React.ReactElement> {
+export default async function NavMenu(): Promise<React.ReactElement> {
 	const { categories } = await getCategories({
 		isAvailable: true,
 		limit: 100,
@@ -54,5 +54,3 @@ async function NavMenu(): Promise<React.ReactElement> {
 		</NavigationMenu>
 	)
 }
-
-export default NavMenu

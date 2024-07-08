@@ -1,4 +1,6 @@
-import AddProductButton from "./shop/Add-product-button"
+import PetCard from "./shop/PetCard"
+import BrandCard from "./shop/BrandCard"
+import ProductCard from "./shop/ProductCard"
 import PaginationButtons from "./shop/PaginationButtons"
 
 export * from "./form"
@@ -19,8 +21,4 @@ export * from "./separator"
 export * from "./accordion"
 export * from "./navigation-menu"
 
-export * from "./shop/Pet-card"
-export * from "./shop/Brand-card"
-export * from "./shop/Product-card"
-
-export { AddProductButton, PaginationButtons }
+export { ProductCard, BrandCard, PetCard, PaginationButtons }

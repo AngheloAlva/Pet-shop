@@ -49,7 +49,7 @@ export default function Footer(): React.ReactElement {
 	const year = new Date().getFullYear()
 
 	return (
-		<footer className="bg-text-100 text-bg-100 flex min-h-96 flex-col gap-14 px-10 py-8 sm:gap-0 sm:px-20 sm:py-14 lg:px-32 lg:py-20 xl:px-40 xl:py-24">
+		<footer className="flex min-h-96 flex-col gap-14 bg-text-100 px-10 py-8 text-bg-100 sm:gap-0 sm:px-20 sm:py-14 lg:px-32 lg:py-20 xl:px-40 xl:py-24">
 			<div className="flex w-full flex-col justify-between gap-14 sm:flex-row">
 				<div className="flex w-full items-end justify-between sm:min-h-full sm:w-auto sm:flex-col sm:items-start">
 					<Image src={"/2.svg"} alt="Logo" width={150} height={100} className="w-36" />
@@ -85,7 +85,7 @@ export default function Footer(): React.ReactElement {
 							<li key={index}>
 								<Link
 									href={link.href}
-									className="hover:text-cream-500 flex items-center gap-1 hover:underline"
+									className="flex items-center gap-1 hover:text-cream-500 hover:underline"
 								>
 									{link.title}
 								</Link>

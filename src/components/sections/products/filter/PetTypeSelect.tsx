@@ -13,7 +13,11 @@ import {
 import type { GetProductsWithFilters } from "@/interfaces"
 import type { PetType } from "@prisma/client"
 
-export function PetTypeSelect({ setFilters, filters, className }: FilterProps): React.ReactElement {
+export default function PetTypeSelect({
+	setFilters,
+	filters,
+	className,
+}: FilterProps): React.ReactElement {
 	const petTypes = [
 		{ value: "DOG", label: "Dogs" },
 		{ value: "CAT", label: "Cats" },
@@ -41,7 +45,7 @@ export function PetTypeSelect({ setFilters, filters, className }: FilterProps): 
 		<div>
 			<Label>Pet Type</Label>
 			<div className={cn("flex items-center justify-between gap-2", className)}>
-				<Select onValueChange={handlePetTypeChange} defaultValue={filters.petType}>
+				<Select onValueChange={handlePetTypeChange} defaultValue={filters.petType || ""}>
 					<SelectTrigger>
 						<SelectValue placeholder="Select a Pet Type" />
 					</SelectTrigger>
