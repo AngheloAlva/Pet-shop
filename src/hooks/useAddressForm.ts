@@ -12,7 +12,7 @@ interface UserFormResponse {
 	form: any
 }
 
-const useAddressForm = (address: Address | null): UserFormResponse => {
+export const useAddressForm = (address: Address | null): UserFormResponse => {
 	const form = useForm<z.infer<typeof addressFormSchema>>({
 		resolver: zodResolver(addressFormSchema),
 		defaultValues: {
@@ -46,5 +46,3 @@ const useAddressForm = (address: Address | null): UserFormResponse => {
 		form,
 	}
 }
-
-export default useAddressForm

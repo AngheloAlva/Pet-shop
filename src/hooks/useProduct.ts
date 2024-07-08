@@ -5,13 +5,12 @@ import { useRouter } from "next/navigation"
 import { getProducts } from "@/actions"
 
 import type { GetProductResponse, GetProductsWithFilters } from "@/interfaces"
-import type { Product } from "@prisma/client"
 
 interface UseProducts {
 	initialFilters: GetProductsWithFilters
 }
 
-const useProducts = ({
+export const useProducts = ({
 	initialFilters,
 }: UseProducts): {
 	page: number
@@ -62,5 +61,3 @@ const useProducts = ({
 		setFilters,
 	}
 }
-
-export default useProducts

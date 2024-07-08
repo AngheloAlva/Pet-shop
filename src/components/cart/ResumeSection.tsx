@@ -1,7 +1,9 @@
-import { ProductCartItem } from "@/components/navbar"
-import { Button, Card } from "@/components/ui"
-import { ProductCart } from "@/interfaces"
 import Link from "next/link"
+
+import ProductCartItem from "./ProductCartItem"
+import { Button, Card } from "@/components/ui"
+
+import type { ProductCart } from "@/interfaces"
 
 interface ResumeSectionProps {
 	products: ProductCart[]

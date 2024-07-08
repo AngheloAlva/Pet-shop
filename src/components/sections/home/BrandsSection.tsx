@@ -1,7 +1,6 @@
 import { getBrands } from "@/actions"
 
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui"
-import { BrandCard } from "@/components/cart"
+import { BrandCard, Carousel, CarouselContent, CarouselItem } from "@/components/ui"
 
 async function BrandsSection(): Promise<React.ReactElement> {
 	const { brands } = await getBrands({

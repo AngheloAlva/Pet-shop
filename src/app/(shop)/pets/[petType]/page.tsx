@@ -1,7 +1,7 @@
 "use client"
 
 import { PaginationButtons, ProductCard } from "@/components/ui"
-import useProducts from "@/hooks/useProduct"
+import { useProducts } from "@/hooks"
 
 import type { PetType } from "@prisma/client"
 

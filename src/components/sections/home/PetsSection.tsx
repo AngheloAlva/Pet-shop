@@ -1,4 +1,4 @@
-import { PetCard } from "@/components/cart"
+import { PetCard } from "@/components/ui"
 
 const pets = [
 	{ src: "/pets/for-dogs.png", alt: "For Dogs", href: "/pets/dog" },

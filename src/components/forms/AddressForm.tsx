@@ -7,8 +7,8 @@ import { createAddress, updateAddress } from "@/actions"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import RegionComuneSelect from "./RegionComuneSelect"
 import IsApartmentFields from "./IsApartmentFields"
-import useAddressForm from "@/hooks/useAddressForm"
 import { addressFormSchema } from "@/lib"
+import { useAddressForm } from "@/hooks"
 
 interface AddressFormProps {
 	authId: string

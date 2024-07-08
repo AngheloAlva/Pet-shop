@@ -11,7 +11,7 @@ interface UserFormResponse {
 	form: any
 }
 
-const useUserForm = ({ user }: { user: User | null }): UserFormResponse => {
+export const useUserForm = ({ user }: { user: User | null }): UserFormResponse => {
 	const form = useForm<z.infer<typeof userFormSchema>>({
 		resolver: zodResolver(userFormSchema),
 		defaultValues: {
@@ -35,5 +35,3 @@ const useUserForm = ({ user }: { user: User | null }): UserFormResponse => {
 		form,
 	}
 }
-
-export default useUserForm

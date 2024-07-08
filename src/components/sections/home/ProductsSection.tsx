@@ -1,7 +1,6 @@
 import { getProducts } from "@/actions"
 
-import { Carousel, CarouselItem, CarouselContent } from "@/components/ui"
-import { ProductCard } from "@/components/cart"
+import { Carousel, CarouselItem, CarouselContent, ProductCard } from "@/components/ui"
 
 async function ProductsSection(): Promise<React.ReactElement> {
 	const { products } = await getProducts({

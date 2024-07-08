@@ -2,7 +2,7 @@
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Button, Card, Input, useToast } from "../ui"
-import useUserForm from "@/hooks/useUserForm"
+import { useUserForm } from "@/hooks"
 import { z } from "zod"
 import { userFormSchema } from "@/lib"
 import { updateUser } from "@/actions"

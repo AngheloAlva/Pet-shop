@@ -1,7 +1,7 @@
 "use client"
 
 import { useDebouncedCallback } from "use-debounce"
-import useProducts from "@/hooks/useProduct"
+import { useProducts } from "@/hooks"
 
 import ProductSearchItem from "./ProductSeachItem"
 import { Input } from "@/components/ui"
