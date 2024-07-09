@@ -22,7 +22,7 @@ export default async function AccountPage(): Promise<React.ReactElement> {
 	const { address } = await getAddressByUser(session.user.id)
 
 	return (
-		<main className="flex flex-col gap-5 px-5 pb-20 pt-24 text-text-100 sm:px-10 md:px-20 md:pt-36 lg:px-40">
+		<main className="mx-auto flex max-w-[1900px] flex-col gap-5 px-5 pb-20 pt-24 text-text-100 sm:px-10 md:px-20 md:pt-40 lg:px-40">
 			<h1 className="sr-only">Account</h1>
 
 			{session.user.id !== undefined && (

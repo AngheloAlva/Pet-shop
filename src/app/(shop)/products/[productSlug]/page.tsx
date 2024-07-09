@@ -31,7 +31,7 @@ async function ProductPage({
 	params: { productSlug: string }
 }): Promise<React.ReactElement> {
 	return (
-		<main className="w-screen space-y-14 px-5 pb-20 pt-28 sm:px-10 md:px-20 md:pt-40 lg:px-40">
+		<main className="mx-auto w-screen max-w-[1900px] space-y-14 px-5 pb-20 pt-28 sm:px-10 md:px-20 md:pt-40 lg:px-40">
 			<ProductData productSlug={params.productSlug} />
 		</main>
 	)

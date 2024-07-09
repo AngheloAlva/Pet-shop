@@ -19,7 +19,7 @@ export default async function OrdersPage(): Promise<React.ReactElement> {
 	const { orders } = await getOrdersByUser(session.user.id)
 
 	return (
-		<main className="flex flex-col gap-5 px-5 pb-20 pt-24 text-text-100 sm:px-10 md:px-20 md:pt-40 lg:px-40">
+		<main className="mx-auto flex max-w-[1900px] flex-col gap-5 px-5 pb-20 pt-24 text-text-100 sm:px-10 md:px-20 md:pt-40 lg:px-40">
 			<h1 className="text-3xl font-bold">Orders</h1>
 
 			{orders.length === 0 ? (

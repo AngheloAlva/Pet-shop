@@ -11,7 +11,7 @@ function CategoryBySlugPage({ params }: { params: { categorySlug: string } }): R
 	})
 
 	return (
-		<main className="flex flex-col gap-5 px-5 pb-20 pt-28 text-text-100 sm:px-10 md:px-20 md:pt-40 lg:px-40">
+		<main className="mx-auto flex max-w-[1900px] flex-col gap-5 px-5 pb-20 pt-28 text-text-100 sm:px-10 md:px-20 md:pt-40 lg:px-40">
 			{products && products.length >= 1 && (
 				<>
 					<section className="flex max-w-2xl gap-4">
@@ -28,7 +28,7 @@ function CategoryBySlugPage({ params }: { params: { categorySlug: string } }): R
 						</div>
 					</section>
 
-					<section className="xs:grid-cols-2 grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-3 lg:grid-cols-4">
+					<section className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 						{products.map((product) => (
 							<ProductCard key={product.id} product={product} />
 						))}

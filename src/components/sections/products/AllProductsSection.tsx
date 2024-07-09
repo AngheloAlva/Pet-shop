@@ -47,7 +47,7 @@ export default function AllProductsSection(): React.ReactElement {
 				<>
 					<div className="flex gap-4">
 						<FilterSection />
-						<section className="xs:grid-cols-2 grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-3 xl:grid-cols-4">
+						<section className="grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 							{products.map((product) => (
 								<ProductCard key={product.id} product={product} />
 							))}
