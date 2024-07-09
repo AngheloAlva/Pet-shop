@@ -1,18 +1,19 @@
 "use client"
 
-import { Address } from "@prisma/client"
-import { Card, Input, useToast } from "../ui"
+import { createAddress, getAddressByUser, updateAddress } from "@/actions"
+import { addressFormSchema } from "@/lib"
+import { useAddressForm } from "@/hooks"
 import { z } from "zod"
-import { createAddress, updateAddress } from "@/actions"
+
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import RegionComuneSelect from "./RegionComuneSelect"
 import IsApartmentFields from "./IsApartmentFields"
-import { addressFormSchema } from "@/lib"
-import { useAddressForm } from "@/hooks"
+import { Card, Input, useToast } from "../ui"
+import { Address } from "@prisma/client"
 
 interface AddressFormProps {
-	authId: string
-	address: Address | null
+	userId: string
+	address: Address | undefined
 	isUpdate?: boolean
 	children: React.ReactNode
 	refetchUser?: () => Promise<void>
@@ -20,9 +21,9 @@ interface AddressFormProps {
 }
 
 function AddressForm({
-	authId,
-	setIsButtonEnabled,
+	userId,
 	address,
+	setIsButtonEnabled,
 	isUpdate = false,
 	refetchUser,
 	children,
@@ -32,7 +33,7 @@ function AddressForm({
 
 	const onSubmit = async (data: z.infer<typeof addressFormSchema>): Promise<void> => {
 		try {
-			if (authId === "") {
+			if (!userId) {
 				toast({
 					title: "Error",
 					description: "Error updating user information. Please try again later",
@@ -45,7 +46,7 @@ function AddressForm({
 			if (!isUpdate) {
 				await createAddress({
 					...data,
-					userId: authId,
+					userId,
 				})
 
 				if (refetchUser !== undefined) {
@@ -87,7 +88,7 @@ function AddressForm({
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-1 gap-4 md:grid-cols-2"
+					className="grid grid-cols-1 gap-4 sm:grid-cols-2"
 				>
 					<FormField
 						control={form.control}

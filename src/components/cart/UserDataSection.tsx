@@ -2,17 +2,17 @@ import UserForm from "@/components/forms/UserForm"
 import { User } from "@prisma/client"
 
 interface UserFormProps {
-	authId: string
-	user: User | null
+	userId: string
+	user: User
 	setIsButtonEnabled: (enabled: boolean) => void
 }
 
-function UserDataSection({ user, authId, setIsButtonEnabled }: UserFormProps): React.ReactElement {
+function UserDataSection({ user, userId, setIsButtonEnabled }: UserFormProps): React.ReactElement {
 	return (
 		<section>
 			<h2 className="mb-2 text-2xl font-bold">Personal Information</h2>
 
-			<UserForm user={user} authId={authId} setIsButtonEnabled={setIsButtonEnabled} />
+			<UserForm user={user} setIsButtonEnabled={setIsButtonEnabled} />
 		</section>
 	)
 }

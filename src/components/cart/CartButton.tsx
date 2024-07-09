@@ -10,8 +10,6 @@ import ProductCartItem from "./ProductCartItem"
 export default function CartButton(): React.ReactElement {
 	const cart = useCartStore((state) => state.cart)
 
-	console.log(cart)
-
 	return (
 		<Popover>
 			<PopoverTrigger className="cursor-pointer rounded-lg p-1 text-text-200 transition-colors hover:bg-cream-500 hover:text-bg-100">

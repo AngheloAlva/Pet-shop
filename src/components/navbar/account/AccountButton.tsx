@@ -1,8 +1,8 @@
 import { auth } from "@/auth"
+import Link from "next/link"
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
-import { FaUser } from "react-icons/fa6"
-import IsSignedOut from "./IsSignedOut"
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@/components/ui"
+import { FaUser, FaUserShield } from "react-icons/fa6"
 import IsSignedIn from "./IsSignedIn"
 
 import type { User } from "@prisma/client"
@@ -18,7 +18,27 @@ export default async function AccountButton() {
 			</PopoverTrigger>
 			<PopoverContent className="max-w-52">
 				<div className="flex flex-col items-start gap-2 text-text-100">
-					{session ? <IsSignedIn user={user as User} /> : <IsSignedOut />}
+					{user ? (
+						<IsSignedIn user={user as User} />
+					) : (
+						<>
+							<Link href="/auth/register" passHref className="w-full">
+								<Button className="flex w-full cursor-pointer items-center font-medium">
+									<FaUserShield className="h-5 w-5" />
+									<span className="ml-2">Register</span>
+								</Button>
+							</Link>
+							<Link href="/auth/login" passHref className="w-full">
+								<Button
+									variant={"secondary"}
+									className="flex w-full cursor-pointer items-center font-medium"
+								>
+									<FaUser className="h-5 w-5" />
+									<span className="ml-2">Sign In</span>
+								</Button>
+							</Link>
+						</>
+					)}
 				</div>
 			</PopoverContent>
 		</Popover>

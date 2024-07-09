@@ -6,6 +6,7 @@ interface FormFieldProps {
 	label: string
 	control: any
 	name: string
+	disabled?: boolean
 	placeholder: string
 }
 
@@ -14,6 +15,7 @@ export function RutField({
 	control,
 	name,
 	placeholder,
+	disabled = false,
 }: FormFieldProps): React.ReactElement {
 	return (
 		<FormField
@@ -31,6 +33,7 @@ export function RutField({
 									field.onChange(formatRut(e.target.value))
 								}}
 								placeholder={placeholder}
+								disabled={disabled}
 								{...restFieldProps}
 							/>
 						</FormControl>

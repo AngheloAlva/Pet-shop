@@ -12,7 +12,7 @@ interface UserFormResponse {
 	form: any
 }
 
-export const useAddressForm = (address: Address | null): UserFormResponse => {
+export const useAddressForm = (address: Address | undefined): UserFormResponse => {
 	const form = useForm<z.infer<typeof addressFormSchema>>({
 		resolver: zodResolver(addressFormSchema),
 		defaultValues: {
@@ -28,7 +28,7 @@ export const useAddressForm = (address: Address | null): UserFormResponse => {
 	})
 
 	useEffect(() => {
-		if (address !== null) {
+		if (address !== undefined) {
 			form.reset({
 				commune: address.commune,
 				isApartment: address.isApartment,

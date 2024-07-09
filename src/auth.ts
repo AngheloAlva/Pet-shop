@@ -7,7 +7,7 @@ import { z } from "zod"
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	pages: {
 		signIn: "/auth/login",
-		newUser: "/auth/registro",
+		newUser: "/auth/register",
 	},
 	providers: [
 		credentials({

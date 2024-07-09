@@ -1,23 +1,32 @@
 "use server"
 
-import bcryptjs from "bcryptjs"
 import prisma from "@/lib/prisma"
+import bcryptjs from "bcryptjs"
 
 interface RegisterProps {
-	name: string
-	lastName: string
-	email: string
-	password: string
 	rut: string
+	name: string
+	email: string
+	bornDate: Date
+	lastName: string
+	password: string
 }
 
-export const registerUser = async ({ email, name, password, rut, lastName }: RegisterProps) => {
+export const registerUser = async ({
+	rut,
+	name,
+	email,
+	password,
+	lastName,
+	bornDate,
+}: RegisterProps) => {
 	try {
 		const user = await prisma.user.create({
 			data: {
 				name,
 				rut,
 				lastName,
+				bornDate,
 				email: email.toLowerCase(),
 				password: bcryptjs.hashSync(password),
 			},

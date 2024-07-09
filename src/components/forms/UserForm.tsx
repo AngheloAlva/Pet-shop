@@ -1,27 +1,38 @@
 "use client"
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-import { Button, Card, Input, useToast } from "../ui"
-import { useUserForm } from "@/hooks"
-import { z } from "zod"
 import { userFormSchema } from "@/lib"
 import { updateUser } from "@/actions"
 import { User } from "@prisma/client"
+import { useUserForm } from "@/hooks"
+import { z } from "zod"
+
 import { RutField } from "./RutFields"
+import {
+	Card,
+	Form,
+	Input,
+	Button,
+	FormItem,
+	useToast,
+	FormField,
+	FormLabel,
+	FormMessage,
+	FormControl,
+} from "../ui"
 
 interface UserFormProps {
-	user: User | null
-	authId: string
+	user: User
 	setIsButtonEnabled?: (enabled: boolean) => void
 }
 
-function UserForm({ user, authId, setIsButtonEnabled }: UserFormProps): React.ReactElement {
+function UserForm({ user, setIsButtonEnabled }: UserFormProps): React.ReactElement {
 	const { toast } = useToast()
 	const { form } = useUserForm({ user })
 
 	const onSubmit = async (data: z.infer<typeof userFormSchema>): Promise<void> => {
 		try {
-			await updateUser(authId, data)
+			await updateUser(user.id, data)
+
 			if (setIsButtonEnabled !== undefined) {
 				setIsButtonEnabled(true)
 			}
@@ -46,7 +57,7 @@ function UserForm({ user, authId, setIsButtonEnabled }: UserFormProps): React.Re
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-1 gap-4 md:grid-cols-2"
+					className="grid grid-cols-1 gap-4 sm:grid-cols-2"
 				>
 					<FormField
 						control={form.control}
@@ -75,23 +86,33 @@ function UserForm({ user, authId, setIsButtonEnabled }: UserFormProps): React.Re
 						)}
 					/>
 
-					<RutField label="Rut" control={form.control} name="rut" placeholder="Rut" />
-
 					<FormField
 						control={form.control}
-						name="phone"
+						name="password"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Phone</FormLabel>
+								<FormLabel>Password</FormLabel>
 								<FormControl>
-									<Input placeholder="Phone" {...field} />
+									<Input placeholder="******" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 
-					<Button type="submit" className="mt-4 bg-blue-400 hover:bg-blue-300">
+					<RutField
+						name="rut"
+						label="Rut"
+						disabled={true}
+						placeholder="Rut"
+						control={form.control}
+					/>
+
+					<Button
+						size={"lg"}
+						type="submit"
+						className="mt-4 bg-blue-400 hover:bg-blue-300 sm:col-span-2"
+					>
 						Update Information
 					</Button>
 				</form>

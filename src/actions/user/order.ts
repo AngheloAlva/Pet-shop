@@ -1,5 +1,6 @@
 "use server"
 
+import { OrderResponse } from "@/interfaces"
 import prisma from "@/lib/prisma"
 
 import type { Order } from "@prisma/client"
@@ -58,7 +59,7 @@ const getOrdersByUser = async (
 	userId: string,
 	page = 1,
 	limit = 10
-): Promise<{ ok: boolean; total: number; orders?: Order[]; message?: string }> => {
+): Promise<{ ok: boolean; total: number; orders: OrderResponse[]; message?: string }> => {
 	try {
 		const [total, orders] = await Promise.all([
 			await prisma.order.count({
@@ -69,6 +70,10 @@ const getOrdersByUser = async (
 			await prisma.order.findMany({
 				where: {
 					userId,
+				},
+				include: {
+					payment: true,
+					items: true,
 				},
 				take: limit,
 				skip: (page - 1) * limit,
@@ -84,6 +89,7 @@ const getOrdersByUser = async (
 		return {
 			ok: false,
 			total: 0,
+			orders: [],
 			message: `${error}`,
 		}
 	}

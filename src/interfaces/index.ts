@@ -7,4 +7,5 @@ export * from "./shop/category"
 
 export * from "./user/user"
 export * from "./user/cart"
+export * from "./user/order"
 export * from "./user/address"

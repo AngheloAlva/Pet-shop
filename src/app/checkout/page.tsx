@@ -3,7 +3,7 @@
 import { useCartStore } from "@/store"
 import Link from "next/link"
 
-import { ResumeSection, SummarySection } from "@/components/cart"
+import { ResumeSection, SummarySection, UserDataSection } from "@/components/cart"
 import { Button } from "@/components/ui"
 
 function CartPage(): React.ReactElement {
@@ -18,8 +18,7 @@ function CartPage(): React.ReactElement {
 			</div>
 
 			{/* <UserDataSection
-        user={userDb}
-        authId={user?.id ?? ''}
+        user={}
         setIsButtonEnabled={setIsButtonEnabled}
       /> */}
 
