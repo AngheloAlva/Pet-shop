@@ -1,6 +1,6 @@
 export const shippingMethods = [
-	{ CORREOS_CHILE: 4000 },
-	{ CHILEXPRESS: 5000 },
-	{ SHOP_PICKUP: 0 },
-	{ STARKEN: 4500 },
+	{ method: "CORREOS_CHILE", price: 4000 },
+	{ method: "CHILEXPRESS", price: 5000 },
+	{ method: "SHOP_PICKUP", price: 0 },
+	{ method: "STARKEN", price: 4500 },
 ]

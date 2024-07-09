@@ -1,23 +1,20 @@
+"use client"
+
+import { useCheckoutStore } from "@/store"
+import { shippingMethods } from "@/lib"
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui"
 
-const shippingMethods = ["CHILEXPRESS", "STARKEN", "CORREOS_CHILE", "SHOP_PICKUP"]
+function ShippingMethodSelect(): React.ReactElement {
+	const { shippingMethod, updateShippingMethod } = useCheckoutStore()
 
-interface ShippingMethodSelectProps {
-	onChange: (method: "CHILEXPRESS" | "STARKEN" | "CORREOS_CHILE" | "SHOP_PICKUP") => void
-	shippingMethod: string
-}
-
-function ShippingMethodSelect({
-	onChange,
-	shippingMethod,
-}: ShippingMethodSelectProps): React.ReactElement {
 	return (
-		<Select onValueChange={onChange}>
+		<Select onValueChange={updateShippingMethod} defaultValue={shippingMethod.method}>
 			<SelectTrigger className="mt-2 bg-white">
-				<SelectValue placeholder={shippingMethod} />
+				<SelectValue placeholder={shippingMethod.method} />
 			</SelectTrigger>
 			<SelectContent>
-				{shippingMethods.map((method) => (
+				{shippingMethods.map(({ method }) => (
 					<SelectItem value={method} key={method}>
 						{method.split("_").join(" ")}
 					</SelectItem>

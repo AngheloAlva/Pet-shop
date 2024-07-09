@@ -149,7 +149,6 @@ model Order {
   id                Int       @id  @default(autoincrement())
   address           String
   subtotal          Float
-  discount          Float
   total             Float
   shippingCost      Float
   checkoutSessionId String?

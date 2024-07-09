@@ -1,22 +1,22 @@
-import { Card } from "@/components/ui"
+"use client"
+
+import { useCartStore, useCheckoutStore } from "@/store"
 import { calculateCartTotals } from "@/helpers"
-import { ProductCart } from "@/interfaces"
 import { cn } from "@/lib"
 
+import { Card } from "@/components/ui"
+
 interface SummarySectionProps {
-	products: ProductCart[]
-	shippingCost?: number
 	className?: string
 }
 
-function SummarySection({
-	products,
-	className,
-	shippingCost = 0,
-}: SummarySectionProps): React.ReactElement {
+function SummarySection({ className }: SummarySectionProps): React.ReactElement {
+	const { shippingMethod } = useCheckoutStore()
+	const { cart } = useCartStore()
+
 	const { totalDiscount, totalPriceAfterDiscount, totalPriceBeforeDiscount } = calculateCartTotals(
-		products,
-		shippingCost ?? 0
+		cart,
+		shippingMethod.price
 	)
 
 	return (
@@ -44,7 +44,9 @@ function SummarySection({
 					<p>
 						<strong>Shipping</strong>
 					</p>
-					<p>{shippingCost.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</p>
+					<p>
+						{shippingMethod.price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
+					</p>
 				</div>
 				<div className="flex justify-between font-medium">
 					<p>
