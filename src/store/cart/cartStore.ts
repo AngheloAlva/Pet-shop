@@ -35,6 +35,7 @@ export const useCartStore = create<CartState>()(
 
 				if (!productInCart) {
 					set({ cart: [...cart, product] })
+					return
 				}
 
 				const updatedCartProducts = cart.map((item) => {

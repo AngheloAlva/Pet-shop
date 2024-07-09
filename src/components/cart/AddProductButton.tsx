@@ -20,6 +20,7 @@ export default function AddProductButton({
 	quantity,
 	className,
 }: AddProductButtonProps): React.ReactElement {
+	const addProduct = useCartStore((state) => state.addProduct)
 	const { toast } = useToast()
 
 	const handleAddToCart = async (): Promise<void> => {
@@ -41,7 +42,7 @@ export default function AddProductButton({
 			price: product.options[optionSelectedIndex].price,
 		}
 
-		useCartStore.getState().addProduct(newProductCart)
+		addProduct(newProductCart)
 	}
 
 	return (
