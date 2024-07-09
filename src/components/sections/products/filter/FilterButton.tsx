@@ -1,7 +1,11 @@
-import BrandSelect from "./BrandSelect"
-import PetTypeSelect from "./PetTypeSelect"
-import CategorySelect from "./CategorySelect"
+"use client"
+
+import { useFilterStore } from "@/store"
+
 import LifeStageSelect from "./LifeStageSelect"
+import CategorySelect from "./CategorySelect"
+import PetTypeSelect from "./PetTypeSelect"
+import BrandSelect from "./BrandSelect"
 import {
 	Sheet,
 	SheetTitle,
@@ -11,9 +15,9 @@ import {
 	SheetDescription,
 } from "@/components/ui"
 
-import type { GetProductsWithFilters } from "@/interfaces"
+export default function FilterButton(): React.ReactElement {
+	const { filters, setFilters } = useFilterStore()
 
-export default function FilterButton({ setFilters, filters }: FilterProps): React.ReactElement {
 	return (
 		<Sheet>
 			<SheetTrigger>
@@ -28,18 +32,12 @@ export default function FilterButton({ setFilters, filters }: FilterProps): Reac
 				</SheetHeader>
 
 				<div className="mt-8 flex flex-col gap-4">
-					<CategorySelect setFilters={setFilters} filters={filters} />
-					<BrandSelect setFilters={setFilters} filters={filters} />
-					<LifeStageSelect setFilters={setFilters} filters={filters} />
-					<PetTypeSelect setFilters={setFilters} filters={filters} />
+					<CategorySelect filters={filters} setFilters={setFilters} />
+					<BrandSelect filters={filters} setFilters={setFilters} />
+					<LifeStageSelect filters={filters} setFilters={setFilters} />
+					<PetTypeSelect filters={filters} setFilters={setFilters} />
 				</div>
 			</SheetContent>
 		</Sheet>
 	)
-}
-
-interface FilterProps {
-	setFilters: (filters: GetProductsWithFilters) => void
-	filters: GetProductsWithFilters
-	className?: string
 }

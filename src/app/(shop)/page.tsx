@@ -1,19 +1,33 @@
+import { Suspense } from "react"
+
 import {
+	PetsSection,
 	BannerSection,
 	BrandsSection,
-	PetsSection,
-	ProductsByBrandSection,
 	ProductsSection,
+	BrandSectionSkeleton,
+	ProductsByBrandSection,
+	ProductsSectionSkeleton,
 } from "@/components/sections"
 
 export default function HomePage() {
 	return (
 		<main className="flex flex-col gap-10 pb-20 pt-16 md:pt-28">
 			<BannerSection />
-			<ProductsSection />
+
+			<Suspense fallback={<ProductsSectionSkeleton />}>
+				<ProductsSection />
+			</Suspense>
+
 			<PetsSection />
-			<ProductsByBrandSection />
-			<BrandsSection />
+
+			<Suspense fallback={<ProductsSectionSkeleton />}>
+				<ProductsByBrandSection />
+			</Suspense>
+
+			<Suspense fallback={<BrandSectionSkeleton />}>
+				<BrandsSection />
+			</Suspense>
 		</main>
 	)
 }

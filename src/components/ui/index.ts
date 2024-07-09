@@ -4,6 +4,7 @@ import OrderCard from "./shop/OrderCard"
 import ProductCard from "./shop/ProductCard"
 import PaginationButtons from "./shop/PaginationButtons"
 import { CalendarWithYearPicker } from "./calendar-with-year-picker"
+import ProductCardSkeleton from "./shop/ProductCardSkeleton"
 
 export * from "./form"
 export * from "./card"
@@ -19,9 +20,18 @@ export * from "./toaster"
 export * from "./calendar"
 export * from "./checkbox"
 export * from "./carousel"
+export * from "./skeleton"
 export * from "./use-toast"
 export * from "./separator"
 export * from "./accordion"
 export * from "./navigation-menu"
 
-export { ProductCard, BrandCard, PetCard, PaginationButtons, OrderCard, CalendarWithYearPicker }
+export {
+	PetCard,
+	BrandCard,
+	OrderCard,
+	ProductCard,
+	PaginationButtons,
+	ProductCardSkeleton,
+	CalendarWithYearPicker,
+}

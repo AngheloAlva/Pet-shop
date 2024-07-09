@@ -14,10 +14,10 @@ import {
 import type { GetProductsWithFilters } from "@/interfaces"
 
 export default function CategorySelect({
-	setFilters,
 	filters,
 	className,
-}: FilterProps): React.ReactElement {
+	setFilters,
+}: CategorySelectProps): React.ReactElement {
 	const { categories } = useCategories({
 		isAvailable: true,
 		limit: 100,
@@ -63,8 +63,8 @@ export default function CategorySelect({
 	)
 }
 
-interface FilterProps {
-	setFilters: (filters: GetProductsWithFilters) => void
+interface CategorySelectProps {
 	filters: GetProductsWithFilters
+	setFilters: (filters: GetProductsWithFilters) => void
 	className?: string
 }

@@ -15,9 +15,6 @@ interface CartState {
 	removeProduct: (productId: number, optionSelectedIndex: number) => void
 	updateProductQuantity: (product: ProductCart, quantity: number) => void
 	clearCart: () => void
-	// updateCartState: (products: ProductCart[]) => void
-	// increaseQuantity: (productId: number, optionSelectedIndex: number) => void
-	// decreaseQuantity: (productId: number, optionSelectedIndex: number) => void
 }
 
 export const useCartStore = create<CartState>()(
@@ -96,46 +93,6 @@ export const useCartStore = create<CartState>()(
 			clearCart: () => {
 				set({ cart: [] })
 			},
-
-			// updateCartState: (products) => {
-			// 	set({ products })
-			// },
-
-			// increaseQuantity: (productId, optionSelectedIndex) => {
-			// 	set((state) => {
-			// 		const updatedProducts = state.products.map((product) => {
-			// 			if (
-			// 				product.productId === productId &&
-			// 				product.optionSelectedIndex === optionSelectedIndex
-			// 			) {
-			// 				return { ...product, quantity: product.quantity + 1 }
-			// 			}
-			// 			return product
-			// 		})
-
-			// 		return { products: updatedProducts }
-			// 	})
-			// },
-
-			// decreaseQuantity: (productId, optionSelectedIndex) => {
-			// 	set((state) => {
-			// 		const updatedProducts = state.products.map((product) => {
-			// 			if (
-			// 				product.productId === productId &&
-			// 				product.optionSelectedIndex === optionSelectedIndex
-			// 			) {
-			// 				const newQuantity = product.quantity - 1
-			// 				if (newQuantity < 1) {
-			// 					return product
-			// 				}
-			// 				return { ...product, quantity: newQuantity }
-			// 			}
-			// 			return product
-			// 		})
-
-			// 		return { products: updatedProducts }
-			// 	})
-			// },
 		}),
 		{
 			name: "cart",

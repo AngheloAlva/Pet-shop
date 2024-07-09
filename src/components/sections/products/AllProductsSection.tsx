@@ -1,52 +1,64 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { notFound } from "next/navigation"
+import { useFilterStore } from "@/store"
+import { getProducts } from "@/actions"
+
 import { PaginationButtons, ProductCard } from "@/components/ui"
 import FilterSection from "./filter/FilterSection"
-import FilterButton from "./filter/FilterButton"
 
-import type { GetProductResponse, GetProductsWithFilters } from "@/interfaces"
+import type { GetProductResponse } from "@/interfaces"
+import AllProductsSkeleton from "./AllProductsSkeleton"
 
-interface ProductsSectionProps {
-	products: GetProductResponse[]
-	total: number
-	filters: GetProductsWithFilters
-	setFilters: (filters: GetProductsWithFilters) => void
-	setPage: (page: number) => void
-	page: number
-	limit: number
-}
+export default function AllProductsSection(): React.ReactElement {
+	const filters = useFilterStore((state) => state.filters)
+	const [products, setProducts] = useState<GetProductResponse[]>([])
+	const [isLoading, setIsLoading] = useState(true)
+	const [total, setTotal] = useState(0)
+	const [page, setPage] = useState(1)
 
-export default function AllProductsSection({
-	filters,
-	limit,
-	page,
-	products,
-	setFilters,
-	setPage,
-	total,
-}: ProductsSectionProps): React.ReactElement {
+	useEffect(() => {
+		const fetchProducts = async (): Promise<void> => {
+			const { ok, products, total } = await getProducts({
+				...filters,
+				isAvailable: true,
+				limit: 12,
+				page,
+			})
+
+			if (!ok || !products) {
+				notFound()
+			}
+
+			setProducts(products)
+			setTotal(total)
+			setIsLoading(false)
+		}
+
+		void fetchProducts()
+	}, [filters, page])
+
 	return (
 		<>
-			<section className="flex flex-col">
-				<div className="max-w-xl">
-					<h1 className="text-nowrap text-xl font-bold">All Products</h1>
-					<p className="text-muted-foreground">{total} products</p>
-				</div>
-				<div className="flex w-full items-center justify-end lg:hidden">
-					<FilterButton setFilters={setFilters} filters={filters} />
-				</div>
-			</section>
+			{isLoading ? (
+				<AllProductsSkeleton />
+			) : (
+				<>
+					<div className="flex gap-4">
+						<FilterSection />
+						<section className="xs:grid-cols-2 grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-3 xl:grid-cols-4">
+							{products.map((product) => (
+								<ProductCard key={product.id} product={product} />
+							))}
+						</section>
+					</div>
 
-			<div className="flex gap-4">
-				<FilterSection setFilters={setFilters} filters={filters} />
-				<section className="xs:grid-cols-2 grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-3 xl:grid-cols-4">
-					{products.map((product) => (
-						<ProductCard key={product.id} product={product} />
-					))}
-				</section>
-			</div>
-
-			<div className="mt-5 flex w-full items-center justify-center gap-2">
-				<PaginationButtons setPage={setPage} limit={limit} total={total} page={page} />
-			</div>
+					<div className="mt-5 flex w-full items-center justify-center gap-2">
+						<PaginationButtons setPage={setPage} limit={12} total={total} page={page} />
+					</div>
+				</>
+			)}
 		</>
 	)
 }
