@@ -1,7 +1,8 @@
-import { getBrandById } from "@/actions"
-import { auth } from "@/auth"
-import UpdateBrandForm from "@/components/admin/forms/brand/Update-brand-form"
 import { createBrandSchema } from "@/lib"
+import { getBrandById } from "@/actions"
+
+import { UpdateBrandForm } from "@/components/forms"
+
 import type { z } from "zod"
 
 async function UpdateBrandPage({

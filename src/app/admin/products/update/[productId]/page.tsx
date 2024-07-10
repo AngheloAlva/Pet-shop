@@ -1,6 +1,8 @@
-import { getProductById } from "@/actions"
-import UpdateProductForm from "@/components/admin/forms/product/Update-product-form"
 import { createProductSchema } from "@/lib"
+import { getProductById } from "@/actions"
+
+import { UpdateProductForm } from "@/components/forms"
+
 import type { z } from "zod"
 
 async function UpdateProductPage({

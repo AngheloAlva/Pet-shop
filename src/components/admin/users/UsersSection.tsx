@@ -1,16 +1,16 @@
 "use client"
 
-import { useCategoriesWithPagination } from "@/hooks"
-import ProductsSectionSkeleton from "../skeletons/ProductsSectionSkeleton"
-import AdminCategoryItem from "./CategoryItem"
-import { PaginationButtons } from "@/components/ui"
+import { useUsersWithPagination } from "@/hooks"
 
-function AdminCategoriesSection(): React.ReactElement {
+import ProductsSectionSkeleton from "../skeletons/ProductsSectionSkeleton"
+import { PaginationButtons } from "@/components/ui"
+import UserItem from "./UserItem"
+
+function AdminUsersSection(): React.ReactElement {
 	const limit = 10
-	const { categories, isLoading, total, page, setPage, refresh } = useCategoriesWithPagination({
+	const { isLoading, users, page, setPage, total } = useUsersWithPagination({
 		isAvailable: true,
 		limit,
-		page: 1,
 	})
 
 	return (
@@ -20,15 +20,14 @@ function AdminCategoriesSection(): React.ReactElement {
 			) : (
 				<section className="flex flex-col gap-2">
 					<div className="flex w-full items-center justify-between">
-						<h2 className="text-lg font-bold">Categories</h2>
-						<p>{total} categories</p>
+						<h2 className="text-lg font-bold">Users</h2>
+						<p>{total} users</p>
 					</div>
 					<div className="flex gap-4">
-						<section className="grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
-							{categories.length > 0 &&
-								categories.map((category) => (
-									<AdminCategoryItem key={category.id} category={category} refresh={refresh} />
-								))}
+						<section className="grid w-full grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
+							{users.map((user) => (
+								<UserItem key={user.id} user={user} />
+							))}
 						</section>
 					</div>
 
@@ -41,4 +40,4 @@ function AdminCategoriesSection(): React.ReactElement {
 	)
 }
 
-export default AdminCategoriesSection
+export default AdminUsersSection

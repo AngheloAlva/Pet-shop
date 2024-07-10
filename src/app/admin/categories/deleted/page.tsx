@@ -1,4 +1,4 @@
-import AdminDeletedCategoriesSection from "@/components/admin/categories/Deleted-categories-section"
+import { AdminDeletedCategoriesSection } from "@/components/admin"
 
 function AdminDeletedCategoriesPage(): React.ReactElement {
 	return (

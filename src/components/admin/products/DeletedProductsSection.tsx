@@ -1,16 +1,19 @@
 "use client"
 
-import { useCategoriesWithPagination } from "@/hooks"
+import { useProducts } from "@/hooks"
 import ProductsSectionSkeleton from "../skeletons/ProductsSectionSkeleton"
-import AdminCategoryItem from "./CategoryItem"
+import AdminProductItem from "./ProductItem"
+import { FilterButton } from "@/components/sections"
 import { PaginationButtons } from "@/components/ui"
 
-function AdminCategoriesSection(): React.ReactElement {
+function AdminDeletedProductsSection(): React.ReactElement {
 	const limit = 10
-	const { categories, isLoading, total, page, setPage, refresh } = useCategoriesWithPagination({
-		isAvailable: true,
-		limit,
-		page: 1,
+	const { products, total, setPage, page, isLoading } = useProducts({
+		initialFilters: {
+			isAvailable: false,
+			page: 1,
+			limit,
+		},
 	})
 
 	return (
@@ -20,15 +23,14 @@ function AdminCategoriesSection(): React.ReactElement {
 			) : (
 				<section className="flex flex-col gap-2">
 					<div className="flex w-full items-center justify-between">
-						<h2 className="text-lg font-bold">Categories</h2>
-						<p>{total} categories</p>
+						<h2 className="text-lg font-bold">Deleted Products</h2>
+						<p>{total} products</p>
+						<FilterButton />
 					</div>
 					<div className="flex gap-4">
 						<section className="grid grid-cols-1 gap-x-2 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
-							{categories.length > 0 &&
-								categories.map((category) => (
-									<AdminCategoryItem key={category.id} category={category} refresh={refresh} />
-								))}
+							{products &&
+								products.map((product) => <AdminProductItem key={product.id} product={product} />)}
 						</section>
 					</div>
 
@@ -41,4 +43,4 @@ function AdminCategoriesSection(): React.ReactElement {
 	)
 }
 
-export default AdminCategoriesSection
+export default AdminDeletedProductsSection

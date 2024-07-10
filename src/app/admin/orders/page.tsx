@@ -1,4 +1,4 @@
-import AdminOrdersSection from "@/components/admin/orders/Orders-section"
+import { AdminOrdersSection } from "@/components/admin"
 
 function AdminOrdersPage(): React.ReactElement {
 	return (

@@ -1,6 +1,8 @@
-import { getCategoryById } from "@/actions"
-import UpdateCategoryForm from "@/components/admin/forms/category/Update-category-form"
 import { createCategorySchema } from "@/lib"
+import { getCategoryById } from "@/actions"
+
+import { UpdateCategoryForm } from "@/components/forms"
+
 import type { z } from "zod"
 
 async function UpdateCategoryPage({

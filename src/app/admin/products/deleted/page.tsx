@@ -1,4 +1,4 @@
-import AdminDeletedProductsSection from "@/components/admin/products/Deleted-products-section"
+import { AdminDeletedProductsSection } from "@/components/admin"
 
 function AdminDeletedProductsPage(): React.ReactElement {
 	return (

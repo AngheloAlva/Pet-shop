@@ -1,4 +1,4 @@
-import AdminCategoriesSection from "@/components/admin/categories/CategoriesSection"
+import { AdminCategoriesSection } from "@/components/admin"
 import { Button, Separator } from "@/components/ui"
 import Link from "next/link"
 

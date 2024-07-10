@@ -1,4 +1,4 @@
-import CreateProductForm from "@/components/admin/forms/product/Create-product-form"
+import { CreateProductForm } from "@/components/forms/"
 
 function CreateProductPage(): React.ReactElement {
 	return (

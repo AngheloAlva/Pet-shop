@@ -1,4 +1,4 @@
-import AdminUsersSection from "@/components/admin/users/Users-section"
+import { AdminUsersSection } from "@/components/admin"
 
 function AdminUsersPage(): React.ReactElement {
 	return (

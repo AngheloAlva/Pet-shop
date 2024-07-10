@@ -1,4 +1,4 @@
-import CreateCategoryForm from "@/components/admin/forms/category/Create-category-form"
+import { CreateCategoryForm } from "@/components/forms/"
 
 function CreateCategoryPage(): React.ReactElement {
 	return (
