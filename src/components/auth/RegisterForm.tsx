@@ -25,6 +25,7 @@ import {
 	PopoverContent,
 	CalendarWithYearPicker,
 } from "../ui"
+import Link from "next/link"
 
 export default function RegisterForm(): React.ReactElement {
 	const { toast } = useToast()
@@ -163,8 +164,15 @@ export default function RegisterForm(): React.ReactElement {
 				/>
 
 				<Button className="mt-2 sm:col-span-2" size={"lg"} type="submit">
-					Iniciar sesión
+					Register
 				</Button>
+
+				<p className="text-center sm:col-span-2">
+					Already have an account?{" "}
+					<Link href="/auth/login" className="font-semibold text-sky-600">
+						Login
+					</Link>
+				</p>
 			</form>
 		</Form>
 	)

@@ -17,6 +17,7 @@ import {
 	FormControl,
 	FormMessage,
 } from "../ui"
+import Link from "next/link"
 
 export default function LoginForm(): React.ReactElement {
 	const { toast } = useToast()
@@ -73,9 +74,14 @@ export default function LoginForm(): React.ReactElement {
 					)}
 				/>
 
-				<Button type="submit">Iniciar sesión</Button>
+				<Button type="submit">Login</Button>
 
-				{/* // TODO: Add "Forgot your passsword?" */}
+				<p>
+					Don&apos;t have an account?{" "}
+					<Link href="/auth/register" className="font-semibold text-sky-600">
+						Register
+					</Link>
+				</p>
 			</form>
 		</Form>
 	)

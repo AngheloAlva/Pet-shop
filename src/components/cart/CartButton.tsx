@@ -1,14 +1,42 @@
 "use client"
 
+import { redirect } from "next/navigation"
 import { useCartStore } from "@/store"
-import Link from "next/link"
 
-import { Popover, PopoverContent, PopoverTrigger, Button } from "@/components/ui"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+	Button,
+	useToast,
+	ToastAction,
+} from "@/components/ui"
 import { FaBasketShopping } from "react-icons/fa6"
 import ProductCartItem from "./ProductCartItem"
 
-export default function CartButton(): React.ReactElement {
+import type { User } from "@prisma/client"
+import Link from "next/link"
+
+export default function CartButton({ user }: { user: User | undefined }): React.ReactElement {
 	const cart = useCartStore((state) => state.cart)
+	const isLogged = user != null
+	const { toast } = useToast()
+
+	const handleRedirectToCheckout = () => {
+		if (!isLogged) {
+			toast({
+				title: "You need to be logged in to access the checkout",
+				description: "Please create an account or log in to continue.",
+				action: (
+					<Link href="/auth/register">
+						<ToastAction altText="Register">Register</ToastAction>
+					</Link>
+				),
+			})
+		}
+
+		redirect("/checkout")
+	}
 
 	return (
 		<Popover>
@@ -31,11 +59,13 @@ export default function CartButton(): React.ReactElement {
 						</div>
 					)}
 
-					<Link href="/checkout">
-						<Button variant={"outline"} className="mt-5 w-full">
-							Go to Checkout
-						</Button>
-					</Link>
+					<Button
+						onClick={() => handleRedirectToCheckout()}
+						variant={"outline"}
+						className="mt-5 w-full"
+					>
+						Go to Checkout
+					</Button>
 				</div>
 			</PopoverContent>
 		</Popover>
