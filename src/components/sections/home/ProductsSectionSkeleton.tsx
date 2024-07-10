@@ -2,7 +2,7 @@ import { Carousel, CarouselContent, CarouselItem, ProductCardSkeleton } from "@/
 
 export default function ProductsSectionSkeleton(): React.ReactElement {
 	return (
-		<section className="px-5 sm:px-10 md:px-20 lg:px-40">
+		<section className="w-full px-5 sm:px-10 md:px-20 lg:px-40">
 			<h2 className="mb-2 text-3xl font-bold">Products</h2>
 
 			<Carousel opts={{ align: "start", loop: true }}>
