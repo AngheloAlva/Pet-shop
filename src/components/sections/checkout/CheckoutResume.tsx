@@ -14,7 +14,7 @@ export default function CheckoutResume({ user }: { user: User }): React.ReactEle
 			<div className="flex flex-col gap-10 lg:flex-row">
 				<ResumeSection products={cart} />
 
-				<SummarySection products={cart} />
+				<SummarySection />
 			</div>
 		</>
 	)

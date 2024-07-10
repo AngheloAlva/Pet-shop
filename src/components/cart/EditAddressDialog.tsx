@@ -10,12 +10,7 @@ function EditAddressDialog({ address, authId }: AddressCardProps): React.ReactEl
 			</DialogTrigger>
 			<DialogContent>
 				<h2 className="mb-1 text-2xl font-bold">Edit address</h2>
-				<AddressForm
-					userId={authId}
-					setIsButtonEnabled={() => {}}
-					address={address}
-					isUpdate={true}
-				>
+				<AddressForm userId={authId} setIsButtonEnabled={() => {}} address={address}>
 					<DialogClose>
 						<Button type="submit" className="w-full bg-blue-400 hover:bg-blue-300" size={"lg"}>
 							Save

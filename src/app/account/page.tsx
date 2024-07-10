@@ -34,11 +34,7 @@ export default async function AccountPage(): Promise<React.ReactElement> {
 
 					<div className="w-full xl:w-1/2">
 						<h2 className="mb-2 text-2xl font-bold">Address</h2>
-						<AddressForm
-							address={address ? address[0] : undefined}
-							userId={session.user.id}
-							isUpdate={true}
-						>
+						<AddressForm address={address ? address[0] : undefined} userId={session.user.id}>
 							<Button
 								type="submit"
 								size={"lg"}
