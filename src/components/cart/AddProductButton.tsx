@@ -43,6 +43,11 @@ export default function AddProductButton({
 		}
 
 		addProduct(newProductCart)
+		toast({
+			title: "Product added to cart",
+			description: `${product.name} x ${quantity}`,
+			duration: 2000,
+		})
 	}
 
 	return (

@@ -1,4 +1,5 @@
 import type { PaymentStatus, ShippingMethod } from "@prisma/client"
+import type { ProductCart } from "@/interfaces"
 
 export interface CreatePayment {
 	currency: string
@@ -7,5 +8,6 @@ export interface CreatePayment {
 	subtotal: number
 	total: number
 	shippingCost: number
+	cart: ProductCart[]
 	shippingMethod: ShippingMethod
 }

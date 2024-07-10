@@ -4,11 +4,12 @@ import { useCartStore, useCheckoutStore } from "@/store"
 import { Button, useToast } from "../ui"
 import { useEffect, useState } from "react"
 import { createCheckoutSession } from "@/actions"
-import { redirect } from "next/navigation"
 import { calculateCartTotals } from "@/helpers"
+import { useRouter } from "next/navigation"
 
 export default function ShippingButton({ userId }: { userId: string }): React.ReactElement {
 	const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false)
+	const router = useRouter()
 
 	const { haveAddress, shippingMethod, isLoading, setIsLoading } = useCheckoutStore()
 	const cart = useCartStore((state) => state.cart)
@@ -25,10 +26,11 @@ export default function ShippingButton({ userId }: { userId: string }): React.Re
 		try {
 			setIsLoading(true)
 
-			const { ok, message, orderId } = await createCheckoutSession({
+			const { ok, message, url } = await createCheckoutSession({
+				cart,
+				userId,
 				currency: "usd",
 				status: "PENDING",
-				userId,
 				shippingCost: shippingMethod.price,
 				shippingMethod: shippingMethod.method,
 				subtotal: cart.reduce((acc, { price }) => acc + price, 0),
@@ -43,7 +45,7 @@ export default function ShippingButton({ userId }: { userId: string }): React.Re
 				})
 			}
 
-			redirect(`/account/orders/${orderId}1`)
+			if (url !== undefined) router.push(url)
 		} catch (error) {
 			setIsLoading(false)
 		}

@@ -58,7 +58,7 @@ const getOrder = async (
 const getOrdersByUser = async (
 	userId: string,
 	page = 1,
-	limit = 10
+	limit = 20
 ): Promise<{ ok: boolean; total: number; orders: OrderResponse[]; message?: string }> => {
 	try {
 		const [total, orders] = await Promise.all([

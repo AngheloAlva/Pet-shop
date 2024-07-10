@@ -40,7 +40,11 @@ function AddressSection({ userId }: AddressSectionProps): React.ReactElement {
 			<h2 className="mb-2 text-2xl font-bold">Shipping address</h2>
 			{address === undefined ? (
 				<AddressForm userId={userId} address={address}>
-					<Button type="submit" className="w-full bg-blue-400 hover:bg-blue-300" size={"lg"}>
+					<Button
+						type="submit"
+						className="w-full bg-blue-400 hover:bg-blue-300 sm:col-span-2"
+						size={"lg"}
+					>
 						Save
 					</Button>
 				</AddressForm>

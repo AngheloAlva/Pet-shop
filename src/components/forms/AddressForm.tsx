@@ -10,13 +10,12 @@ import RegionComuneSelect from "./RegionComuneSelect"
 import IsApartmentFields from "./IsApartmentFields"
 import { Card, Input, useToast } from "../ui"
 import { Address } from "@prisma/client"
+import { useCheckoutStore } from "@/store"
 
 interface AddressFormProps {
 	userId: string
 	address: Address | undefined
-	isUpdate?: boolean
 	children: React.ReactNode
-	refetchUser?: () => Promise<void>
 	setIsButtonEnabled?: (enabled: boolean) => void
 }
 
@@ -24,44 +23,58 @@ function AddressForm({
 	userId,
 	address,
 	setIsButtonEnabled,
-	isUpdate = false,
-	refetchUser,
 	children,
 }: AddressFormProps): React.ReactElement {
 	const { toast } = useToast()
 	const { form } = useAddressForm(address)
+	const setHaveAddress = useCheckoutStore((state) => state.setHaveAddress)
 
 	const onSubmit = async (data: z.infer<typeof addressFormSchema>): Promise<void> => {
+		console.log("data", data)
 		try {
-			if (!userId) {
-				toast({
-					title: "Error",
-					description: "Error updating user information. Please try again later",
-					duration: 3000,
-					variant: "destructive",
-				})
-				return
-			}
-
-			if (!isUpdate) {
-				await createAddress({
+			if (!address) {
+				const { ok, address } = await createAddress({
 					...data,
 					userId,
 				})
 
-				if (refetchUser !== undefined) {
-					await refetchUser()
+				if (!ok) {
+					toast({
+						title: "Error",
+						description: "Error updating user information",
+						duration: 3000,
+						variant: "destructive",
+					})
+					return
 				}
-			} else {
-				if (address?.id === undefined) return
 
-				await updateAddress(address.id, {
+				setHaveAddress(true)
+				toast({
+					title: "Success",
+					description: `New address: ${address?.name} created`,
+					duration: 3000,
+				})
+			} else {
+				const { ok } = await updateAddress(address.id, {
 					...data,
 				})
 
-				if (refetchUser !== undefined) {
-					await refetchUser()
+				if (!ok) {
+					toast({
+						title: "Error",
+						description: "Error updating user information",
+						duration: 3000,
+						variant: "destructive",
+					})
+					return
 				}
+
+				setHaveAddress(true)
+				toast({
+					title: "Success",
+					description: "User information updated",
+					duration: 3000,
+				})
 			}
 
 			if (setIsButtonEnabled !== undefined) {
@@ -97,7 +110,7 @@ function AddressForm({
 							<FormItem>
 								<FormLabel>Address Name</FormLabel>
 								<FormControl>
-									<Input placeholder="Name" {...field} />
+									<Input placeholder="Ej: House" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -147,6 +160,22 @@ function AddressForm({
 							</FormItem>
 						)}
 					/>
+
+					<FormField
+						control={form.control}
+						name="phone"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Phone</FormLabel>
+								<FormControl>
+									<Input placeholder="123456789" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<div className="hidden sm:col-span-1 sm:block" />
 
 					<IsApartmentFields form={form} />
 
