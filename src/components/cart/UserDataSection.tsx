@@ -1,4 +1,4 @@
-import UserForm from "@/components/forms/UserForm"
+import { UserForm } from "@/components/forms"
 
 import type { User } from "@prisma/client"
 

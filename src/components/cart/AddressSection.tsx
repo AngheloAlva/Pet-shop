@@ -1,11 +1,13 @@
 "use client"
 
-import AddressForm from "@/components/forms/AddressForm"
-import { Button, useToast } from "@/components/ui"
-import { Address } from "@prisma/client"
-import AddressCard from "./AddressCard"
-import { useEffect, useState } from "react"
 import { getAddressByUser } from "@/actions"
+import { useEffect, useState } from "react"
+
+import { Button, useToast } from "@/components/ui"
+import { AddressForm } from "@/components/forms"
+import AddressCard from "./AddressCard"
+
+import type { Address } from "@prisma/client"
 
 interface AddressSectionProps {
 	userId: string

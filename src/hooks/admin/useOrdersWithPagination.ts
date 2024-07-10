@@ -1,3 +1,5 @@
+"use client"
+
 import { getOrders } from "@/actions"
 import { useToast } from "@/components/ui"
 import { Order } from "@prisma/client"

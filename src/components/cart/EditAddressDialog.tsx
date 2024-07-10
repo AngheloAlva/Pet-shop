@@ -1,6 +1,7 @@
-import AddressForm from "@/components/forms/AddressForm"
 import { Button, Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/ui"
-import { Address } from "@prisma/client"
+import { AddressForm } from "@/components/forms"
+
+import type { Address } from "@prisma/client"
 
 function EditAddressDialog({ address, authId }: AddressCardProps): React.ReactElement {
 	return (

@@ -1,3 +1,5 @@
+"use client"
+
 import { getUsers } from "@/actions"
 import { useToast } from "@/components/ui"
 import { User } from "@prisma/client"
