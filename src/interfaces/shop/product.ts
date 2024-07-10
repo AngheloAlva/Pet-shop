@@ -39,8 +39,8 @@ export interface GetProductResponse extends Product {
 }
 
 export interface UpdateProduct {
-	brandId: string
-	categoryId: string
+	brandId: number
+	categoryId: number
 	description: string
 	images: string[]
 	lifeStage: LifeStage
@@ -48,5 +48,5 @@ export interface UpdateProduct {
 	name: string
 	petType: PetType[]
 	slug: string
-	productId: string
+	productId: number
 }

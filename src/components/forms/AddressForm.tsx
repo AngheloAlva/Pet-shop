@@ -1,6 +1,6 @@
 "use client"
 
-import { createAddress, getAddressByUser, updateAddress } from "@/actions"
+import { createAddress, updateAddress } from "@/actions"
 import { addressFormSchema } from "@/lib"
 import { useAddressForm } from "@/hooks"
 import { z } from "zod"

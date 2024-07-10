@@ -9,9 +9,10 @@ import type { User } from "@prisma/client"
 import { logout } from "@/actions"
 
 export default function IsSignedIn({ user }: { user: User }): React.ReactElement {
+	console.log(user)
 	return (
 		<>
-			{user?.role === "ADMIN" && (
+			{user.role === "ADMIN" && (
 				<>
 					<Link
 						href={"/admin"}

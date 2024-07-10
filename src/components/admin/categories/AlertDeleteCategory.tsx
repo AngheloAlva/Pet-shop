@@ -1,0 +1,66 @@
+import { deleteCategory } from "@/actions"
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+	useToast,
+} from "@/components/ui"
+
+function AlertDeleteCategory({
+	categoryId,
+	refresh,
+}: AlertDeleteCategoryProps): React.ReactElement {
+	const { toast } = useToast()
+
+	const handleDelete = async (): Promise<void> => {
+		try {
+			await deleteCategory(categoryId)
+			await refresh()
+			toast({
+				title: "Category deleted",
+				description: "The category was deleted successfully",
+				duration: 3000,
+			})
+		} catch (error) {
+			toast({
+				title: "Error",
+				description: "An error occurred while deleting the category",
+				duration: 3000,
+				variant: "destructive",
+			})
+		}
+	}
+
+	return (
+		<AlertDialog>
+			<AlertDialogTrigger className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-md bg-destructive px-3 text-xs font-medium text-destructive-foreground shadow-sm transition-colors hover:bg-destructive/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+				Delete
+			</AlertDialogTrigger>
+			<AlertDialogContent>
+				<AlertDialogHeader>
+					<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+					<AlertDialogDescription className="text-pretty">
+						This action deletes the category temporarily. You can restore it later.
+					</AlertDialogDescription>
+				</AlertDialogHeader>
+				<AlertDialogFooter>
+					<AlertDialogCancel>Cancel</AlertDialogCancel>
+					<AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+				</AlertDialogFooter>
+			</AlertDialogContent>
+		</AlertDialog>
+	)
+}
+
+export default AlertDeleteCategory
+
+interface AlertDeleteCategoryProps {
+	categoryId: number
+	refresh: () => Promise<void>
+}
