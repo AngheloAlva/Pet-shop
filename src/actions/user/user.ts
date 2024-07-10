@@ -38,6 +38,26 @@ const getUsers = async ({
 	}
 }
 
+const getUserById = async (id: string): Promise<{ ok: boolean; user: User | null }> => {
+	try {
+		const user = await prisma.user.findUnique({
+			where: {
+				id,
+			},
+		})
+
+		return {
+			ok: true,
+			user,
+		}
+	} catch (error) {
+		return {
+			ok: false,
+			user: null,
+		}
+	}
+}
+
 const updateUser = async (
 	id: string,
 	{ lastName, name, password }: UpdateUser
@@ -103,4 +123,4 @@ const deleteUser = async (id: string): Promise<{ ok: boolean; message?: string }
 	}
 }
 
-export { getUsers, updateUser, deleteUser, activateUser }
+export { getUsers, updateUser, deleteUser, activateUser, getUserById }
