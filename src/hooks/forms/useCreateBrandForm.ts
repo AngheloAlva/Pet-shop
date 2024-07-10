@@ -1,6 +1,8 @@
-import { createBrandSchema } from "@/lib"
-import { zodResolver } from "@hookform/resolvers/zod"
+"use client"
+
 import { FieldValues, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { createBrandSchema } from "@/lib"
 
 import type { z } from "zod"
 

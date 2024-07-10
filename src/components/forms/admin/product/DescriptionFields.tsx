@@ -1,3 +1,5 @@
+"use client"
+
 import { useFieldArray } from "react-hook-form"
 
 import { FormDescription, Textarea, Button, Input, Label } from "@/components/ui"
