@@ -1,3 +1,5 @@
+"use client"
+
 import { useCategories } from "@/hooks"
 import { cn } from "@/lib"
 

@@ -9,6 +9,7 @@ import AllProductsSection from "./products/AllProductsSection"
 import BrandSectionSkeleton from "./home/BrandSectionSkeleton"
 import ProductsByBrandSection from "./home/ProductsByBrandSection"
 import ProductsSectionSkeleton from "./home/ProductsSectionSkeleton"
+import AllProductsSectionShared from "./products/AllProductsSectionShared"
 
 export {
 	PetsSection,
@@ -22,4 +23,5 @@ export {
 	BrandSectionSkeleton,
 	ProductsByBrandSection,
 	ProductsSectionSkeleton,
+	AllProductsSectionShared,
 }

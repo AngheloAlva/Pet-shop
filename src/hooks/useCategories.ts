@@ -20,7 +20,16 @@ export const useCategories = ({
 	useEffect(() => {
 		const fetchCategories = async (): Promise<void> => {
 			try {
-				const { categories } = await getCategories({ isAvailable, limit, page })
+				console.log("Fetching categories")
+				const { ok, categories } = await getCategories({ isAvailable, limit, page })
+
+				if (!ok) {
+					toast({
+						title: "Error getting categories",
+						description: "An error occurred while fetching categories",
+					})
+				}
+
 				setCategories(categories || [])
 				setIsLoading(false)
 			} catch (error) {
@@ -32,7 +41,7 @@ export const useCategories = ({
 		}
 
 		void fetchCategories()
-	}, [isAvailable, limit, page, toast])
+	}, [isAvailable, limit, page])
 
 	return {
 		categories,
