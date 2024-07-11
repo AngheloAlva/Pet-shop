@@ -7,17 +7,15 @@ import type { Brand } from "@prisma/client"
 
 export default function BrandCard({ brand }: { brand: Brand }): React.ReactElement {
 	return (
-		<Link href={`/brands/${brand.slug}`}>
-			<Card className="bg-cream-500 px-5 py-2">
-				<div className="relative flex h-20 w-full items-center">
-					<Image
-						src={brand.image}
-						alt={brand.name}
-						width={200}
-						height={100}
-						className="object-contain"
-					/>
-				</div>
+		<Link href={`/brands/${brand.slug}`} className="flex h-full w-full">
+			<Card className="flex w-full flex-col items-center justify-center bg-neutral-50 px-5 py-2 shadow-none">
+				<Image
+					src={brand.image}
+					alt={brand.name}
+					width={200}
+					height={100}
+					className="h-full max-h-28 w-auto rounded-md object-contain drop-shadow-md"
+				/>
 			</Card>
 		</Link>
 	)

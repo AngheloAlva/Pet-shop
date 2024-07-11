@@ -11,7 +11,7 @@ export default async function Navbar(): Promise<React.ReactElement> {
 
 	return (
 		<header className="fixed left-0 right-0 top-0 z-50 bg-bg-100 shadow-md">
-			<nav className="mx-auto flex max-w-[1900px] items-center justify-between px-4 py-2 md:px-8 lg:px-24 lg:py-4 xl:px-36">
+			<nav className="mx-auto flex w-full max-w-[1900px] items-center justify-between px-4 py-2 md:px-8 lg:px-24 lg:py-4 xl:px-36">
 				<div className="flex items-center gap-2 md:hidden">
 					<SheetMenu />
 
