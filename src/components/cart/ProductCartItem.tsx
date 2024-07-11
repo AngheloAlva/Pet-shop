@@ -43,7 +43,7 @@ export default function ProductCartItem({
 
 	return (
 		<div className="flex gap-2">
-			<Link href={`/products/${productCart.product.slug}`} className="h-20 w-20">
+			<Link href={`/products/${productCart.product.slug}`} className="h-16 w-16 sm:h-16 sm:w-16">
 				<Image
 					width={80}
 					height={80}
@@ -55,23 +55,26 @@ export default function ProductCartItem({
 
 			<div className="flex w-full items-start text-text-200">
 				<div className="flex w-full flex-col">
-					<Link href={`/products/${productCart.product.slug}`} className="font-medium">
+					<Link
+						href={`/products/${productCart.product.slug}`}
+						className="text-sm font-medium sm:text-base"
+					>
 						{productCart.product.name}
 						{" - "}
 						{productCart.product.options[productCart.optionSelectedIndex].name}
 					</Link>
-					<p className="text-nowrap text-sm text-muted-foreground">
+					<p className="text-nowrap text-xs text-muted-foreground sm:text-sm">
 						Quantity: {productCart.quantity}
 					</p>
-					<p className="mt-1 text-nowrap">
+					<p className="mt-1 text-nowrap text-sm sm:text-base">
 						{productCart.product.options[productCart.optionSelectedIndex].discount > 0 ? (
 							<>
-								<span className="text-sm text-muted-foreground line-through">
+								<span className="text-xs text-muted-foreground line-through sm:text-sm">
 									{productCart.product.options[
 										productCart.optionSelectedIndex
 									].price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
 								</span>
-								<span className="ml-2">
+								<span className="ml-2 text-sm sm:text-base">
 									{priceWithDiscount.toLocaleString("es-CL", {
 										style: "currency",
 										currency: "CLP",

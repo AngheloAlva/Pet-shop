@@ -9,7 +9,7 @@ export default function SearchButton(): React.ReactElement {
 				<FaMagnifyingGlass className="h-7 w-7 p-[2px]" />
 				<div className="hidden w-52 text-left text-muted-foreground md:block">Search...</div>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="top-10 translate-y-0">
 				<DialogHeader>
 					<DialogTitle>Search for a product</DialogTitle>
 				</DialogHeader>

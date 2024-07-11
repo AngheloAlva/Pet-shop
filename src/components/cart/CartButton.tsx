@@ -43,7 +43,7 @@ export default function CartButton({ user }: { user: User | undefined }): React.
 			<PopoverTrigger className="cursor-pointer rounded-lg p-1 text-text-200 transition-colors hover:bg-cream-500 hover:text-bg-100">
 				<FaBasketShopping className="h-7 w-7" />
 			</PopoverTrigger>
-			<PopoverContent className="w-[25rem]">
+			<PopoverContent className="mr-2 w-[90vw] max-w-[25rem]">
 				<div className="flex flex-col">
 					{cart.length === 0 ? (
 						<p className="text-center font-semibold">No hay productos en el carrito</p>
