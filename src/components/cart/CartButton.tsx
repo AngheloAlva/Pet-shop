@@ -1,6 +1,5 @@
 "use client"
 
-import { redirect } from "next/navigation"
 import { useCartStore } from "@/store"
 
 import {
@@ -16,11 +15,14 @@ import ProductCartItem from "./ProductCartItem"
 
 import type { User } from "@prisma/client"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function CartButton({ user }: { user: User | undefined }): React.ReactElement {
 	const cart = useCartStore((state) => state.cart)
 	const isLogged = user != null
+
 	const { toast } = useToast()
+	const router = useRouter()
 
 	const handleRedirectToCheckout = () => {
 		if (!isLogged) {
@@ -35,7 +37,7 @@ export default function CartButton({ user }: { user: User | undefined }): React.
 			})
 		}
 
-		redirect("/checkout")
+		router.push("/checkout")
 	}
 
 	return (

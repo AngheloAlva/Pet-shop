@@ -33,15 +33,16 @@ export default function LoginForm(): React.ReactElement {
 	const onSubmit = async (values: z.infer<typeof loginSchema>) => {
 		const success = await authenticate(values.email, values.password)
 
-		if (success === "Success") {
-			window.location.replace("/")
-		} else {
+		if (success === "Error") {
 			toast({
 				title: "Error al iniciar sesión",
 				description: "Verifica tus credenciales",
 				variant: "destructive",
 			})
+			return
 		}
+
+		window.location.replace("/")
 	}
 
 	return (
