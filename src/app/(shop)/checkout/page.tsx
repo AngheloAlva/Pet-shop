@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { auth } from "@/auth"
 import Link from "next/link"
 
@@ -11,7 +11,7 @@ export default async function CartPage(): Promise<React.ReactElement> {
 	const session = await auth()
 
 	if (!session || !session.user) {
-		notFound()
+		redirect("/auth/login")
 	}
 
 	return (
