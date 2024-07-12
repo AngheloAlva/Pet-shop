@@ -1,12 +1,12 @@
 import { Button, ProductCardSkeleton } from "@/components/ui"
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6"
-import FilterSection from "./filter/FilterSection"
+// import FilterSection from "./filter/FilterSection"
 
 export default function AllProductsSkeleton(): React.ReactElement {
 	return (
 		<>
 			<div className="flex w-full gap-4">
-				<FilterSection />
+				{/* <FilterSection /> */}
 				<section className="grid w-full grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 					{Array.from({ length: 12 }).map((_, index) => (
 						<ProductCardSkeleton key={index} />

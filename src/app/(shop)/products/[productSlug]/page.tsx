@@ -1,36 +1,47 @@
 import { Suspense } from "react"
+import { prisma } from "@/lib"
 
 import ProductDataSkeleton from "@/components/sections/products/ProductDataSkeleton"
 import { ProductData } from "@/components/sections"
 
-// import type { Metadata } from "next"
+import type { Metadata } from "next"
 
 interface Props {
 	params: { productSlug: string }
 }
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-// 	const { product } = await fetch(
-// 		`${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${params.productSlug}`
-// 	).then((res) => res.json())
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const product = await prisma.product.findUnique({
+		where: { slug: params.productSlug },
+		include: {
+			brand: { select: { name: true } },
+			category: { select: { name: true } },
+		},
+	})
 
-// 	if (!product) {
-// 		return {
-// 			title: "Product not found",
-// 			description: "The product you are looking for does not exist.",
-// 		}
-// 	}
+	if (!product) {
+		return {
+			title: "Product not found | Pet Shop",
+			description: "The product you are looking for is not available at PetStore.",
+		}
+	}
 
-// 	const { name, brand, category, lifeStage, petType, images } = product
+	const { name, brand, category, lifeStage, images } = product
 
-// 	return {
-// 		title: `${name} | Pet Shop`,
-// 		description: `Buy ${name} from ${brand?.name} of ${category?.name} for your ${lifeStage} at PetStore.`,
-// 		openGraph: {
-// 			images: [images[0]],
-// 		},
-// 	}
-// }
+	return {
+		title: `${name} | Pet Shop`,
+		description: `Buy ${name} from ${brand?.name} of ${category?.name} for your ${lifeStage} at PetStore.`,
+		openGraph: {
+			images: [images[0]],
+		},
+	}
+}
+
+export async function generateStaticParams() {
+	const products = await prisma.product.findMany({ select: { slug: true } })
+
+	return products.map((products) => ({ productSlug: products.slug }))
+}
 
 export default function ProductPage({ params }: Props): React.ReactElement {
 	return (
