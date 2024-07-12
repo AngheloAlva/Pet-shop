@@ -1,28 +1,62 @@
 "use client"
 
 import { useDebouncedCallback } from "use-debounce"
-import { useProducts } from "@/hooks"
+import { useEffect, useState } from "react"
+import { useFilterStore } from "@/store"
+import { getProducts } from "@/actions"
 
+import { Input, Skeleton, useToast } from "@/components/ui"
 import ProductSearchItem from "./ProductSeachItem"
-import { Input } from "@/components/ui"
+
+import type { GetProductResponse } from "@/interfaces"
 
 export default function SearchSection(): React.ReactElement {
-	const { products, setFilters, isLoading } = useProducts({
-		initialFilters: {
-			isAvailable: true,
-			limit: 5,
-			page: 1,
-		},
-	})
+	const { setFilters, filters } = useFilterStore()
+	const { toast } = useToast()
 
-	const searchProducts = useDebouncedCallback((search: string) => {
+	const [products, setProducts] = useState<GetProductResponse[] | undefined>([])
+	const [message, setMessage] = useState("Type to search")
+	const [isLoading, setIsLoading] = useState(true)
+
+	useEffect(() => {
+		const fetchProducts = async () => {
+			setIsLoading(true)
+
+			const { ok, products } = await getProducts({
+				...filters,
+			})
+
+			console.log(products)
+
+			if (!ok) {
+				toast({
+					title: "Error",
+					description: "Failed to fetch products. Try again later.",
+					variant: "destructive",
+				})
+			}
+
+			if (products?.length === 0) {
+				setMessage("No products found.")
+				setIsLoading(false)
+				setProducts([])
+				return
+			}
+
+			setMessage("")
+			setIsLoading(false)
+			setProducts(products)
+		}
+
+		void fetchProducts()
+	}, [filters])
+
+	const searchProducts = useDebouncedCallback(async (search: string) => {
 		setFilters({
+			...filters,
 			search,
-			isAvailable: true,
-			limit: 5,
-			page: 1,
 		})
-	}, 300)
+	}, 500)
 
 	return (
 		<div>
@@ -32,12 +66,14 @@ export default function SearchSection(): React.ReactElement {
 				onChange={(e) => searchProducts(e.target.value)}
 			/>
 
+			<p className="mb-4 text-center text-muted-foreground">{message}</p>
+
 			<div className="flex max-h-96 flex-col gap-3 overflow-y-scroll">
-				{isLoading ? (
-					<div>Loading...</div>
-				) : (
-					products?.map((product) => <ProductSearchItem product={product} key={product.id} />)
-				)}
+				{isLoading
+					? Array.from({ length: 2 }).map((_, index) => (
+							<Skeleton key={index} className="h-28 w-full" />
+						))
+					: products?.map((product) => <ProductSearchItem product={product} key={product.id} />)}
 			</div>
 		</div>
 	)

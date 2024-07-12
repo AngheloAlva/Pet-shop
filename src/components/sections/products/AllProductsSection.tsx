@@ -6,13 +6,14 @@ import { useFilterStore } from "@/store"
 import { getProducts } from "@/actions"
 
 import { PaginationButtons, ProductCard } from "@/components/ui"
+import AllProductsSkeleton from "./AllProductsSkeleton"
 import FilterSection from "./filter/FilterSection"
 
 import type { GetProductResponse } from "@/interfaces"
-import AllProductsSkeleton from "./AllProductsSkeleton"
 
 export default function AllProductsSection(): React.ReactElement {
 	const filters = useFilterStore((state) => state.filters)
+
 	const [products, setProducts] = useState<GetProductResponse[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [total, setTotal] = useState(0)
@@ -41,6 +42,12 @@ export default function AllProductsSection(): React.ReactElement {
 
 	return (
 		<>
+			{products.length === 0 && !isLoading && (
+				<div className="flex h-96 items-center justify-center">
+					<p className="text-lg text-muted-foreground">No products found</p>
+				</div>
+			)}
+
 			{isLoading ? (
 				<AllProductsSkeleton />
 			) : (

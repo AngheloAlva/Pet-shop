@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { notFound, useRouter } from "next/navigation"
 import { getProducts } from "@/actions"
 
 import type { GetProductResponse, GetProductsWithFilters } from "@/interfaces"
@@ -37,14 +37,15 @@ export const useProducts = ({
 					page,
 				})
 
-				if (ok) {
-					setProducts(products || [])
-					setTotal(total)
+				if (!ok) {
+					notFound()
 				}
 
+				setProducts(products || [])
+				setTotal(total)
 				setIsLoading(false)
 			} catch (error) {
-				router.push("/404")
+				console.log(error)
 			}
 		}
 

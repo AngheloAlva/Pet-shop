@@ -27,9 +27,9 @@ export default function ProductSearchItem({
 				</CardHeader>
 				<CardContent className="flex flex-col p-0">
 					<CardTitle>{product.name}</CardTitle>
-					<CardDescription>{/* {product.brand?.name} */}</CardDescription>
+					<CardDescription>{product.brand.name}</CardDescription>
 
-					<div className="flex cursor-default flex-col text-xs">
+					<div className="flex cursor-default flex-col text-xs sm:text-sm">
 						{product.options?.map((option) => (
 							<span key={option.id}>{option.name + ": " + option.price}</span>
 						))}

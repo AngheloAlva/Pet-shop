@@ -8,19 +8,11 @@ import { calculateCartTotals } from "@/helpers"
 import { useRouter } from "next/navigation"
 
 export default function ShippingButton({ userId }: { userId: string }): React.ReactElement {
-	const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false)
+	const { toast } = useToast()
 	const router = useRouter()
 
 	const { haveAddress, shippingMethod, isLoading, setIsLoading } = useCheckoutStore()
 	const cart = useCartStore((state) => state.cart)
-
-	const { toast } = useToast()
-
-	useEffect(() => {
-		if (haveAddress && shippingMethod) {
-			setIsButtonEnabled(true)
-		}
-	}, [haveAddress, shippingMethod])
 
 	const handlePay = async (): Promise<void> => {
 		try {
@@ -55,7 +47,7 @@ export default function ShippingButton({ userId }: { userId: string }): React.Re
 		<Button
 			size={"lg"}
 			onClick={handlePay}
-			disabled={!isButtonEnabled}
+			disabled={haveAddress}
 			className="mt-5 w-full bg-green-600 hover:bg-green-500"
 		>
 			{isLoading ? (

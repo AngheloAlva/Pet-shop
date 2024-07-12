@@ -10,7 +10,7 @@ async function BrandsSection(): Promise<React.ReactElement> {
 	})
 
 	return (
-		<section className="px-5 sm:px-10 md:px-20 lg:px-40">
+		<section className="w-full px-5 sm:px-10 md:px-20 lg:px-40">
 			<h2 className="mb-2 text-3xl font-bold">Brands</h2>
 
 			<Carousel opts={{ align: "start", loop: true }}>
@@ -19,7 +19,7 @@ async function BrandsSection(): Promise<React.ReactElement> {
 						brands.map((brand) => (
 							<CarouselItem
 								key={brand.id}
-								className="basis-1/2 sm:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
+								className="flex max-h-28 basis-1/2 items-center justify-center sm:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
 							>
 								<BrandCard brand={brand} />
 							</CarouselItem>

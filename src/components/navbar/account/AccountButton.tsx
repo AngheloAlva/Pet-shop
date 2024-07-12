@@ -16,7 +16,7 @@ export default async function AccountButton() {
 			<PopoverTrigger className="cursor-pointer rounded-lg p-1 text-text-200 transition-colors hover:bg-cream-500 hover:text-bg-100">
 				<FaUser className="h-7 w-7 p-[1px]" />
 			</PopoverTrigger>
-			<PopoverContent className="max-w-52">
+			<PopoverContent className="mr-2 max-w-52">
 				<div className="flex flex-col items-start gap-2 text-text-100">
 					{user ? (
 						<IsSignedIn user={user as User} />

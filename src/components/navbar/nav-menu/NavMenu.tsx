@@ -27,7 +27,7 @@ export default async function NavMenu(): Promise<React.ReactElement> {
 								{petType.replace("_", " ")}
 							</NavigationMenuTrigger>
 							<NavigationMenuContent className="min-w-[80vw] lg:min-w-[65vw] xl:min-w-[50vw]">
-								<ul className="grid min-w-full grid-cols-2 gap-3 p-4">
+								<ul className="grid min-w-full grid-cols-2 gap-x-6 gap-y-4 p-4">
 									{categories &&
 										categories
 											.filter((category) => category.petType === petType)
